@@ -44,15 +44,13 @@ export const HomePage = () => (
                 </div>
 
                 <div className="container">
-                    <h1 className="page-header">Use Blue React</h1>
+                    <h2 className="page-header">Use Blue Web</h2>
 
-                    <h2 className="mt-4 mb-3">Create new project using CRA</h2>
-                    <code>
-                        npx create-react-app@latest <strong>name-of-my-app</strong> --template blue@9
-                    </code>
-
-                    <h2 className="mt-4 mb-3">Install to existing project</h2>
-                    <code>npm i blue-react</code>
+                    <p>
+                        Install with NPM:
+                        <br />
+                        <code>npm i blue-web</code>
+                    </p>
 
                     <IntroductionSections />
                 </div>

@@ -121,11 +121,19 @@ function App() {
                                     />
 
                                     <SidebarMenuItem
-                                        href="https://bruegmann.github.io/themify"
+                                        href="https://bruegmann.github.io/blue-react"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        label="Customize with Themify"
-                                        icon={<Palette2 />}
+                                        label="Blue React"
+                                        icon={<PuzzleFill />}
+                                    />
+
+                                    <SidebarMenuItem
+                                        href="https://bruegmann.github.io/blue-blazor"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        label="Blue Blazor"
+                                        icon={<Puzzle />}
                                     />
 
                                     <SidebarMenuItem
