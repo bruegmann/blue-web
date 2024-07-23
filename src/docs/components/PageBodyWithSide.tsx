@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import Body from "../../components/Body"
+import { Body } from "blue-react"
 import { Footer } from "./Footer"
 
 export interface PageBodyWithSideProps {

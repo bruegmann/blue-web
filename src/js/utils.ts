@@ -1,39 +1,5 @@
 import { StatusType } from "./shared"
 
-export function hasClass(el: HTMLElement | null, className: string) {
-    if (el!.classList) return el!.classList.contains(className)
-    else return !!el!.className.match(new RegExp("(\\s|^)" + className + "(\\s|$)"))
-}
-
-export function addClass(el: HTMLElement | null, className: string) {
-    if (el!.classList) el!.classList.add(className)
-    else if (!hasClass(el, className)) el!.className += " " + className
-}
-
-export function removeClass(el: HTMLElement | null, className: string) {
-    if (el!.classList) el!.classList.remove(className)
-    else if (hasClass(el, className))
-        el!.className = el!.className.replace(new RegExp("(\\s|^)" + className + "(\\s|$)"), " ")
-}
-
-/**
- * @deprecated Use (el as HTMLElement).classList.toggle("my-class") instead.
- */
-export function toggleClass(element: HTMLElement | null, className: string) {
-    if (!element || !className) {
-        return
-    }
-
-    var classString = element.className,
-        nameIndex = classString.indexOf(className)
-    if (nameIndex === -1) {
-        classString += " " + className
-    } else {
-        classString = classString.substr(0, nameIndex) + classString.substr(nameIndex + className.length)
-    }
-    element.className = classString
-}
-
 export function startLoading() {
     ;(document.querySelector(".blue-loading") as HTMLElement).style.display = "block"
 }
@@ -48,19 +14,6 @@ export function showSuccess() {
 
 export function hideSuccess() {
     ;(document.querySelector(".blue-status-success") as HTMLElement).style.display = ""
-}
-
-/**
- * @deprecated Is handled inside of `ActioMenu` component now
- */
-export function toggleActions() {
-    toggleClass(document.querySelector(".blue-wrapper")!, "active")
-    toggleClass(document.querySelector(".blue-layout")!, "wrapper-in")
-
-    const els = document.querySelectorAll(".blue-actions")
-    for (let i = 0; i < els.length; i++) {
-        toggleClass(els[i] as HTMLElement, "open")
-    }
 }
 
 /**
@@ -79,7 +32,7 @@ export function resetAlertMessage(alertClassName?: StatusType) {
         if (statusElement) statusElement.style.display = ""
         if (alertElement) {
             alertElement.style.display = ""
-            removeClass(alertElement, "alert-" + (alertClassName === "loading" ? "info" : alertClassName))
+            alertElement.classList.remove("alert-" + (alertClassName === "loading" ? "info" : alertClassName))
         }
     }
 }
@@ -99,7 +52,7 @@ export function setAlertMessage(
     if (statusElement) statusElement.style.display = "flex"
     if (alertElement) {
         alertElement.style.display = "block"
-        addClass(alertElement, "alert-" + (alertClassName === "loading" ? "info" : alertClassName))
+        alertElement.classList.add("alert-" + (alertClassName === "loading" ? "info" : alertClassName))
 
         alertElement.querySelector(".alert-body")!.innerHTML = `<h2>` + message + `</h2>`
         if (detailText) {
@@ -182,21 +135,4 @@ export function fetchData(
             }
             throw reason
         })
-}
-
-export default {
-    hasClass,
-    addClass,
-    removeClass,
-    toggleClass,
-    startLoading,
-    finishLoading,
-    showSuccess,
-    hideSuccess,
-    toggleActions,
-    resetAlertMessage,
-    setAlertMessage,
-    guid,
-    scrollToTop,
-    fetchData
 }

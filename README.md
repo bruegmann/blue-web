@@ -1,19 +1,13 @@
 <p align="center">
-<img src="https://raw.githubusercontent.com/bruegmann/blue-react/master/public/blue-readme-cover.png" alt="React component library based on Bootstrap">
+<img src="https://raw.githubusercontent.com/bruegmann/blue-web/master/public/blue-readme-cover.png" alt="UI library based on Bootstrap">
 </p>
 
-# Blue React
+# Blue Web
 
-[![npm version](https://img.shields.io/npm/v/blue-react)](https://www.npmjs.com/package/blue-react)
+[![npm version](https://img.shields.io/npm/v/blue-web)](https://www.npmjs.com/package/blue-web)
 
-[Checkout the docs](https://bruegmann.github.io/blue-react) to find out how to
-use Blue React.
-
-## Breaking changes between v8 and v9
-
--   Renamed `.caret` ➡️ `.blue-caret`
--   Removed `.switch` CSS
--   Removed deprecated DocumentView
+[Checkout the docs](https://bruegmann.github.io/blue-web) to find out how to
+use Blue Web.
 
 ## Developing
 

@@ -1,12 +1,8 @@
-import Page from "../../components/Page"
-import Body from "../../components/Body"
+import { Page, Body } from "blue-react"
 import { logo, appTitle } from "../Global"
-import { Bootstrap, BoxSeam, Code, WindowSidebar } from "react-bootstrap-icons"
-import { ReactIcon } from "../components/ReactIcon"
-import { VersionToggle } from "../components/VersionToggle"
+import { Bootstrap, BoxSeam, Braces, Code, WindowSidebar } from "react-bootstrap-icons"
 import { Footer } from "../components/Footer"
 import IntroductionSections from "../components/IntroductionSections"
-import StackblitzEmbed from "../components/StackblitzEmbed"
 
 const packageJson = require("../../../package.json")
 
@@ -18,9 +14,9 @@ export const HomePage = () => (
                     <div className="container pt-3 mt-5 pt-md-0">
                         <section className="d-flex justify-content-between">
                             <div>
-                                <h1>React component library based on Bootstrap 5</h1>
+                                <h1>UI library based on Bootstrap 5</h1>
                                 <div className="h2">
-                                    <Bootstrap /> <ReactIcon /> <Code /> <WindowSidebar /> <BoxSeam />
+                                    <Bootstrap /> <Braces /> <Code /> <WindowSidebar /> <BoxSeam />
                                 </div>
                                 <div className="h3 mt-3 d-flex align-content-center gap-3">
                                     <span
@@ -29,8 +25,6 @@ export const HomePage = () => (
                                     >
                                         {packageJson.version}
                                     </span>
-
-                                    <VersionToggle />
                                 </div>
                             </div>
 
@@ -40,6 +34,7 @@ export const HomePage = () => (
                                     style={{ fontWeight: "900" }}
                                 >
                                     <img src={logo} alt={appTitle} style={{ height: "1em" }} className="me-3" /> Blue
+                                    Web
                                 </h1>
                             </div>
                         </section>
@@ -49,8 +44,6 @@ export const HomePage = () => (
                 </div>
 
                 <div className="container">
-                    <StackblitzEmbed />
-
                     <h1 className="page-header">Use Blue React</h1>
 
                     <h2 className="mt-4 mb-3">Create new project using CRA</h2>

@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, Switch, Route, NavLink, Link } from "react-router-dom"
-import Layout from "../components/Layout"
+import { Layout, MenuItem, SidebarMenu, SidebarMenuItem } from "blue-react"
 
 import "./docs.scss"
 import { HomePage } from "./pages/HomePage"
-import MenuItem from "../components/MenuItem"
 
 import {
     List,
@@ -18,8 +17,6 @@ import {
     Palette2,
     HouseFill,
     PuzzleFill,
-    Stickies,
-    StickiesFill,
     Rss,
     RssFill,
     Eye,
@@ -28,17 +25,11 @@ import {
     BracesAsterisk
 } from "react-bootstrap-icons"
 
-import { ComponentPage } from "./pages/ComponentPage"
 import UtilitiesPage from "./pages/UtilitiesPage"
 import { logo } from "./Global"
-import { RecipesPage } from "./pages/RecipesPage"
-import { ActionMenuExamplePage } from "./pages/ActionMenuExamplePage"
-import BlogPage from "./pages/BlogPage"
 import LicenseReportPage from "./pages/LicenseReportPage"
 import { useEffect } from "react"
 import DemoApp from "./components/DemoApp"
-import SidebarMenu from "../components/SidebarMenu"
-import SidebarMenuItem from "../components/SidebarMenuItem"
 import NeumorphismPage from "./pages/NeumorphismPage"
 import { CssPage } from "./pages/CssPage"
 
@@ -80,14 +71,7 @@ function App() {
                 </Route>
 
                 <Route path="/action-menu-example">
-                    <Layout
-                        pages={[
-                            {
-                                name: "home",
-                                component: <ActionMenuExamplePage />
-                            }
-                        ]}
-                    >
+                    <Layout pages={[]}>
                         <SidebarMenu>
                             <MenuItem href="#" label="Home" icon={<span>🏠</span>} isHome />
                         </SidebarMenu>
@@ -107,9 +91,6 @@ function App() {
                                 </NavLink>
                                 <NavLink to="/utilities" className="nav-link">
                                     JS Utilities
-                                </NavLink>
-                                <NavLink to="/component" className="nav-link">
-                                    React Components
                                 </NavLink>
                             </div>
                         </div>
@@ -166,13 +147,6 @@ function App() {
                                 to="/"
                             />
                             <SidebarMenuItem
-                                icon={<Rss />}
-                                iconForActive={<RssFill />}
-                                label="Blog"
-                                elementType={NavLink}
-                                to="/blog"
-                            />
-                            <SidebarMenuItem
                                 icon={<LayersHalf />}
                                 iconForActive={<LayersFill />}
                                 label="Neumorphism"
@@ -187,29 +161,11 @@ function App() {
                                 to="/css"
                             />
                             <SidebarMenuItem icon={<Tools />} label="Utilities" elementType={NavLink} to="/utilities" />
-                            <SidebarMenuItem
-                                icon={<Puzzle />}
-                                iconForActive={<PuzzleFill />}
-                                label="React Components"
-                                elementType={NavLink}
-                                to="/component"
-                            />
-                            <SidebarMenuItem
-                                icon={<Stickies />}
-                                iconForActive={<StickiesFill />}
-                                label="Recipes"
-                                elementType={NavLink}
-                                to="/recipes"
-                            />
                         </SidebarMenu>
 
                         <div className="router-page active">
                             <Route path="/utilities">
                                 <UtilitiesPage />
-                            </Route>
-
-                            <Route path="/blog">
-                                <BlogPage />
                             </Route>
 
                             <Route path="/neu">
@@ -218,14 +174,6 @@ function App() {
 
                             <Route path="/css/:selectedSection?">
                                 <CssPage />
-                            </Route>
-
-                            <Route path="/component/:selectedComponent?">
-                                <ComponentPage />
-                            </Route>
-
-                            <Route path="/recipes/:active?">
-                                <RecipesPage />
                             </Route>
 
                             <Route path="/license-report">

@@ -13,20 +13,22 @@ import {
     Star
 } from "react-bootstrap-icons"
 import { Link } from "react-router-dom"
-import ActionMenu from "../../components/ActionMenu"
-import Body from "../../components/Body"
-import Header from "../../components/Header"
-import HeaderTitle from "../../components/HeaderTitle"
-import Intro from "../../components/Intro"
-import Layout from "../../components/Layout"
-import MenuItem from "../../components/MenuItem"
-import Page from "../../components/Page"
-import Search from "../../components/Search"
-import SidebarMenu from "../../components/SidebarMenu"
 import { logo } from "../Global"
-import SidebarMenuItem from "../../components/SidebarMenuItem"
-import IconMenuItem from "../../components/IconMenuItem"
-import ActionMenuItem from "../../components/ActionMenuItem"
+import {
+    ActionMenu,
+    Body,
+    Header,
+    HeaderTitle,
+    Intro,
+    Layout,
+    MenuItem,
+    Page,
+    Search,
+    SidebarMenu,
+    SidebarMenuItem,
+    IconMenuItem,
+    ActionMenuItem
+} from "blue-react"
 
 const exampleHistoryItems = ["Nice person", "Important message", "Document XYZ", "Boring appointment"]
 const exampleFavoriteItems = ["Max Mustermann person", "A Word Document", "Boring appointment"]

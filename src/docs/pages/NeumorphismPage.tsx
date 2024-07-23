@@ -1,5 +1,4 @@
-import Body from "../../components/Body"
-import Page from "../../components/Page"
+import { Page, Body } from "blue-react"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { synthwave84 as syntaxHighlighterStyle } from "react-syntax-highlighter/dist/esm/styles/prism"
 import NeumorphismExperiments from "../components/NeumorphismExperiments"
@@ -35,7 +34,7 @@ export default function NeumorphismPage() {
                         </h1>
 
                         <p className="lead">
-                            Blue React comes with <code>dist/neu.scss</code> containing some SCSS and CSS utilities to
+                            Blue Web comes with <code>dist/neu.scss</code> containing some SCSS and CSS utilities to
                             make it easy to apply shadow effects.
                         </p>
 

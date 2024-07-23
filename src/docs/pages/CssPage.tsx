@@ -1,8 +1,6 @@
 import { createElement, useEffect, useState } from "react"
 import { useParams, NavLink, Link } from "react-router-dom"
-import Page from "../../components/Page"
-
-import Search from "../../components/Search"
+import { Page, Search } from "blue-react"
 import { appTitle } from "../Global"
 import PageBodyWithSide from "../components/PageBodyWithSide"
 import cssSections from "../data/cssSections.json"

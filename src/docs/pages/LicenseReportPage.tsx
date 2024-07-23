@@ -1,5 +1,4 @@
-import Page from "../../components/Page"
-import Body from "../../components/Body"
+import { Page, Body } from "blue-react"
 import { Footer } from "../components/Footer"
 import reports from "../data/license-report.json"
 

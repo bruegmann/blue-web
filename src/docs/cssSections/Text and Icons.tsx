@@ -10,7 +10,7 @@ export default function TextAndIcons() {
                 </HashLink>
                 <p>
                     {`In previous versions of Bootstrap, ${"`.page-header`"} was a class that could be used to add a border to the bottom of a page header.\n
-                    Unfortunately his class was removed in Bootstrap 5, so it's now part of Blue React CSS.`}
+                    Unfortunately his class was removed in Bootstrap 5, so it's now part of Blue Web CSS.`}
                 </p>
 
                 <h3>Example</h3>
