@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/blue-web/v1/static/css/main.f0483bc9.css",
+    "main.js": "/blue-web/v1/static/js/main.71d2a027.js",
+    "static/media/blue.svg": "/blue-web/v1/static/media/blue.fb422456b614ac039838a6847b7f8a97.svg",
+    "index.html": "/blue-web/v1/index.html",
+    "main.f0483bc9.css.map": "/blue-web/v1/static/css/main.f0483bc9.css.map",
+    "main.71d2a027.js.map": "/blue-web/v1/static/js/main.71d2a027.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f0483bc9.css",
+    "static/js/main.71d2a027.js"
+  ]
+}
