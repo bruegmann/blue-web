@@ -14,11 +14,8 @@ import {
     InfoCircleFill,
     CheckCircleFill,
     ExclamationCircleFill,
-    Palette2,
     HouseFill,
     PuzzleFill,
-    Rss,
-    RssFill,
     Eye,
     LayersHalf,
     LayersFill,
@@ -79,22 +76,28 @@ function App() {
                 </Route>
 
                 <Route path="/">
-                    <nav className="docs-nav navbar navbar-expand navbar-dark bg-dark shadow-lg position-fixed top-0 rounded-4 z-1 py-1 mt-1 ms-1">
-                        <div className="container-fluid px-2">
-                            <Link className="navbar-brand" to="/">
-                                <img src={logo} alt="Blue Logo" width="32" height="32" className="d-block" />
-                            </Link>
+                    <nav className="docs-nav">
+                        <Link className="navbar-brand" to="/">
+                            <img src={logo} alt="Blue Logo" width="32" height="32" className="d-block" /> Blue Web
+                        </Link>
 
-                            <div className="navbar-nav flex-grow-1">
-                                <NavLink to="/css" className="nav-link">
-                                    CSS Classes
-                                </NavLink>
-                                <NavLink to="/utilities" className="nav-link">
-                                    JS Utilities
-                                </NavLink>
-                            </div>
+                        <div className="navbar-nav">
+                            <a
+                                href="https://bruegmann.github.io/blue-web"
+                                className="nav-link active"
+                                aria-current="page"
+                            >
+                                Web
+                            </a>
+                            <a href="https://bruegmann.github.io/blue-react" className="nav-link">
+                                React
+                            </a>
+                            <a href="https://bruegmann.github.io/blue-blazor" className="nav-link">
+                                Blazor
+                            </a>
                         </div>
                     </nav>
+
                     <Layout
                         unrouteable
                         sidebarToggleIconComponent={<List />}
@@ -106,7 +109,6 @@ function App() {
                         }}
                         disableHeaders
                         className="docs-layout"
-                        expandSidebar={false}
                     >
                         <SidebarMenu
                             sidebarClass="overflow-visible"

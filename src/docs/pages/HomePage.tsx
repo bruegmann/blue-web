@@ -12,12 +12,23 @@ export const HomePage = () => (
             <main className="flex-grow-1">
                 <div className="welcome-jumbotron pt-5 bg-theme text-white">
                     <div className="container pt-3 mt-5 pt-md-0">
-                        <section className="d-flex justify-content-between">
-                            <div>
-                                <h1>UI library based on Bootstrap 5</h1>
+                        <div className="d-md-flex">
+                            <div className="flex-grow-1">
+                                <h1
+                                    className="display-2 d-inline-flex align-items-center"
+                                    style={{ fontWeight: "600" }}
+                                >
+                                    <img src={logo} alt={appTitle} style={{ height: "1em" }} className="me-3" /> Blue
+                                    Web
+                                </h1>
+
+                                <p className="h2">UI library based on Bootstrap 5</p>
                                 <div className="h2">
                                     <Bootstrap /> <Braces /> <Code /> <WindowSidebar /> <BoxSeam />
                                 </div>
+                            </div>
+
+                            <div>
                                 <div className="h3 mt-3 d-flex align-content-center gap-3">
                                     <span
                                         className="badge text-white"
@@ -27,17 +38,7 @@ export const HomePage = () => (
                                     </span>
                                 </div>
                             </div>
-
-                            <div>
-                                <h1
-                                    className="display-1 d-inline-flex align-items-center"
-                                    style={{ fontWeight: "900" }}
-                                >
-                                    <img src={logo} alt={appTitle} style={{ height: "1em" }} className="me-3" /> Blue
-                                    Web
-                                </h1>
-                            </div>
-                        </section>
+                        </div>
                     </div>
 
                     <div className="mt-5 rounded-top bg-body" style={{ height: "1rem" }} />
