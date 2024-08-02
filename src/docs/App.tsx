@@ -8,14 +8,12 @@ import {
     List,
     House,
     CodeSquare,
-    Puzzle,
     Tools,
     XCircleFill,
     InfoCircleFill,
     CheckCircleFill,
     ExclamationCircleFill,
     HouseFill,
-    PuzzleFill,
     Eye,
     LayersHalf,
     LayersFill,
@@ -120,22 +118,6 @@ function App() {
                                         elementType={Link}
                                         icon={<Eye />}
                                         label="Demo App"
-                                    />
-
-                                    <SidebarMenuItem
-                                        href="https://bruegmann.github.io/blue-react"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        label="Blue React"
-                                        icon={<PuzzleFill />}
-                                    />
-
-                                    <SidebarMenuItem
-                                        href="https://bruegmann.github.io/blue-blazor"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        label="Blue Blazor"
-                                        icon={<Puzzle />}
                                     />
 
                                     <SidebarMenuItem
