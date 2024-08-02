@@ -14,6 +14,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { synthwave84 as syntaxHighlighterStyle } from "react-syntax-highlighter/dist/esm/styles/prism"
 import { Page, Body } from "blue-react"
 import { Footer } from "../components/Footer"
+import { ask, tell, verify } from "../../js/dialog"
 
 export interface UtilitiesPageProps {}
 
@@ -158,6 +159,10 @@ export class UtilitiesPage extends React.Component<UtilitiesPageProps, Utilities
 startLoading()`}</SyntaxHighlighter>
 
                         <p>
+                            When using TypeScript, just import from <code>"blue-web/dist/js/utils"</code>.
+                        </p>
+
+                        <p>
                             <code>utils.js</code> is provided as ESM, so you can use it as a module in the browser:
                         </p>
 
@@ -201,6 +206,86 @@ startLoading()`}</SyntaxHighlighter>
 <div class="blue-status-circle blue-status-warning"><svg class="bi bi-exclamation-circle-fill" fill=currentColor height=1em viewBox="0 0 16 16" width=1em xmlns=http://www.w3.org/2000/svg><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"></path></svg></div>
 <div class="blue-status-circle blue-status-danger"><svg class="bi bi-x-circle-fill" fill=currentColor height=1em viewBox="0 0 16 16" width=1em xmlns=http://www.w3.org/2000/svg><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"></path></svg></div>
 <div class="alert blue-status-alert"><button aria-label=Close class="btn-close float-end mb-1" type=button></button><div class=alert-body></div></div>`}</SyntaxHighlighter>
+                    </>
+                )
+            },
+            {
+                title: "Dialog",
+                body: (
+                    <>
+                        <p>
+                            These functions are meant as a nicer alternative to the native <code>alert</code>,{" "}
+                            <code>confirm</code> and <code>prompt</code> functions. They are not meant to be used as a
+                            replacement for more complex modals.
+                        </p>
+
+                        <div className="row">
+                            <div className="col-md">
+                                <button
+                                    type="button"
+                                    className="btn blue-btn-soft-secondary"
+                                    onClick={async () => {
+                                        const yesOrNo = await verify("Do you want to continue?")
+                                        await tell(yesOrNo ? "You clicked yes" : "You clicked no")
+                                    }}
+                                >
+                                    Verify
+                                </button>
+
+                                <SyntaxHighlighter style={syntaxHighlighterStyle} language="javascript">{
+                                    /* javascript */ `import { verify, tell } from "blue-web/dist/js/dialog.js"
+
+(async () => {
+    const yesOrNo = await verify("Do you want to continue?")
+    await tell(yesOrNo ? "You clicked yes" : "You clicked no")
+})()`
+                                }</SyntaxHighlighter>
+                            </div>
+                            <div className="col-md">
+                                <button
+                                    type="button"
+                                    className="btn blue-btn-soft-secondary"
+                                    onClick={async () => {
+                                        await tell("A message for you")
+                                    }}
+                                >
+                                    Tell
+                                </button>
+
+                                <SyntaxHighlighter style={syntaxHighlighterStyle} language="javascript">{
+                                    /* javascript */ `import { tell } from "blue-web/dist/js/dialog.js"
+
+(async () => {
+    await tell("A message for you")
+})()`
+                                }</SyntaxHighlighter>
+                            </div>
+                            <div className="col-md">
+                                <button
+                                    type="button"
+                                    className="btn blue-btn-soft-secondary"
+                                    onClick={async () => {
+                                        const answer = await ask("What is the question?", {
+                                            title: "Question"
+                                        })
+                                        await tell("You asked: " + answer)
+                                    }}
+                                >
+                                    Ask
+                                </button>
+
+                                <SyntaxHighlighter style={syntaxHighlighterStyle} language="javascript">{
+                                    /* javascript */ `import { ask, tell } from "blue-web/dist/js/dialog.js"
+
+(async () => {
+    const answer = await ask("What is the question?", {
+        title: "Question"
+    })
+    await tell("You asked: " + answer)
+})()`
+                                }</SyntaxHighlighter>
+                            </div>
+                        </div>
                     </>
                 )
             },

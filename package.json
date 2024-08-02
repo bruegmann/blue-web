@@ -1,6 +1,6 @@
 {
     "name": "blue-web",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "UI components built on top of Bootstrap 5",
     "license": "LGPL-3.0-or-later",
     "homepage": "https://bruegmann.github.io/blue-web/v1",
@@ -14,7 +14,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build-docs": "react-scripts build && node indexCssSections.js",
-        "build-types": "tsc --declaration --emitDeclarationOnly --declarationDir ./dist/types --noEmit false",
+        "build-types": "tsc --declaration --emitDeclarationOnly --declarationDir ./dist/js --noEmit false --project tsconfig.build.json",
         "build": "babel ./src/js --out-dir ./dist/js --extensions \".tsx,.js,.ts\"",
         "build-css": "node ./setVersionToStyleScss.js && node-sass ./dist/style.scss ./dist/style.css && npx postcss ./dist/style.css --use autoprefixer -r && npx postcss ./dist/style.css --use postcss-minify -o ./dist/style.min.css",
         "build-neu-css": "node-sass ./dist/neu.scss ./dist/neu.css && npx postcss ./dist/neu.css --use autoprefixer -r && npx postcss ./dist/neu.css --use postcss-minify -o ./dist/neu.min.css",

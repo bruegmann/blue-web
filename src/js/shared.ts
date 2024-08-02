@@ -1,5 +1,4 @@
 export type breakOption = "sm" | "md" | "lg" | "xl"
-export type ModalType = "ask" | "tell" | "verify"
 
 export type StatusType = null | "loading" | "success" | "info" | "warning" | "danger"
 export interface StatusAlert {
