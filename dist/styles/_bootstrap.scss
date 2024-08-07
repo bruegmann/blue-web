@@ -1,24 +1,17 @@
-/*!
- * Bootstrap v5.2.0 (https://getbootstrap.com/)
- * Copyright 2011-2021 The Bootstrap Authors
- * Copyright 2011-2021 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+@import "node_modules/bootstrap/scss/mixins/banner";
+@include bsBanner("");
 
 // scss-docs-start import-stack
 // Configuration
 @import "node_modules/bootstrap/scss/functions";
 @import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/variables-dark";
 @import "node_modules/bootstrap/scss/maps";
 @import "node_modules/bootstrap/scss/mixins";
-
-// @import "./_bootstrap-mixins_overwritten.scss";
-
 @import "node_modules/bootstrap/scss/utilities";
 
 // Layout & components
 @import "node_modules/bootstrap/scss/root";
-
 @import "node_modules/bootstrap/scss/reboot";
 @import "node_modules/bootstrap/scss/type";
 @import "node_modules/bootstrap/scss/images";
@@ -52,6 +45,20 @@
 
 // Helpers
 @import "node_modules/bootstrap/scss/helpers";
+
+// Custom added utilities for Blue Web
+$utilities: map-merge(
+    $utilities,
+    (
+        "position":
+            map-merge(
+                map-get($utilities, "position"),
+                (
+                    responsive: true
+                )
+            )
+    )
+);
 
 // Utilities
 @import "node_modules/bootstrap/scss/utilities/api";

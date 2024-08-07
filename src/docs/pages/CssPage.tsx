@@ -78,7 +78,7 @@ export const CssPage = () => {
                 <p className="lead">
                     Some additions and helper classes in CSS. Keep in mind that some classes are designed to be used
                     together with{" "}
-                    <a href="https://getbootstrap.com" target="_blank" rel="noopener">
+                    <a href="https://getbootstrap.com" target="_blank" rel="noreferrer">
                         Bootstrap classes
                     </a>
                     .
