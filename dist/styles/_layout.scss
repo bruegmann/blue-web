@@ -308,7 +308,9 @@
         bottom: 0.125rem;
         left: 0.125rem;
         border-radius: $border-radius;
-        box-shadow: $box-shadow;
+        box-shadow: 0 0.5rem 1rem $black;
+        border: 1px solid;
+        opacity: 0.15;
     }
 }
 

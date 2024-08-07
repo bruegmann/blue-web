@@ -15,6 +15,11 @@ const sections = cssSections
         if (b.title === "CSS Variables") return -1
         return 0
     })
+    .sort((a, b) => {
+        if (a.title === "Recipes") return 1
+        if (b.title === "Recipes") return -1
+        return 0
+    })
 
 export const CssPage = () => {
     const { selectedSection } = useParams<any>()
