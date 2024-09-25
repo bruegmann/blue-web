@@ -7,9 +7,19 @@
         display: none !important;
     }
 
-    .blue-sidebar-visible-on-open {
+    .blue-sidebar-visible-on-open,
+    .blue-sidebar-d-flex-on-open,
+    .blue-sidebar-d-block-on-open {
         animation: fade-in 1s;
+    }
+
+    .blue-sidebar-visible-on-open,
+    .blue-sidebar-d-flex-on-open {
         display: flex !important;
+    }
+
+    .blue-sidebar-d-block-on-open {
+        display: block !important;
     }
 
     .blue-menu-item-label {
@@ -198,4 +208,19 @@
     to {
         transform: translateY(1);
     }
+}
+
+.blue-sidebar-visible-on-open,
+.blue-sidebar-d-flex-on-open,
+.blue-sidebar-d-block-on-open {
+    display: none !important;
+}
+
+.blue-sidebar.open .blue-sidebar-visible-on-open,
+.blue-sidebar.open .blue-sidebar-d-flex-on-open {
+    display: flex !important;
+}
+
+.blue-sidebar.open .blue-sidebar-d-block-on-open {
+    display: block !important;
 }

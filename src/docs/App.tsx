@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route, NavLink, Link } from "react-router-dom"
-import { Layout, MenuItem, SidebarMenu, SidebarMenuItem } from "blue-react"
+import { Layout, MenuItem, SidebarMenu } from "blue-react"
 
 import "./docs.scss"
 import { HomePage } from "./pages/HomePage"
@@ -113,14 +113,9 @@ function App() {
                             menuClass="overflow-visible"
                             bottomContent={
                                 <>
-                                    <SidebarMenuItem
-                                        to="/demo#intro"
-                                        elementType={Link}
-                                        icon={<Eye />}
-                                        label="Demo App"
-                                    />
+                                    <MenuItem to="/demo#intro" elementType={Link} icon={<Eye />} label="Demo App" />
 
-                                    <SidebarMenuItem
+                                    <MenuItem
                                         href="https://github.com/bruegmann/blue-react"
                                         icon={<CodeSquare />}
                                         label="Code on GitHub"
@@ -130,7 +125,7 @@ function App() {
                                 </>
                             }
                         >
-                            <SidebarMenuItem
+                            <MenuItem
                                 icon={<House />}
                                 iconForActive={<HouseFill />}
                                 label="Start"
@@ -138,7 +133,7 @@ function App() {
                                 exact
                                 to="/"
                             />
-                            <SidebarMenuItem
+                            <MenuItem
                                 icon={<LayersHalf />}
                                 iconForActive={<LayersFill />}
                                 label="Neumorphism"
@@ -146,13 +141,8 @@ function App() {
                                 to="/neu"
                             />
 
-                            <SidebarMenuItem
-                                icon={<BracesAsterisk />}
-                                label="CSS Classes"
-                                elementType={NavLink}
-                                to="/css"
-                            />
-                            <SidebarMenuItem icon={<Tools />} label="Utilities" elementType={NavLink} to="/utilities" />
+                            <MenuItem icon={<BracesAsterisk />} label="CSS Classes" elementType={NavLink} to="/css" />
+                            <MenuItem icon={<Tools />} label="Utilities" elementType={NavLink} to="/utilities" />
                         </SidebarMenu>
 
                         <div className="router-page active">

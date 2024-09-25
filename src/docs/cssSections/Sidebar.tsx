@@ -41,10 +41,23 @@ export default function Scrollbar() {
             </article>
 
             <article className="mb-5">
-                <HashLink id="blue-sidebar-visible-on-open">
-                    <code>.blue-sidebar-visible-on-open</code>
+                <HashLink id="blue-sidebar-d-flex-on-open">
+                    <code>.blue-sidebar-d-flex-on-open</code> <span className="badge bg-primary">New</span>
                 </HashLink>
-                <p>The element is visible as long as the sidebar is open.</p>
+                <p>
+                    Alias: <code>.blue-sidebar-visible-on-open</code>
+                    <br />
+                    The element is visible (<code>display: flex</code>) as long as the sidebar is open.
+                </p>
+            </article>
+
+            <article className="mb-5">
+                <HashLink id="blue-sidebar-d-block-on-open">
+                    <code>.blue-sidebar-d-block-on-open</code> <span className="badge bg-primary">New</span>
+                </HashLink>
+                <p>
+                    The element is visible (<code>display: block</code>) as long as the sidebar is open.
+                </p>
             </article>
 
             <article className="mb-5">

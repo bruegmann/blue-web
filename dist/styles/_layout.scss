@@ -36,12 +36,22 @@
     }
 
     &:not(.open) {
-        .blue-sidebar-visible-on-open {
+        .blue-sidebar-visible-on-open,
+        .blue-sidebar-d-flex-on-open,
+        .blue-sidebar-d-block-on-open {
             display: none !important;
         }
 
         .blue-sidebar-hidden-on-open {
             animation: fade-in 1s;
+        }
+    }
+
+    &:not(.expandSidebar):not(.open) .blue-sidebar {
+        .blue-sidebar-top,
+        .blue-menu,
+        .blue-sidebar-bottom {
+            @include blue-menu-item-dropdown-for-shrunk-sidebar();
         }
     }
 }
