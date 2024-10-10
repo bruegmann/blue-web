@@ -52,12 +52,6 @@
         display: flex;
     }
 
-    .blue-menu-item-dropdown {
-        .blue-menu-item {
-            width: 100%;
-        }
-    }
-
     /* search */
     .blue-search:not(.blue-search-body) {
         background-color: $sidebar-search-bg;

@@ -17,16 +17,18 @@ import {
     Eye,
     LayersHalf,
     LayersFill,
-    BracesAsterisk
+    BracesAsterisk,
+    Braces
 } from "react-bootstrap-icons"
 
-import UtilitiesPage from "./pages/UtilitiesPage"
 import { logo } from "./Global"
 import LicenseReportPage from "./pages/LicenseReportPage"
 import { useEffect } from "react"
 import DemoApp from "./components/DemoApp"
 import NeumorphismPage from "./pages/NeumorphismPage"
 import { CssPage } from "./pages/CssPage"
+import GridLayoutExample from "./examples/css/GridLayoutExample"
+import { JsPage } from "./pages/JsPage"
 
 function App() {
     const onHashChange = () => {
@@ -63,6 +65,9 @@ function App() {
             <Switch>
                 <Route path="/demo">
                     <DemoApp />
+                </Route>
+                <Route path="/grid-layout-example">
+                    <GridLayoutExample />
                 </Route>
 
                 <Route path="/action-menu-example">
@@ -141,21 +146,21 @@ function App() {
                                 to="/neu"
                             />
 
-                            <MenuItem icon={<BracesAsterisk />} label="CSS Classes" elementType={NavLink} to="/css" />
-                            <MenuItem icon={<Tools />} label="Utilities" elementType={NavLink} to="/utilities" />
+                            <MenuItem icon={<BracesAsterisk />} label="CSS" elementType={NavLink} to="/css" />
+                            <MenuItem icon={<Braces />} label="JavaScript" elementType={NavLink} to="/js" />
                         </SidebarMenu>
 
                         <div className="router-page active">
-                            <Route path="/utilities">
-                                <UtilitiesPage />
-                            </Route>
-
                             <Route path="/neu">
                                 <NeumorphismPage />
                             </Route>
 
                             <Route path="/css/:selectedSection?">
                                 <CssPage />
+                            </Route>
+
+                            <Route path="/js/:selectedSection?">
+                                <JsPage />
                             </Route>
 
                             <Route path="/license-report">

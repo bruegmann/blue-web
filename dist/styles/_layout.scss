@@ -278,11 +278,6 @@
     }
 }
 
-.blue-menu-item-label {
-    display: none;
-    max-height: 100%;
-}
-
 .blue-menu-item-icon {
     display: inline-block;
 
@@ -318,9 +313,8 @@
         bottom: 0.125rem;
         left: 0.125rem;
         border-radius: $border-radius;
-        box-shadow: 0 0.5rem 1rem $black;
-        border: 1px solid;
-        opacity: 0.15;
+        box-shadow: $box-shadow;
+        border: 1px solid color-mix(in srgb, currentColor 15%, transparent);
     }
 }
 
@@ -329,6 +323,9 @@
 
     &::before {
         background-color: var(--blue-sidebar-bg);
+        box-shadow: 0 0.5rem 1rem $black;
+        opacity: 0.15;
+        border-color: currentColor;
     }
 
     .blue-menu-item-dropdown {

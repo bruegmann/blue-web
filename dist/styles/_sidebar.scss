@@ -36,3 +36,10 @@
 .blue-menu-item-dropdown-from-start {
     animation: blue-menu-item-dropdown-from-start 0.15s;
 }
+
+.blue-sidebar {
+    .blue-menu-item-label {
+        display: none;
+        max-height: 100%;
+    }
+}
