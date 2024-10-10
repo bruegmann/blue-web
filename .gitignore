@@ -33,3 +33,4 @@ yarn-error.log*
 dist/**/*.js
 dist/**/*.ts
 dist/**/*.css
+dist/**/*.txt
