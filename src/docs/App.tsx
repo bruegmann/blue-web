@@ -8,7 +8,6 @@ import {
     List,
     House,
     CodeSquare,
-    Tools,
     XCircleFill,
     InfoCircleFill,
     CheckCircleFill,
@@ -17,8 +16,8 @@ import {
     Eye,
     LayersHalf,
     LayersFill,
-    BracesAsterisk,
-    Braces
+    Braces,
+    Back
 } from "react-bootstrap-icons"
 
 import { logo } from "./Global"
@@ -138,6 +137,9 @@ function App() {
                                 exact
                                 to="/"
                             />
+
+                            <MenuItem icon={<Back />} label="CSS" elementType={NavLink} to="/css" />
+                            <MenuItem icon={<Braces />} label="JavaScript" elementType={NavLink} to="/js" />
                             <MenuItem
                                 icon={<LayersHalf />}
                                 iconForActive={<LayersFill />}
@@ -145,22 +147,19 @@ function App() {
                                 elementType={NavLink}
                                 to="/neu"
                             />
-
-                            <MenuItem icon={<BracesAsterisk />} label="CSS" elementType={NavLink} to="/css" />
-                            <MenuItem icon={<Braces />} label="JavaScript" elementType={NavLink} to="/js" />
                         </SidebarMenu>
 
                         <div className="router-page active">
-                            <Route path="/neu">
-                                <NeumorphismPage />
-                            </Route>
-
                             <Route path="/css/:selectedSection?">
                                 <CssPage />
                             </Route>
 
                             <Route path="/js/:selectedSection?">
                                 <JsPage />
+                            </Route>
+
+                            <Route path="/neu">
+                                <NeumorphismPage />
                             </Route>
 
                             <Route path="/license-report">
