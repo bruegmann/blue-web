@@ -17,7 +17,9 @@ import {
     LayersHalf,
     LayersFill,
     Braces,
-    Back
+    Back,
+    Palette,
+    PaletteFill
 } from "react-bootstrap-icons"
 
 import { logo } from "./Global"
@@ -28,6 +30,7 @@ import NeumorphismPage from "./pages/NeumorphismPage"
 import { CssPage } from "./pages/CssPage"
 import GridLayoutExample from "./examples/css/GridLayoutExample"
 import { JsPage } from "./pages/JsPage"
+import CustomizePage from "./pages/CustomizePage"
 
 function App() {
     const onHashChange = () => {
@@ -120,7 +123,7 @@ function App() {
                                     <MenuItem to="/demo#intro" elementType={Link} icon={<Eye />} label="Demo App" />
 
                                     <MenuItem
-                                        href="https://github.com/bruegmann/blue-react"
+                                        href="https://github.com/bruegmann/blue-web"
                                         icon={<CodeSquare />}
                                         label="Code on GitHub"
                                         target="_blank"
@@ -138,6 +141,13 @@ function App() {
                                 to="/"
                             />
 
+                            <MenuItem
+                                icon={<Palette />}
+                                iconForActive={<PaletteFill />}
+                                label="Customize"
+                                elementType={NavLink}
+                                to="/customize"
+                            />
                             <MenuItem icon={<Back />} label="CSS" elementType={NavLink} to="/css" />
                             <MenuItem icon={<Braces />} label="JavaScript" elementType={NavLink} to="/js" />
                             <MenuItem
@@ -150,6 +160,10 @@ function App() {
                         </SidebarMenu>
 
                         <div className="router-page active">
+                            <Route path="/customize">
+                                <CustomizePage />
+                            </Route>
+
                             <Route path="/css/:selectedSection?">
                                 <CssPage />
                             </Route>

@@ -5,6 +5,8 @@ $body-bg: #efeeee;
 $body-bg-dark: lighten($theme, 4%);
 $body-color-dark: white;
 
+$sidebar-shrink: false;
+
 @import "../../dist/style";
 @import "../../dist/neu";
 
