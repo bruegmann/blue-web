@@ -179,7 +179,7 @@
     overflow: hidden;
 }
 
-@if ($sidebar-shrink) {
+@if $sidebar-shrink {
     @media (min-width: $sidebar-shrink-breakpoint) {
         @include blue-sidebar($normal-size);
 
