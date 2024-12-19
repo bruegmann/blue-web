@@ -23,8 +23,8 @@ export default function IntroductionSections() {
                     <p>
                         If you have a React or Blazor project, you should use the components of{" "}
                         <a href="https://bruegmann.github.io/blue-react">Blue React</a> or{" "}
-                        <a href="https://bruegmann.github.io/blue-blazor">Blue Blazor (coming soon)</a>. Otherwise you
-                        can also write the markup of those components directly in HTML. Here is a basic example:
+                        <a href="https://bruegmann.github.io/blue-blazor">Blue Blazor</a>. Otherwise you can also write
+                        the markup of those components directly in HTML. Here is a basic example:
                     </p>
 
                     <SyntaxHighlighter style={syntaxHighlighterStyle} language="html">

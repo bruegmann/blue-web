@@ -5,13 +5,8 @@ import "./docs.scss"
 import { HomePage } from "./pages/HomePage"
 
 import {
-    List,
     House,
     CodeSquare,
-    XCircleFill,
-    InfoCircleFill,
-    CheckCircleFill,
-    ExclamationCircleFill,
     HouseFill,
     Eye,
     LayersHalf,
@@ -25,10 +20,8 @@ import {
 import { logo } from "./Global"
 import LicenseReportPage from "./pages/LicenseReportPage"
 import { useEffect } from "react"
-import DemoApp from "./components/DemoApp"
 import NeumorphismPage from "./pages/NeumorphismPage"
 import { CssPage } from "./pages/CssPage"
-import GridLayoutExample from "./examples/css/GridLayoutExample"
 import { JsPage } from "./pages/JsPage"
 import CustomizePage from "./pages/CustomizePage"
 
@@ -65,15 +58,8 @@ function App() {
     return (
         <Router basename={process.env.PUBLIC_URL}>
             <Switch>
-                <Route path="/demo">
-                    <DemoApp />
-                </Route>
-                <Route path="/grid-layout-example">
-                    <GridLayoutExample />
-                </Route>
-
                 <Route path="/action-menu-example">
-                    <Layout pages={[]}>
+                    <Layout>
                         <SidebarMenu>
                             <MenuItem href="#" label="Home" icon={<span>🏠</span>} isHome />
                         </SidebarMenu>
@@ -104,24 +90,10 @@ function App() {
                     </nav>
 
                     <Layout
-                        unrouteable
-                        sidebarToggleIconComponent={<List />}
-                        statusIcons={{
-                            danger: <XCircleFill />,
-                            info: <InfoCircleFill />,
-                            success: <CheckCircleFill />,
-                            warning: <ExclamationCircleFill />
-                        }}
-                        disableHeaders
-                        className="docs-layout"
-                    >
-                        <SidebarMenu
-                            sidebarClass="overflow-visible"
-                            menuClass="overflow-visible"
-                            bottomContent={
-                                <>
-                                    <MenuItem to="/demo#intro" elementType={Link} icon={<Eye />} label="Demo App" />
-
+                        pageBorder={false}
+                        side={
+                            <SidebarMenu
+                                bottomContent={
                                     <MenuItem
                                         href="https://github.com/bruegmann/blue-web"
                                         icon={<CodeSquare />}
@@ -129,61 +101,59 @@ function App() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     />
-                                </>
-                            }
-                        >
-                            <MenuItem
-                                icon={<House />}
-                                iconForActive={<HouseFill />}
-                                label="Start"
-                                elementType={NavLink}
-                                exact
-                                to="/"
-                            />
+                                }
+                            >
+                                <MenuItem
+                                    icon={<House />}
+                                    iconForActive={<HouseFill />}
+                                    label="Start"
+                                    elementType={NavLink}
+                                    exact
+                                    to="/"
+                                />
 
-                            <MenuItem
-                                icon={<Palette />}
-                                iconForActive={<PaletteFill />}
-                                label="Customize"
-                                elementType={NavLink}
-                                to="/customize"
-                            />
-                            <MenuItem icon={<Back />} label="CSS" elementType={NavLink} to="/css" />
-                            <MenuItem icon={<Braces />} label="JavaScript" elementType={NavLink} to="/js" />
-                            <MenuItem
-                                icon={<LayersHalf />}
-                                iconForActive={<LayersFill />}
-                                label="Neumorphism"
-                                elementType={NavLink}
-                                to="/neu"
-                            />
-                        </SidebarMenu>
+                                <MenuItem
+                                    icon={<Palette />}
+                                    iconForActive={<PaletteFill />}
+                                    label="Customize"
+                                    elementType={NavLink}
+                                    to="/customize"
+                                />
+                                <MenuItem icon={<Back />} label="CSS" elementType={NavLink} to="/css" />
+                                <MenuItem icon={<Braces />} label="JavaScript" elementType={NavLink} to="/js" />
+                                <MenuItem
+                                    icon={<LayersHalf />}
+                                    iconForActive={<LayersFill />}
+                                    label="Neumorphism"
+                                    elementType={NavLink}
+                                    to="/neu"
+                                />
+                            </SidebarMenu>
+                        }
+                    >
+                        <Route path="/customize">
+                            <CustomizePage />
+                        </Route>
 
-                        <div className="router-page active">
-                            <Route path="/customize">
-                                <CustomizePage />
-                            </Route>
+                        <Route path="/css/:selectedSection?">
+                            <CssPage />
+                        </Route>
 
-                            <Route path="/css/:selectedSection?">
-                                <CssPage />
-                            </Route>
+                        <Route path="/js/:selectedSection?">
+                            <JsPage />
+                        </Route>
 
-                            <Route path="/js/:selectedSection?">
-                                <JsPage />
-                            </Route>
+                        <Route path="/neu">
+                            <NeumorphismPage />
+                        </Route>
 
-                            <Route path="/neu">
-                                <NeumorphismPage />
-                            </Route>
+                        <Route path="/license-report">
+                            <LicenseReportPage />
+                        </Route>
 
-                            <Route path="/license-report">
-                                <LicenseReportPage />
-                            </Route>
-
-                            <Route path="/" exact>
-                                <HomePage />
-                            </Route>
-                        </div>
+                        <Route path="/" exact>
+                            <HomePage />
+                        </Route>
                     </Layout>
                 </Route>
             </Switch>

@@ -8,8 +8,8 @@ interface FooterProps {
 
 export function Footer({ containerClass = "container" }: FooterProps) {
     return (
-        <footer className="docs-footer mb-1">
-            <div className={`${containerClass} d-flex mt-5`}>
+        <footer className="docs-footer">
+            <div className={`${containerClass} d-flex mt-5 pb-1`}>
                 <p className="text-muted mb-0 flex-grow-1">
                     <small>
                         {`©${new Date().getFullYear() || "2021"} Brügmann Software GmbH. `}

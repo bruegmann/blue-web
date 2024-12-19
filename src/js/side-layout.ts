@@ -11,6 +11,8 @@ export class SideLayout extends HTMLElement {
 
     render() {
         if (!this.shadowRoot) return
+        const language = document.documentElement.lang || navigator.language
+        const toggleSidebarText = language.startsWith("de") ? "Seitenleiste umschalten" : "Toggle sidebar"
         this.shadowRoot!.innerHTML = /* HTML */ `
             <style>
                 :host {
@@ -145,14 +147,14 @@ export class SideLayout extends HTMLElement {
                 />
                 <input id="layout-drawer" type="checkbox" class="hidden-input" />
 
-                <label class="toggler" for="layout-expand" title="Toggle sidebar" role="button">
+                <label class="toggler" for="layout-expand" title="${toggleSidebarText}" role="button">
                     <slot name="expand-toggler">
                         <svg role="img">
                             <use xlink:href="#bi-list"></use>
                         </svg>
                     </slot>
                 </label>
-                <label class="toggler" for="layout-drawer" title="Toggle sidebar" role="button">
+                <label class="toggler" for="layout-drawer" title="${toggleSidebarText}" role="button">
                     <slot name="drawer-toggler">
                         <svg role="img">
                             <use xlink:href="#bi-list"></use>

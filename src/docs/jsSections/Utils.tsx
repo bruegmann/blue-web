@@ -1,3 +1,4 @@
+import { Status } from "blue-react"
 import {
     startLoading,
     finishLoading,
@@ -8,7 +9,7 @@ import {
     guid,
     scrollToTop
 } from "../../js/utils"
-import { PlayFill } from "react-bootstrap-icons"
+import { CheckCircleFill, ExclamationCircleFill, InfoCircleFill, PlayFill, XCircleFill } from "react-bootstrap-icons"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { synthwave84 as syntaxHighlighterStyle } from "react-syntax-highlighter/dist/esm/styles/prism"
 
@@ -216,17 +217,26 @@ document.getElementById("btn").addEventListener("click", () => {
         }
     ]
     return (
-        <div className="container flex-grow-1">
-            <div className="row">
-                <div className="col-md-12">
-                    {sections.map((s, i) => (
-                        <article key={i} id={"section-" + encodeURIComponent(s.title)}>
-                            <h3 className="mt-4 mb-3">{s.title}</h3>
-                            {s.body}
-                        </article>
-                    ))}
+        <>
+            <div className="container flex-grow-1">
+                <div className="row">
+                    <div className="col-md-12">
+                        {sections.map((s, i) => (
+                            <article key={i} id={"section-" + encodeURIComponent(s.title)}>
+                                <h3 className="mt-4 mb-3">{s.title}</h3>
+                                {s.body}
+                            </article>
+                        ))}
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <Status
+                dangerIcon={<XCircleFill />}
+                infoIcon={<InfoCircleFill />}
+                successIcon={<CheckCircleFill />}
+                warningIcon={<ExclamationCircleFill />}
+            />
+        </>
     )
 }

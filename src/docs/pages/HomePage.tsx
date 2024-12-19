@@ -10,8 +10,8 @@ export const HomePage = () => (
     <Page>
         <Body className="pt-0" containerClass="no-container d-flex flex-column docs-min-height-100vh">
             <main className="flex-grow-1">
-                <div className="welcome-jumbotron pt-5 bg-theme text-white">
-                    <div className="container pt-3 mt-5 pt-md-0">
+                <div className="welcome-jumbotron pt-3 bg-theme text-white">
+                    <div className="container pt-3 mt-3 pt-md-0">
                         <div className="d-md-flex">
                             <div className="flex-grow-1">
                                 <h1
@@ -58,10 +58,6 @@ export const HomePage = () => (
             </main>
 
             <Footer />
-
-            <div className="RoundedBottom bg-theme pb-1" style={{ height: "1rem" }}>
-                <div className="rounded-bottom bg-body w-100 h-100" />
-            </div>
         </Body>
     </Page>
 )
