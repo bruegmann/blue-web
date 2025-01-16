@@ -20,7 +20,11 @@ export class SideLayout extends HTMLElement {
                     --drawer-side-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
                         rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
                         rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
-                    --toggler-size: 3rem;
+                    --toggler-size: calc(
+                        var(--bs-btn-border-width, 1px) + var(--bs-btn-padding-y, 0.375rem) +
+                            (var(--bs-btn-font-size, 1rem) * var(--bs-btn-line-height, 1.5)) +
+                            var(--bs-btn-padding-y, 0.375rem) + var(--bs-btn-border-width, 1px)
+                    );
                     --side-width: 18rem;
                     --base-z-index: 0;
                 }

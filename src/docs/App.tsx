@@ -8,7 +8,6 @@ import {
     House,
     CodeSquare,
     HouseFill,
-    Eye,
     LayersHalf,
     LayersFill,
     Braces,
@@ -90,7 +89,7 @@ function App() {
                     </nav>
 
                     <Layout
-                        pageBorder={false}
+                        noPageBorder
                         side={
                             <SidebarMenu
                                 bottomContent={
