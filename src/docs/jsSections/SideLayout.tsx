@@ -2,28 +2,24 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { synthwave84 as syntaxHighlighterStyle } from "react-syntax-highlighter/dist/esm/styles/prism"
 // import "../../js/side-layout"
 import { LayoutSidebar, LayoutSidebarInset } from "react-bootstrap-icons"
-import { CSSProperties } from "react"
+import { CSSProperties, FC } from "react"
 import DemoCode from "../components/DemoCode"
 
-declare global {
-    namespace JSX {
-        interface IntrinsicElements {
-            "side-layout": React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
-        }
-    }
-}
+const SideLayout = "side-layout" as unknown as FC<{
+    style?: CSSProperties
+    children: React.ReactNode
+}>
 
 export default function SideLayoutPage() {
     return (
         <>
             <p>Layout with a sidebar as a Web Component.</p>
             <DemoCode>
-                <side-layout>
-                    {" "}
+                <SideLayout>
                     <div slot="header">Header</div>
                     <div slot="side">Side</div>
                     Main{" "}
-                </side-layout>
+                </SideLayout>
             </DemoCode>
 
             <p>
@@ -35,15 +31,20 @@ export default function SideLayoutPage() {
 
             <DemoCode>
                 <div className="bg-primary-subtle" style={{ height: "100dvh" }}>
-                    <side-layout>
-                        {" "}
+                    <SideLayout>
                         <div slot="expand-toggler" className="w-100 h-100 p-1">
-                            <div className="btn blue-btn-plain-theme w-100 h-100">
+                            <div
+                                className="btn blue-btn-plain-theme w-100 h-100"
+                                style={{ boxShadow: "var(--trigger-box-shadow)" }}
+                            >
                                 <LayoutSidebar />
                             </div>
                         </div>
                         <div slot="drawer-toggler" className="w-100 h-100 p-1">
-                            <div className="btn blue-btn-plain-theme w-100 h-100">
+                            <div
+                                className="btn blue-btn-plain-theme w-100 h-100"
+                                style={{ boxShadow: "var(--trigger-box-shadow)" }}
+                            >
                                 <LayoutSidebarInset />
                             </div>
                         </div>
@@ -60,7 +61,7 @@ export default function SideLayoutPage() {
                                 <div className="h1 page-header">Hello World</div>
                             </div>
                         </div>{" "}
-                    </side-layout>
+                    </SideLayout>
                 </div>
             </DemoCode>
 

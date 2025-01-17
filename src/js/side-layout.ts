@@ -20,7 +20,11 @@ export class SideLayout extends HTMLElement {
                     --drawer-side-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
                         rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
                         rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
-                    --toggler-size: 3rem;
+                    --toggler-size: calc(
+                        var(--bs-btn-border-width, 1px) + var(--bs-btn-padding-y, 0.375rem) +
+                            (var(--bs-btn-font-size, 1rem) * var(--bs-btn-line-height, 1.5)) +
+                            var(--bs-btn-padding-y, 0.375rem) + var(--bs-btn-border-width, 1px)
+                    );
                     --side-width: 18rem;
                     --base-z-index: 0;
                 }
@@ -48,6 +52,10 @@ export class SideLayout extends HTMLElement {
                     grid-column-start: 2;
                 }
 
+                .hidden-input:focus-visible + .toggler ::slotted(*) {
+                    --trigger-box-shadow: var(--trigger-focus-box-shadow, inset 0 0 0.25rem);
+                }
+
                 @media (width < 64rem) {
                     .toggler[for="layout-expand"] {
                         display: none;
@@ -58,15 +66,6 @@ export class SideLayout extends HTMLElement {
                     .toggler[for="layout-drawer"] {
                         display: none;
                     }
-                }
-
-                .toggler svg {
-                    display: inline-block;
-                    --size: 1em;
-                    width: var(--size);
-                    height: var(--size);
-                    fill: currentColor;
-                    margin: calc((var(--toggler-size) - var(--size)) / 2);
                 }
 
                 .header {
@@ -130,37 +129,21 @@ export class SideLayout extends HTMLElement {
             </style>
 
             <div class="root">
-                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-                    <symbol id="bi-list" viewBox="0 0 16 16">
-                        <path
-                            fill-rule="evenodd"
-                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
-                        ></path>
-                    </symbol>
-                </svg>
-
                 <input
                     id="layout-expand"
                     type="checkbox"
                     class="hidden-input"
                     ${!localStorage.getItem("side-layout-shrink") ? "checked" : ""}
                 />
-                <input id="layout-drawer" type="checkbox" class="hidden-input" />
-
                 <label class="toggler" for="layout-expand" title="${toggleSidebarText}" role="button">
-                    <slot name="expand-toggler">
-                        <svg role="img">
-                            <use xlink:href="#bi-list"></use>
-                        </svg>
-                    </slot>
+                    <slot name="expand-toggler">🍔</slot>
                 </label>
+
+                <input id="layout-drawer" type="checkbox" class="hidden-input" />
                 <label class="toggler" for="layout-drawer" title="${toggleSidebarText}" role="button">
-                    <slot name="drawer-toggler">
-                        <svg role="img">
-                            <use xlink:href="#bi-list"></use>
-                        </svg>
-                    </slot>
+                    <slot name="drawer-toggler">🍔</slot>
                 </label>
+
                 <header class="header"><slot name="header"></slot></header>
                 <div class="side"><slot name="side"></slot></div>
                 <main class="main"><slot></slot></main>

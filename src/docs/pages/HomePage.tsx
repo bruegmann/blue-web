@@ -29,9 +29,9 @@ export const HomePage = () => (
                             </div>
 
                             <div>
-                                <div className="h3 mt-3 d-flex align-content-center gap-3">
+                                <div className="d-flex align-content-center gap-3">
                                     <span
-                                        className="badge text-white"
+                                        className="text-white rounded-3 px-3 py-2"
                                         style={{ boxShadow: "var(--neu-shadow-3), var(--neu-shadow-inset-3)" }}
                                     >
                                         {packageJson.version}
@@ -41,7 +41,7 @@ export const HomePage = () => (
                         </div>
                     </div>
 
-                    <div className="mt-5 rounded-top bg-body" style={{ height: "1rem" }} />
+                    <div className="mt-5 rounded-top-3 bg-body" style={{ height: "1rem" }} />
                 </div>
 
                 <div className="container">
