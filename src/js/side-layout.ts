@@ -52,6 +52,10 @@ export class SideLayout extends HTMLElement {
                     grid-column-start: 2;
                 }
 
+                .hidden-input:focus-visible + .toggler ::slotted(*) {
+                    --trigger-box-shadow: var(--trigger-focus-box-shadow, inset 0 0 0.25rem);
+                }
+
                 @media (width < 64rem) {
                     .toggler[for="layout-expand"] {
                         display: none;
@@ -149,8 +153,6 @@ export class SideLayout extends HTMLElement {
                     class="hidden-input"
                     ${!localStorage.getItem("side-layout-shrink") ? "checked" : ""}
                 />
-                <input id="layout-drawer" type="checkbox" class="hidden-input" />
-
                 <label class="toggler" for="layout-expand" title="${toggleSidebarText}" role="button">
                     <slot name="expand-toggler">
                         <svg role="img">
@@ -158,6 +160,8 @@ export class SideLayout extends HTMLElement {
                         </svg>
                     </slot>
                 </label>
+
+                <input id="layout-drawer" type="checkbox" class="hidden-input" />
                 <label class="toggler" for="layout-drawer" title="${toggleSidebarText}" role="button">
                     <slot name="drawer-toggler">
                         <svg role="img">
@@ -165,6 +169,7 @@ export class SideLayout extends HTMLElement {
                         </svg>
                     </slot>
                 </label>
+
                 <header class="header"><slot name="header"></slot></header>
                 <div class="side"><slot name="side"></slot></div>
                 <main class="main"><slot></slot></main>
