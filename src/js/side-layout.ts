@@ -68,15 +68,6 @@ export class SideLayout extends HTMLElement {
                     }
                 }
 
-                .toggler svg {
-                    display: inline-block;
-                    --size: 1em;
-                    width: var(--size);
-                    height: var(--size);
-                    fill: currentColor;
-                    margin: calc((var(--toggler-size) - var(--size)) / 2);
-                }
-
                 .header {
                     grid-column-start: 3;
                     grid-column-end: 5;
@@ -138,15 +129,6 @@ export class SideLayout extends HTMLElement {
             </style>
 
             <div class="root">
-                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-                    <symbol id="bi-list" viewBox="0 0 16 16">
-                        <path
-                            fill-rule="evenodd"
-                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
-                        ></path>
-                    </symbol>
-                </svg>
-
                 <input
                     id="layout-expand"
                     type="checkbox"
@@ -154,20 +136,12 @@ export class SideLayout extends HTMLElement {
                     ${!localStorage.getItem("side-layout-shrink") ? "checked" : ""}
                 />
                 <label class="toggler" for="layout-expand" title="${toggleSidebarText}" role="button">
-                    <slot name="expand-toggler">
-                        <svg role="img">
-                            <use xlink:href="#bi-list"></use>
-                        </svg>
-                    </slot>
+                    <slot name="expand-toggler">🍔</slot>
                 </label>
 
                 <input id="layout-drawer" type="checkbox" class="hidden-input" />
                 <label class="toggler" for="layout-drawer" title="${toggleSidebarText}" role="button">
-                    <slot name="drawer-toggler">
-                        <svg role="img">
-                            <use xlink:href="#bi-list"></use>
-                        </svg>
-                    </slot>
+                    <slot name="drawer-toggler">🍔</slot>
                 </label>
 
                 <header class="header"><slot name="header"></slot></header>

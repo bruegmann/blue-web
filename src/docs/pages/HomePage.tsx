@@ -41,7 +41,7 @@ export const HomePage = () => (
                         </div>
                     </div>
 
-                    <div className="mt-5 rounded-top bg-body" style={{ height: "1rem" }} />
+                    <div className="mt-5 rounded-top-3 bg-body" style={{ height: "1rem" }} />
                 </div>
 
                 <div className="container">

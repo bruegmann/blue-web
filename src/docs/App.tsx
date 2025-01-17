@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route, NavLink, Link } from "react-router-dom"
-import { Layout, MenuItem, SidebarMenu } from "blue-react"
+import { ActionMenu, HeaderTitle, Layout, MenuItem, SidebarMenu } from "blue-react"
 
 import "./docs.scss"
 import { HomePage } from "./pages/HomePage"
@@ -57,42 +57,38 @@ function App() {
     return (
         <Router basename={process.env.PUBLIC_URL}>
             <Switch>
-                <Route path="/action-menu-example">
-                    <Layout>
-                        <SidebarMenu>
-                            <MenuItem href="#" label="Home" icon={<span>🏠</span>} isHome />
-                        </SidebarMenu>
-                    </Layout>
-                </Route>
-
                 <Route path="/">
-                    <nav className="docs-nav">
-                        <Link className="navbar-brand" to="/">
-                            <img src={logo} alt="Blue Logo" width="32" height="32" className="d-block" /> Blue Web
-                        </Link>
-
-                        <div className="navbar-nav">
-                            <a
-                                href="https://bruegmann.github.io/blue-web"
-                                className="nav-link active"
-                                aria-current="page"
-                            >
-                                Web
-                            </a>
-                            <a href="https://bruegmann.github.io/blue-react" className="nav-link">
-                                React
-                            </a>
-                            <a href="https://bruegmann.github.io/blue-blazor" className="nav-link">
-                                Blazor
-                            </a>
-                        </div>
-                    </nav>
-
                     <Layout
                         noPageBorder
-                        side={
-                            <SidebarMenu
-                                bottomContent={
+                        header={
+                            <>
+                                <HeaderTitle
+                                    appTitle="Blue Web"
+                                    logo={logo}
+                                    logoAlt="Blue Logo"
+                                    to="/"
+                                    elementType={Link}
+                                />
+
+                                <nav className="docs-nav">
+                                    <div className="navbar-nav">
+                                        <a
+                                            href="https://bruegmann.github.io/blue-web"
+                                            className="nav-link active"
+                                            aria-current="page"
+                                        >
+                                            Web
+                                        </a>
+                                        <a href="https://bruegmann.github.io/blue-react" className="nav-link">
+                                            React
+                                        </a>
+                                        <a href="https://bruegmann.github.io/blue-blazor" className="nav-link">
+                                            Blazor
+                                        </a>
+                                    </div>
+                                </nav>
+
+                                <ActionMenu break="sm">
                                     <MenuItem
                                         href="https://github.com/bruegmann/blue-web"
                                         icon={<CodeSquare />}
@@ -100,8 +96,11 @@ function App() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     />
-                                }
-                            >
+                                </ActionMenu>
+                            </>
+                        }
+                        side={
+                            <SidebarMenu>
                                 <MenuItem
                                     icon={<House />}
                                     iconForActive={<HouseFill />}

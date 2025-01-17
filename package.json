@@ -33,7 +33,6 @@
     },
     "dependencies": {
         "@popperjs/core": "^2.11.5",
-        "blue-react": "file:../blue-react/blue-react-10.0.0-rc3.tgz",
         "bootstrap": "~5.3.3"
     },
     "devDependencies": {
@@ -53,6 +52,7 @@
         "@types/react-router-dom": "^5.3.3",
         "@types/react-syntax-highlighter": "^13.5.0",
         "autoprefixer": "^10.3.6",
+        "blue-react": "file:../blue-react/blue-react-10.0.0-rc5.tgz",
         "gh-pages": "^3.1.0",
         "license-report": "^6.2.0",
         "lint-staged": "^11.1.2",

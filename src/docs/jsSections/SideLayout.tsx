@@ -1,6 +1,6 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { synthwave84 as syntaxHighlighterStyle } from "react-syntax-highlighter/dist/esm/styles/prism"
-import "../../js/side-layout"
+// import "../../js/side-layout"
 import { LayoutSidebar, LayoutSidebarInset } from "react-bootstrap-icons"
 import { CSSProperties, FC } from "react"
 import DemoCode from "../components/DemoCode"
@@ -16,7 +16,6 @@ export default function SideLayoutPage() {
             <p>Layout with a sidebar as a Web Component.</p>
             <DemoCode>
                 <SideLayout>
-                    {" "}
                     <div slot="header">Header</div>
                     <div slot="side">Side</div>
                     Main{" "}

@@ -133,4 +133,5 @@ $sidebar-expanded-breakpoint: 1400px !default;
     --blue-header-color: #{$header-color};
     --blue-action-link-bg-color: var(--blue-theme);
     --blue-menu-item-indicator-bg: #{$sidebar-indicator-color};
+    --blue-menu-item-height: #{$normal-size};
 }
