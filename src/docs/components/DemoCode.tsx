@@ -21,7 +21,8 @@ export default function DemoCode({ children, language = "html" }: DemoCodeProps)
                     plugins: [parserHtml],
                     tabWidth: 4,
                     useTabs: true,
-                    singleQuote: false
+                    singleQuote: false,
+                    printWidth: 120
                 })
             )
         }

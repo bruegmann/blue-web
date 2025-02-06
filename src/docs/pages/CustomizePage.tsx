@@ -52,24 +52,6 @@ $theme: orange;
                     </A>{" "}
                     can be a useful tool to customize Blue Web. It allows you to easily create themes.
                 </p>
-
-                <h2 className="page-header">Responsive sidebar behavior</h2>
-
-                <p>The sidebar is responsive by default.</p>
-                <ol>
-                    <li>On small screens, it is hidden behind a button.</li>
-                    <li>On bigger screens it will be "shrunk", so that only the icons are visible.</li>
-                    <li>On even bigger screens, the sidebar can be "expanded", depending on a user's preference.</li>
-                </ol>
-                <p>
-                    Step 2 can be disabled by setting the variable <code>$sidebar-shrink</code> to <code>false</code>.
-                    This might be useful if your sidebar content is too wide for the "shrunk view".
-                </p>
-
-                <SyntaxHighlighter style={syntaxHighlighterStyle} language="scss">{
-                    /* css */ `$sidebar-shrink: false;
-@import "~blue-web/dist/style";`
-                }</SyntaxHighlighter>
             </Body>
         </Page>
     )
