@@ -1,6 +1,5 @@
 import { guid } from "./utils"
 import { getPhrase } from "./shared"
-import * as bootstrap from "bootstrap"
 
 export type DialogType = "ask" | "tell" | "verify"
 
@@ -39,59 +38,51 @@ async function dialog(dialogType: DialogType, text: string, options: DialogOptio
     const addToDom = () => {
         document.body.insertAdjacentHTML(
             "beforeend",
-            /* html */ `        <div
-class="modal fade"
-id="${id}"
-tabindex="-1"
-aria-labelledby="${id}-label"
-aria-hidden="true"
->
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form>
-                <div class="modal-header">
-                    ${icon ? /* html */ `<div class="me-2">${icon}</div>` : ""}
-                    <h1 class="modal-title fs-5" id="${id}-label">
-                        ${title}
-                    </h1>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                    ></button>
+            /* HTML */ `<dialog class="blue-modal modal" id="${id}" aria-labelledby="${id}-label">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form>
+                            <div class="modal-header">
+                                ${icon ? /* html */ `<div class="me-2">${icon}</div>` : ""}
+                                <h1 class="modal-title fs-5" id="${id}-label">${title}</h1>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    aria-label="${cancelBtnText}"
+                                    onclick="document.getElementById('${id}').close()"
+                                ></button>
+                            </div>
+                            <div class="modal-body">
+                                ${dialogType === "ask"
+                                    ? /* HTML */ `<label for="${id}-input">${text}</label>
+                                          <input type="${inputType}" id="${id}-input" class="form-control mt-3" />`
+                                    : text}
+                            </div>
+                            <div class="modal-footer">
+                                ${dialogType === "verify" || dialogType === "ask"
+                                    ? /* HTML */ `<button
+                                          type="button"
+                                          class="btn ${switchPrimaryBtn ? "btn-primary" : "blue-btn-plain-primary"}"
+                                          onclick="document.getElementById('${id}').close()"
+                                      >
+                                          ${cancelBtnText}
+                                      </button>`
+                                    : ""}
+                                <button
+                                    type="submit"
+                                    class="btn ${switchPrimaryBtn ? "blue-btn-plain-primary" : "btn-primary"}"
+                                >
+                                    ${acceptBtnText}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    ${
-                        dialogType === "ask"
-                            ? /* html */ `<label for="${id}-input">${text}</label>
-                        <input type="${inputType}" id="${id}-input" class="form-control mt-3" />`
-                            : text
-                    }
-                </div>
-                <div class="modal-footer">
-                    ${
-                        dialogType === "verify" || dialogType === "ask"
-                            ? /* html */ `<button
-                        type="button"
-                        class="btn ${switchPrimaryBtn ? "btn-primary" : "blue-btn-plain-primary"}"
-                        data-bs-dismiss="modal"
-                    >
-                        ${cancelBtnText}
-                    </button>`
-                            : ""
-                    }
-                    <button
-                        type="submit"
-                        class="btn ${switchPrimaryBtn ? "blue-btn-plain-primary" : "btn-primary"}"
-                    >
-                        ${acceptBtnText}
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>`
+
+                <form method="dialog" class="blue-modal-backdrop">
+                    <button>${cancelBtnText}</button>
+                </form>
+            </dialog>`
         )
     }
 
@@ -100,13 +91,11 @@ aria-hidden="true"
     }
 
     return new Promise<boolean | string>((resolve) => {
-        const modalEl = document.getElementById(id)
-        const modal = new bootstrap.Modal(modalEl as Element)
+        const modalEl = document.getElementById(id) as HTMLDialogElement | null
 
         const removeFromDom = () => {
             const modalEl = document.getElementById(id)
             if (modalEl) {
-                modalEl.removeEventListener("hidden.bs.modal", onHidden)
                 modalEl.remove()
             }
         }
@@ -116,19 +105,19 @@ aria-hidden="true"
             resolve(false)
         }
 
-        modal.show()
-        modalEl?.addEventListener("hidden.bs.modal", onHidden)
+        modalEl?.showModal()
+        modalEl?.addEventListener("close", onHidden)
 
-        modalEl?.querySelector("form")?.addEventListener("submit", (e) => {
+        modalEl?.querySelector(".modal-content > form")?.addEventListener("submit", (e) => {
             e.preventDefault()
 
             if (dialogType === "ask") {
-                modal.hide()
+                modalEl.close()
                 removeFromDom()
                 resolve((modalEl?.querySelector("input") as HTMLInputElement).value || "")
             }
 
-            modal.hide()
+            modalEl.close()
             removeFromDom()
             resolve(true)
         })
