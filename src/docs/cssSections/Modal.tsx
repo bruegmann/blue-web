@@ -63,7 +63,7 @@ export default function ModalPage() {
                 <A href="https://getbootstrap.com/docs/5.3/components/offcanvas/" target="_blank">
                     Bootstrap Offcanvas
                 </A>{" "}
-                works quite similar, you can also you <code>.blue-modal</code> with that.
+                works quite similar, you can also use <code>.blue-modal</code> with that.
             </p>
 
             <div className="form-floating mb-3">
