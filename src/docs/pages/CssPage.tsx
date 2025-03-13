@@ -69,6 +69,9 @@ export const CssPage = () => {
                                                     className="nav-link"
                                                 >
                                                     {s.title}
+                                                    {s.title === "Tooltip" && (
+                                                        <span className="badge bg-primary ms-1">Update</span>
+                                                    )}
                                                 </NavLink>
                                             </div>
                                         )

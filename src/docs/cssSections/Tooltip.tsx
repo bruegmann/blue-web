@@ -1,59 +1,64 @@
-import { CSSProperties } from "react"
 import HashLink from "../components/HashLink"
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { synthwave84 as syntaxHighlighterStyle } from "react-syntax-highlighter/dist/esm/styles/prism"
+import DemoCode from "../components/DemoCode"
 
 export default function Tooltip() {
     return (
         <>
+            <article className="mb-5">
+                <HashLink id="blue-tooltip">
+                    <code>.blue-tooltip</code>
+                </HashLink>
+                <p>
+                    CSS only solution for tooltips. For accessibility reasons, only wrap around interactive elements
+                    like buttons or links. To use, add the <code>data-tooltip</code> attribute to the wrapping element.
+                </p>
+                <DemoCode>
+                    <div
+                        data-tooltip="Put your tooltip text here. It can also become pretty long if you want to."
+                        className="blue-tooltip"
+                    >
+                        <button className="btn btn-link">Hover me!</button>
+                    </div>
+                </DemoCode>
+            </article>
+
             <article className="mb-5">
                 <HashLink id="blue-tooltip-up">
                     <code>.blue-tooltip-up</code>, <code>.blue-tooltip-down</code>, <code>.blue-tooltip-start</code>,{" "}
                     <code>.blue-tooltip-end</code>
                 </HashLink>
                 <p>
-                    Data Attribute of element is used as an tooltip. To be used together with <code>data-tooltip</code>.
-                    <br />
-                    Usage:
+                    Change the position of the tooltip. To be used together with <code>data-tooltip</code>.
                 </p>
-                <strong
-                    data-tooltip="Put your tooltip text here. It can also become pretty long if you want to."
-                    className="blue-tooltip-up"
-                >
-                    Hover me!
-                </strong>
-                <SyntaxHighlighter
-                    style={syntaxHighlighterStyle}
-                    language="html"
-                >{`<strong data-tooltip="Put your tooltip text here" className="blue-tooltip-up">
-Hover me!
-</strong>`}</SyntaxHighlighter>
+                <DemoCode>
+                    <div data-tooltip="Up" className="blue-tooltip-up">
+                        <button className="btn btn-link">Up!</button>
+                    </div>
+                    <div data-tooltip="Down" className="blue-tooltip-down">
+                        <button className="btn btn-link">Down!</button>
+                    </div>
+                    <div data-tooltip="Start" className="blue-tooltip-start">
+                        <button className="btn btn-link">Start!</button>
+                    </div>
+                    <div data-tooltip="End" className="blue-tooltip-end">
+                        <button className="btn btn-link">End!</button>
+                    </div>
+                </DemoCode>
             </article>
 
             <article className="mb-5">
-                <HashLink id="blue-tooltip-nowrap">
-                    <code>.blue-tooltip-nowrap</code>
+                <HashLink id="blue-tooltip-content">
+                    <code>.blue-tooltip-content</code>
                 </HashLink>
-                <p>
-                    Avoid wrapping in the tooltip text. Together with CSS variable <code>--bs-tooltip-max-width</code>{" "}
-                    you can limit the width.
-                    <br />
-                    Usage:
-                </p>
-                <strong
-                    data-tooltip="Put your tooltip text here. It can also become pretty long if you want to."
-                    className="blue-tooltip-start blue-tooltip-nowrap"
-                    style={{ "--bs-tooltip-max-width": "600px" } as CSSProperties}
-                >
-                    Or me! My tooltip is not wrapping and is just one line. With a css variable for max-width.
-                </strong>
-                <SyntaxHighlighter style={syntaxHighlighterStyle} language="html">{`<strong
-data-tooltip="Put your tooltip text here. It can also become pretty long if you want to."
-className="blue-tooltip-start blue-tooltip-nowrap"
-style={{ "--bs-tooltip-max-width": "600px" } as CSSProperties}
->
-Or me! My tooltip is not wrapping and is just one line.
-</strong>`}</SyntaxHighlighter>
+                <p>This is how you can customize the tooltip content with HTML.</p>
+                <DemoCode>
+                    <div className="blue-tooltip">
+                        <div className="blue-tooltip-content" role="tooltip">
+                            <strong>Some</strong> <i>custom</i> <u>content</u> <s>here</s>.
+                        </div>
+                        <button className="btn btn-link">Hover me!</button>
+                    </div>
+                </DemoCode>
             </article>
         </>
     )
