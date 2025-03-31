@@ -23,6 +23,7 @@ import NeumorphismPage from "./pages/NeumorphismPage"
 import { CssPage } from "./pages/CssPage"
 import { JsPage } from "./pages/JsPage"
 import CustomizePage from "./pages/CustomizePage"
+import ThemeGenerator, { ThemeGeneratorSwitch } from "./components/ThemeGenerator"
 
 function App() {
     const onHashChange = () => {
@@ -100,33 +101,36 @@ function App() {
                             </>
                         }
                         side={
-                            <SidebarMenu>
-                                <MenuItem
-                                    icon={<House />}
-                                    iconForActive={<HouseFill />}
-                                    label="Start"
-                                    elementType={NavLink}
-                                    exact
-                                    to="/"
-                                />
+                            <>
+                                <SidebarMenu>
+                                    <MenuItem
+                                        icon={<House />}
+                                        iconForActive={<HouseFill />}
+                                        label="Start"
+                                        elementType={NavLink}
+                                        exact
+                                        to="/"
+                                    />
 
-                                <MenuItem
-                                    icon={<Palette />}
-                                    iconForActive={<PaletteFill />}
-                                    label="Customize"
-                                    elementType={NavLink}
-                                    to="/customize"
-                                />
-                                <MenuItem icon={<Back />} label="CSS" elementType={NavLink} to="/css" />
-                                <MenuItem icon={<Braces />} label="JavaScript" elementType={NavLink} to="/js" />
-                                <MenuItem
-                                    icon={<LayersHalf />}
-                                    iconForActive={<LayersFill />}
-                                    label="Neumorphism"
-                                    elementType={NavLink}
-                                    to="/neu"
-                                />
-                            </SidebarMenu>
+                                    <MenuItem
+                                        icon={<Palette />}
+                                        iconForActive={<PaletteFill />}
+                                        label="Customize"
+                                        elementType={NavLink}
+                                        to="/customize"
+                                    />
+                                    <MenuItem icon={<Back />} label="CSS" elementType={NavLink} to="/css" />
+                                    <MenuItem icon={<Braces />} label="JavaScript" elementType={NavLink} to="/js" />
+                                    <MenuItem
+                                        icon={<LayersHalf />}
+                                        iconForActive={<LayersFill />}
+                                        label="Neumorphism"
+                                        elementType={NavLink}
+                                        to="/neu"
+                                    />
+                                    <ThemeGeneratorSwitch />
+                                </SidebarMenu>
+                            </>
                         }
                     >
                         <Route path="/customize">

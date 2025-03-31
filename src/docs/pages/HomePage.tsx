@@ -10,7 +10,10 @@ export const HomePage = () => (
     <Page>
         <Body className="pt-0" containerClass="no-container d-flex flex-column docs-min-height-100vh">
             <main className="flex-grow-1">
-                <div className="welcome-jumbotron pt-3 bg-theme text-white">
+                <div
+                    className="welcome-jumbotron pt-3"
+                    style={{ color: "var(--blue-sidebar-color)", background: "var(--blue-sidebar-bg)" }}
+                >
                     <div className="container pt-3 mt-3 pt-md-0">
                         <div className="d-md-flex">
                             <div className="flex-grow-1">
@@ -30,10 +33,7 @@ export const HomePage = () => (
 
                             <div>
                                 <div className="d-flex align-content-center gap-3">
-                                    <span
-                                        className="text-white rounded-3 px-3 py-2"
-                                        style={{ boxShadow: "var(--neu-shadow-3), var(--neu-shadow-inset-3)" }}
-                                    >
+                                    <span className="rounded-3 px-3 py-2 border border-primary">
                                         {packageJson.version}
                                     </span>
                                 </div>

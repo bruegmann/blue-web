@@ -2,9 +2,9 @@ import { createElement, useEffect, useState } from "react"
 import { Check, CircleHalf, Icon, MoonStarsFill, SunFill } from "react-bootstrap-icons"
 import { Dropdown, DropdownMenu, DropdownToggle } from "reactstrap"
 
-const storedTheme = localStorage.getItem("theme")
-
 const getPreferredTheme = () => {
+    const storedTheme = document.documentElement.getAttribute("data-bs-theme") || localStorage.getItem("theme")
+
     if (storedTheme) {
         return storedTheme
     }
@@ -71,7 +71,7 @@ export default function ColorModeSwitch() {
     const itemProps = { theme, setTheme }
 
     return (
-        <Dropdown isOpen={open} toggle={toggle}>
+        <Dropdown isOpen={open} toggle={toggle} direction="up" end>
             <DropdownToggle caret color="secondary" outline aria-label={`Toggle theme (${theme})`}>
                 {createElement(theme === "light" ? SunFill : theme === "dark" ? MoonStarsFill : CircleHalf, {
                     className: "bi"
