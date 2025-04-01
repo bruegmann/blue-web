@@ -1,0 +1,59 @@
+---
+import SidebarMenu from "blue-react/dist/components/SidebarMenu.js"
+import MenuItem from "blue-react/dist/components/MenuItem.js"
+
+function prepareSectionMenuItem(path: string, section: "css" | "js") {
+    const cleanPath = path
+        .replace(`/src/pages/${section}/`, "")
+        .replace(".astro", "")
+        .replace(".mdx", "")
+        .replace(".md", "")
+
+    return {
+        path: `/${section}/${encodeURIComponent(cleanPath)}`,
+        label: cleanPath
+    }
+}
+
+const cssMenuItems = Object.keys(import.meta.glob("/src/pages/css/*")).map((path) =>
+    prepareSectionMenuItem(path, "css")
+)
+
+const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) => prepareSectionMenuItem(path, "js"))
+
+const currentPath = Astro.url.pathname
+---
+
+<SidebarMenu>
+    <ul class="list-unstyled">
+        <li>
+            <MenuItem href="." label="Start" isActive={currentPath === "/"} />
+        </li>
+
+        <li>
+            <strong>CSS</strong>
+            <ul class="list-unstyled">
+                {
+                    cssMenuItems.map((item) => (
+                        <li>
+                            <MenuItem href={item.path} label={item.label} isActive={currentPath === item.path} />
+                        </li>
+                    ))
+                }
+            </ul>
+        </li>
+
+        <li>
+            <strong>JavaScript</strong>
+            <ul class="list-unstyled">
+                {
+                    jsMenuItems.map((item) => (
+                        <li>
+                            <MenuItem href={item.path} label={item.label} isActive={currentPath === item.path} />
+                        </li>
+                    ))
+                }
+            </ul>
+        </li>
+    </ul>
+</SidebarMenu>

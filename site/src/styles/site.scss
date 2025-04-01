@@ -1,0 +1,20 @@
+$theme: hsl(263, 23%, 16%);
+$primary: hsl(244, 76%, 64%);
+
+$body-bg: #efeeee;
+$body-bg-dark: lighten($theme, 4%);
+$body-color-dark: white;
+
+@import "../../../dist/style.scss";
+@import "docs-nav";
+
+pre {
+    @extend .rounded;
+}
+
+.markdown-rendered {
+    h1,
+    h2 {
+        @extend .page-header;
+    }
+}
