@@ -1,6 +1,9 @@
 ---
 import SidebarMenu from "blue-react/dist/components/SidebarMenu.js"
 import MenuItem from "blue-react/dist/components/MenuItem.js"
+import { ChevronRight, House } from "react-bootstrap-icons"
+
+const currentPath = Astro.url.pathname
 
 function prepareSectionMenuItem(path: string, section: "css" | "js") {
     const cleanPath = path
@@ -9,9 +12,11 @@ function prepareSectionMenuItem(path: string, section: "css" | "js") {
         .replace(".mdx", "")
         .replace(".md", "")
 
+    const itemPath = import.meta.env.BASE_URL + `${section}/${encodeURIComponent(cleanPath)}`
     return {
-        path: import.meta.env.BASE_URL + `${section}/${encodeURIComponent(cleanPath)}`,
-        label: cleanPath
+        path: itemPath,
+        label: cleanPath,
+        isActive: currentPath.includes(itemPath)
     }
 }
 
@@ -20,40 +25,47 @@ const cssMenuItems = Object.keys(import.meta.glob("/src/pages/css/*")).map((path
 )
 
 const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) => prepareSectionMenuItem(path, "js"))
-
-const currentPath = Astro.url.pathname
 ---
 
 <SidebarMenu>
     <ul class="list-unstyled d-flex flex-column gap-3">
         <li>
-            <MenuItem href="." label="Start" isActive={currentPath === import.meta.env.BASE_URL} />
+            <MenuItem href="." label="Start" isActive={currentPath === import.meta.env.BASE_URL}>
+                <House slot="icon" />
+            </MenuItem>
         </li>
 
         <li>
-            <strong class="ms-1">CSS</strong>
-            <ul class="list-unstyled">
-                {
-                    cssMenuItems.map((item) => (
-                        <li>
-                            <MenuItem href={item.path} label={item.label} isActive={currentPath === item.path} />
-                        </li>
-                    ))
-                }
-            </ul>
+            <details class="blue-collapse" open={currentPath.startsWith(import.meta.env.BASE_URL + "css")}>
+                <summary class="fw-bold"><ChevronRight className="blue-collapse-chevron opacity-50 fs-6" /> CSS</summary
+                >
+                <ul class="list-unstyled">
+                    {
+                        cssMenuItems.map((item) => (
+                            <li>
+                                <MenuItem href={item.path} label={item.label} isActive={item.isActive} />
+                            </li>
+                        ))
+                    }
+                </ul>
+            </details>
         </li>
 
         <li>
-            <strong class="ms-1">JavaScript</strong>
-            <ul class="list-unstyled">
-                {
-                    jsMenuItems.map((item) => (
-                        <li>
-                            <MenuItem href={item.path} label={item.label} isActive={currentPath === item.path} />
-                        </li>
-                    ))
-                }
-            </ul>
+            <details class="blue-collapse" open={currentPath.startsWith(import.meta.env.BASE_URL + "js")}>
+                <summary class="fw-bold"
+                    ><ChevronRight className="blue-collapse-chevron opacity-50 fs-6" /> JavaScript</summary
+                >
+                <ul class="list-unstyled">
+                    {
+                        jsMenuItems.map((item) => (
+                            <li>
+                                <MenuItem href={item.path} label={item.label} isActive={item.isActive} />
+                            </li>
+                        ))
+                    }
+                </ul>
+            </details>
         </li>
     </ul>
 </SidebarMenu>
