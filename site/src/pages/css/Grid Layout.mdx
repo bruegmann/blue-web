@@ -1,0 +1,27 @@
+---
+layout: $/layouts/DocsLayout.astro
+---
+
+import RenderBlock from "$/components/RenderBlock.tsx"
+
+# Grid Layout
+
+## `.blue-grid-layout`
+
+New approach to use the Layout component by using CSS `display: grid`. Markup should look something like this:
+
+```html
+<div class="blue-layout blue-grid-layout">
+    <header class="blue-grid-layout-header"></header>
+    <nav class="blue-grid-layout-side"></nav>
+    <main class="blue-grid-layout-main"></main>
+</div>
+```
+
+## What's the benefit?
+
+When using full size third party components like DevExpress DataGrid or Sandbox Embed you might struggle with the sizing and the elements could overflow awkwardly when using the classic layout approach.
+
+You should only use this approach, if you have a global header and sidebar.
+
+In those cases, you should use this new grid layout approach. This also might become the default layout in the future.

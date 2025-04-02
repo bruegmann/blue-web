@@ -10,7 +10,7 @@ function prepareSectionMenuItem(path: string, section: "css" | "js") {
         .replace(".md", "")
 
     return {
-        path: `/${section}/${encodeURIComponent(cleanPath)}`,
+        path: import.meta.env.BASE_URL + `${section}/${encodeURIComponent(cleanPath)}`,
         label: cleanPath
     }
 }
@@ -25,13 +25,13 @@ const currentPath = Astro.url.pathname
 ---
 
 <SidebarMenu>
-    <ul class="list-unstyled">
+    <ul class="list-unstyled d-flex flex-column gap-3">
         <li>
-            <MenuItem href="." label="Start" isActive={currentPath === "/"} />
+            <MenuItem href="." label="Start" isActive={currentPath === import.meta.env.BASE_URL} />
         </li>
 
         <li>
-            <strong>CSS</strong>
+            <strong class="ms-1">CSS</strong>
             <ul class="list-unstyled">
                 {
                     cssMenuItems.map((item) => (
@@ -44,7 +44,7 @@ const currentPath = Astro.url.pathname
         </li>
 
         <li>
-            <strong>JavaScript</strong>
+            <strong class="ms-1">JavaScript</strong>
             <ul class="list-unstyled">
                 {
                     jsMenuItems.map((item) => (

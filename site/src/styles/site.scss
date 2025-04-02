@@ -12,7 +12,7 @@ pre {
     @extend .rounded;
 }
 
-.markdown-rendered {
+.markdown-rendered > {
     h1,
     h2 {
         @extend .page-header;
