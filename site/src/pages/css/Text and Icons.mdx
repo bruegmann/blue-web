@@ -1,0 +1,22 @@
+---
+layout: $/layouts/DocsLayout.astro
+---
+
+import RenderBlock from "$/components/RenderBlock.tsx"
+
+# Text and Icons
+
+## `.blue-page-header` or `.page-header`
+
+In previous versions of Bootstrap, `.page-header` was a class that could be used to add a border to the bottom of a page header.
+Unfortunately his class was removed in Bootstrap 5, so it's now part of Blue Web CSS.
+
+```html use:RenderBlock
+<div class="border rounded p-3">
+    <div class="h1 blue-page-header">Example headline</div>
+</div>
+```
+
+## `.blue-icon` or `.bi`
+
+Vertically alignment, especially for Bootstrap Icons.

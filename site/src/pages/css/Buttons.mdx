@@ -1,0 +1,56 @@
+---
+layout: $/layouts/DocsLayout.astro
+---
+
+import RenderBlock from "$/components/RenderBlock.tsx"
+
+# Buttons
+
+Blue Web added some button variants to Bootstrap's default button styles. These variants are designed to be used in conjunction with the default Bootstrap button classes.
+
+## `.blue-btn-soft-*`
+
+A soft variant of Bootstrap's buttons. Always use together with `.btn`!
+
+```html use:RenderBlock
+<button type="button" class="btn blue-btn-soft-primary">Primary</button>
+<button type="button" class="btn blue-btn-soft-secondary">Secondary</button>
+<button type="button" class="btn blue-btn-soft-success">Success</button>
+<button type="button" class="btn blue-btn-soft-danger">Danger</button>
+<button type="button" class="btn blue-btn-soft-warning">Warning</button>
+<button type="button" class="btn blue-btn-soft-info">Info</button>
+<button type="button" class="btn blue-btn-soft-light">Light</button>
+<button type="button" class="btn blue-btn-soft-dark">Dark</button>
+```
+
+## `.blue-btn-plain-*`
+
+A plain variant of Bootstrap's buttons. Always use together with `.btn`!
+
+```html use:RenderBlock
+<button type="button" class="btn blue-btn-plain-primary">Primary</button>
+<button type="button" class="btn blue-btn-plain-secondary">Secondary</button>
+<button type="button" class="btn blue-btn-plain-success">Success</button>
+<button type="button" class="btn blue-btn-plain-danger">Danger</button>
+<button type="button" class="btn blue-btn-plain-warning">Warning</button>
+<button type="button" class="btn blue-btn-plain-info">Info</button>
+<button type="button" class="btn blue-btn-plain-light">Light</button>
+<button type="button" class="btn blue-btn-plain-dark">Dark</button>
+```
+
+## `.btn-black`, `.btn-outline-black`
+
+Additionally Bootstrap theme variable "black" for always black buttons.
+
+## `.btn-white`, `.btn-outline-white`
+
+Additionally Bootstrap theme variable "white" for always white buttons.
+
+## `.blue-btn-silent`
+
+Removes border when the button is in normal state (no hover). Should be used together with .btn-outline-\*.
+Usage:
+
+```html use:RenderBlock
+<button type="button" class="btn btn-outline-secondary blue-btn-silent">Primary</button>
+```

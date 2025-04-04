@@ -1,0 +1,53 @@
+---
+layout: $/layouts/DocsLayout.astro
+---
+
+import RenderBlock from "$/components/RenderBlock.tsx"
+
+# Layout
+
+**Experimental**: This component is experimental and may change in future releases.
+
+Blue Web offers a set of code to create a layout with a header, collapsible sidebar, and a main content area.
+
+```html use:RenderBlock
+<div class="blue-layout">
+    <input id="my-layout-expand" type="checkbox" class="blue-layout-state blue-layout-state-expand" checked />
+    <label
+        class="blue-layout-toggle blue-layout-toggle-expand"
+        for="my-layout-expand"
+        title="Toggle sidebar"
+        role="button"
+    >
+        <div class="btn blue-menu-item w-100 h-100 d-flex align-items-center justify-content-center p-0">🍔</div>
+    </label>
+
+    <input id="my-layout-drawer" type="checkbox" class="blue-layout-state blue-layout-state-drawer" />
+    <label
+        class="blue-layout-toggle blue-layout-toggle-drawer"
+        for="my-layout-drawer"
+        title="Toggle sidebar"
+        role="button"
+    >
+        <div class="btn blue-menu-item w-100 h-100 d-flex align-items-center justify-content-center p-0">🍔</div>
+    </label>
+
+    <header class="blue-layout-header">Your header here</header>
+
+    <aside
+        class="blue-layout-side overflow-x-hidden overflow-y-auto h-100"
+        style="color: var(--blue-sidebar-color); background: var(--blue-sidebar-bg);"
+    >
+        Your sidebar here
+    </aside>
+    <main class="blue-layout-main">Your main content here</main>
+
+    <label
+        aria-label="Close sidebar"
+        for="my-layout-drawer"
+        class="blue-layout-overlay bg-dark w-100 h-100"
+        style="--bs-bg-opacity: 0.5;"
+    >
+    </label>
+</div>
+```

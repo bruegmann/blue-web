@@ -1,0 +1,55 @@
+---
+layout: $/layouts/DocsLayout.astro
+---
+
+import RenderBlock from "$/components/RenderBlock.tsx"
+
+# Dialog
+
+These functions are meant as a nicer alternative to the native `alert`, `confirm` and `prompt` functions.
+They are not meant to be used as a replacement for more complex modals.
+
+## Examples
+
+### Verify
+
+```html use:RenderBlock
+<button id="verify-button" type="button" class="btn blue-btn-soft-secondary">Verify</button>
+
+<script src="https://unpkg.com/blue-web@latest/dist/js/dialog.bundle.js"></script>
+<script>
+    document.getElementById("verify-button")?.addEventListener("click", async () => {
+        const yesOrNo = await blueWeb.dialog.verify("Do you want to continue?")
+        await blueWeb.dialog.tell(yesOrNo ? "You clicked yes" : "You clicked no")
+    })
+</script>
+```
+
+### Tell
+
+```html use:RenderBlock
+<button id="tell-button" type="button" class="btn blue-btn-soft-secondary">Tell</button>
+
+<script src="https://unpkg.com/blue-web@latest/dist/js/dialog.bundle.js"></script>
+<script>
+    document.getElementById("tell-button")?.addEventListener("click", async () => {
+        await blueWeb.dialog.tell("A message for you")
+    })
+</script>
+```
+
+### Ask
+
+```html use:RenderBlock
+<button id="ask-button" type="button" class="btn blue-btn-soft-secondary">Ask</button>
+
+<script src="https://unpkg.com/blue-web@latest/dist/js/dialog.bundle.js"></script>
+<script>
+    document.getElementById("ask-button")?.addEventListener("click", async () => {
+        const answer = await blueWeb.dialog.ask("What is the question?", {
+            title: "Question"
+        })
+        await blueWeb.dialog.tell("You asked: " + answer)
+    })
+</script>
+```
