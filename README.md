@@ -1,6 +1,6 @@
 # Blue Web
 
-[![npm version](https://img.shields.io/npm/v/blue-web)](https://www.npmjs.com/package/blue-web)
+Blue Web is the base library for [Blue React](https://bruegmann.github.io/blue-react) and [Blue Blazor](https://bruegmann.github.io/blue-react). This library builds heavily on top of [Bootstrap](https://getbootstrap.com/docs/) and also provides additional solutions in CSS and JavaScript.
 
 ## Use Blue Web
 
@@ -10,10 +10,7 @@ Install with NPM:
 npm i blue-web
 ```
 
-## Bootstrap
-
-An adapted Bootstrap is mainly used for the stylesheet.
-Bootstrap documentation is available here: [https://getbootstrap.com/docs/](https://getbootstrap.com/docs/)
+[![npm version](https://img.shields.io/npm/v/blue-web)](https://www.npmjs.com/package/blue-web)
 
 ## Implementation
 

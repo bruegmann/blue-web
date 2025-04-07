@@ -6,6 +6,7 @@ $body-bg-dark: lighten($theme, 4%);
 $body-color-dark: white;
 
 @import "../../../dist/style.scss";
+@import "../../../dist/neu.scss";
 @import "docs-nav";
 
 pre {
@@ -16,6 +17,16 @@ pre {
     h1,
     h2 {
         @extend .page-header;
+    }
+}
+
+.bg-body {
+    @include neu($body-bg, $body-bg);
+}
+
+@include color-mode(dark) {
+    .bg-body {
+        @include neu($body-bg-dark, $body-bg-dark);
     }
 }
 

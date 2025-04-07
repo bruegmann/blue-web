@@ -1,0 +1,39 @@
+---
+layout: $/layouts/DocsLayout.astro
+---
+
+import RenderBlock from "$/components/RenderBlock.tsx"
+
+# ReadView
+
+A Web Component that displays a read view of its content and allows the user to switch to an edit view.
+
+```html use:RenderBlock
+<script src="https://unpkg.com/blue-web@latest/dist/js/read-view.bundle.js"></script>
+
+<read-view id="readViewDemo_readView">
+    <a href="https://bruegmann.github.io/blue-web/" id="readViewDemo_link" target="_blank" rel="noopener noreferrer"
+        >Link</a
+    >
+    Click to edit the link
+</read-view>
+<form id="readViewDemo_form" class="d-none">
+    <input type="text" placeholder="Edit me" value="https://bruegmann.github.io/blue-web/" class="form-control" />
+    <button type="submit" class="btn blue-btn-soft-secondary">Submit</button>
+</form>
+
+<script>
+    readViewDemo_readView.addEventListener("EditRequested", () => {
+        readViewDemo_readView.classList.add("d-none")
+        readViewDemo_form.classList.remove("d-none")
+    })
+
+    readViewDemo_form.addEventListener("submit", (e) => {
+        e.preventDefault()
+        const input = readViewDemo_form.querySelector("input")
+        readViewDemo_link.href = input.value
+        readViewDemo_readView.classList.remove("d-none")
+        readViewDemo_form.classList.add("d-none")
+    })
+</script>
+```

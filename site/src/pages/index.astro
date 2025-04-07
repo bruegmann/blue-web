@@ -4,40 +4,22 @@ import logo from "../assets/blue.svg"
 import { Bootstrap, Braces, Code, WindowSidebar, BoxSeam } from "react-bootstrap-icons"
 
 import ReadMe from "@/README.md"
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-    <div class="welcome-jumbotron pt-3 bg-theme text-white">
+    <div class="welcome-jumbotron pt-3" style="color: var(--blue-sidebar-color); background: var(--blue-sidebar-bg);">
         <div class="container pt-3 mt-3 pt-md-0">
-            <div class="d-md-flex">
-                <div class="flex-grow-1">
-                    <h1 class="display-2 d-inline-flex align-items-center" style={{ fontWeight: "600" }}>
-                        <img src={logo.src} alt="Blue logo" style={{ height: "1em" }} class="me-3" /> Blue Web
-                    </h1>
+            <h1 class="display-2 d-inline-flex align-items-center" style={{ fontWeight: "600" }}>
+                <img src={logo.src} alt="Blue logo" style={{ height: "1em" }} class="me-3" /> Blue Web
+            </h1>
 
-                    <p class="h2">UI library based on Bootstrap 5</p>
-                    <div class="h2">
-                        <Bootstrap />
-                        <Braces />
-                        <Code />
-                        <WindowSidebar />
-                        <BoxSeam />
-                    </div>
-                </div>
-
-                <div>
-                    <div class="d-flex align-content-center gap-3">
-                        <span
-                            class="text-white rounded-3 px-3 py-2"
-                            style={{ boxShadow: "var(--neu-shadow-3), var(--neu-shadow-inset-3)" }}
-                        >
-                            <!-- {packageJson.version} -->
-                        </span>
-                    </div>
-                </div>
+            <p class="h2">UI library based on Bootstrap 5</p>
+            <div class="h2">
+                <Bootstrap />
+                <Braces />
+                <Code />
+                <WindowSidebar />
+                <BoxSeam />
             </div>
         </div>
 

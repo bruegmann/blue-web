@@ -21,7 +21,7 @@
         "build-css": "node ./setVersionToStyleScss.js && sass --load-path=. ./dist/style.scss:./dist/style.css && npx postcss ./dist/style.css --use autoprefixer -r && npx postcss ./dist/style.css --use postcss-minify -o ./dist/style.min.css",
         "build-neu-css-legacy": "node-sass ./dist/neu.scss ./dist/neu.css && npx postcss ./dist/neu.css --use autoprefixer -r && npx postcss ./dist/neu.css --use postcss-minify -o ./dist/neu.min.css",
         "build-neu-css": "sass --load-path=. ./dist/neu.scss:./dist/neu.css && npx postcss ./dist/neu.css --use autoprefixer -r && npx postcss ./dist/neu.css --use postcss-minify -o ./dist/neu.min.css",
-        "build-release": "npm run build-types && npm run build && npm run build-bundles && npm run build-css && node merge-scss.js dist/style.scss",
+        "build-release": "npm run build-types && npm run build && npm run build-bundles && npm run build-css && node merge-scss.js dist/style.scss && npm run license-report",
         "test": "craco test",
         "eject": "craco eject",
         "predeploy": "npm run build-astro",
@@ -29,7 +29,7 @@
         "prepublishOnly": "npm i && npm run build-release",
         "release": "npm publish && npm run deploy",
         "prettier": "npx prettier --write .",
-        "license-report": "npx license-report --prod --output=json > ./src/docs/data/license-report.json",
+        "license-report": "npx license-report --prod --output=json > site/src/assets/license-report.json",
         "dev": "astro dev --root site",
         "build-astro": "astro build --root site",
         "preview-astro": "astro preview --root site"

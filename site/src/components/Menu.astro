@@ -1,7 +1,24 @@
 ---
 import SidebarMenu from "blue-react/dist/components/SidebarMenu.js"
 import MenuItem from "blue-react/dist/components/MenuItem.js"
-import { ChevronRight, House } from "react-bootstrap-icons"
+import {
+    ArrowRepeat,
+    ArrowsVertical,
+    Columns,
+    CursorText,
+    EyeSlash,
+    House,
+    LayersHalf,
+    LayoutSidebarInset,
+    LayoutTextWindowReverse,
+    MenuUp,
+    PlayBtn,
+    PlayBtnFill,
+    SegmentedNav,
+    Tools,
+    Type,
+    WindowStack
+} from "react-bootstrap-icons"
 
 const currentPath = Astro.url.pathname
 
@@ -36,36 +53,48 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
         </li>
 
         <li>
-            <details class="blue-collapse" open={currentPath.startsWith(import.meta.env.BASE_URL + "css")}>
-                <summary class="fw-bold"><ChevronRight className="blue-collapse-chevron opacity-50 fs-6" /> CSS</summary
-                >
-                <ul class="list-unstyled">
-                    {
-                        cssMenuItems.map((item) => (
-                            <li>
-                                <MenuItem href={item.path} label={item.label} isActive={item.isActive} />
-                            </li>
-                        ))
-                    }
-                </ul>
-            </details>
+            <strong class="ps-2">CSS</strong>
+            <ul class="list-unstyled">
+                {
+                    cssMenuItems.map((item) => (
+                        <li>
+                            <MenuItem href={item.path} label={item.label} isActive={item.isActive}>
+                                {item.label === "Button with icon" && <PlayBtn slot="icon" />}
+                                {item.label === "Buttons" && <PlayBtnFill slot="icon" />}
+                                {item.label === "Container Grid" && <Columns slot="icon" />}
+                                {item.label === "Layout" && <LayoutTextWindowReverse slot="icon" />}
+                                {item.label === "Modal" && <WindowStack slot="icon" />}
+                                {item.label === "Neumorphism" && <LayersHalf slot="icon" />}
+                                {item.label === "Scrollbar" && <ArrowsVertical slot="icon" />}
+                                {item.label === "Sidebar" && <LayoutSidebarInset slot="icon" />}
+                                {item.label === "Tabs" && <SegmentedNav slot="icon" />}
+                                {item.label === "Text and Icons" && <Type slot="icon" />}
+                                {item.label === "Tooltip" && <MenuUp slot="icon" />}
+                                {item.label === "Visibility" && <EyeSlash slot="icon" />}
+                            </MenuItem>
+                        </li>
+                    ))
+                }
+            </ul>
         </li>
 
         <li>
-            <details class="blue-collapse" open={currentPath.startsWith(import.meta.env.BASE_URL + "js")}>
-                <summary class="fw-bold"
-                    ><ChevronRight className="blue-collapse-chevron opacity-50 fs-6" /> JavaScript</summary
-                >
-                <ul class="list-unstyled">
-                    {
-                        jsMenuItems.map((item) => (
-                            <li>
-                                <MenuItem href={item.path} label={item.label} isActive={item.isActive} />
-                            </li>
-                        ))
-                    }
-                </ul>
-            </details>
+            <strong class="ps-2">JavaScript</strong>
+            <ul class="list-unstyled">
+                {
+                    jsMenuItems.map((item) => (
+                        <li>
+                            <MenuItem href={item.path} label={item.label} isActive={item.isActive}>
+                                {item.label === "Dialog" && <WindowStack slot="icon" />}
+                                {item.label === "Progress" && <ArrowRepeat slot="icon" />}
+                                {item.label === "ReadView" && <CursorText slot="icon" />}
+                                {item.label === "SideLayout" && <LayoutTextWindowReverse slot="icon" />}
+                                {item.label === "Utils" && <Tools slot="icon" />}
+                            </MenuItem>
+                        </li>
+                    ))
+                }
+            </ul>
         </li>
     </ul>
 </SidebarMenu>
