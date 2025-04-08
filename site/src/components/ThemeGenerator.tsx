@@ -121,9 +121,7 @@ const DEFAULT_THEME_INFO: ThemeInfo = {
 export default function ThemeGenerator({ defaultThemeInfo }: ThemeGeneratorProps) {
     const [css, setCss] = useState("")
     const [scss, setScss] = useState("")
-    const [themeInfo, setThemeInfo] = useState<ThemeInfo | null>(
-        defaultThemeInfo || DEFAULT_THEME_INFO
-    )
+    const [themeInfo, setThemeInfo] = useState<ThemeInfo | null>(defaultThemeInfo || DEFAULT_THEME_INFO)
     const [themeInfoImportCode, setThemeInfoImportCode] = useState("")
 
     const handleCompile = ({ detail }: CompileEvent) => {
@@ -142,9 +140,9 @@ export default function ThemeGenerator({ defaultThemeInfo }: ThemeGeneratorProps
     }
 
     const reset = () => {
-        const themeInfo = {...DEFAULT_THEME_INFO}
+        const themeInfo = { ...DEFAULT_THEME_INFO }
         setThemeInfo(themeInfo)
-        applyTheme({themeInfo, css: ""})
+        applyTheme({ themeInfo, css: "" })
         localStorage.removeItem("themeGenerator_theme")
     }
 
@@ -248,7 +246,9 @@ export default function ThemeGenerator({ defaultThemeInfo }: ThemeGeneratorProps
                 />
             )}
 
-            <button type="button" className="btn blue-btn-soft-primary btn-sm mt-3" onClick={reset}>Reset</button>
+            <button type="button" className="btn blue-btn-soft-primary btn-sm mt-3" onClick={reset}>
+                Reset
+            </button>
 
             <dialog className="blue-modal modal" id="ThemeGenerator_outputModal">
                 <div className="modal-dialog modal-dialog-scrollable">
