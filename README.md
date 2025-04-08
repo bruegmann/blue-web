@@ -16,6 +16,22 @@ npm i blue-web
 
 If you have a React or Blazor project, you should use the components of [Blue React](https://bruegmann.github.io/blue-react) or [Blue Blazor](https://bruegmann.github.io/blue-blazor). Otherwise you can also write the markup of those components directly in HTML. Check out the examples in the docs to find out how.
 
+For the JavaScript solutions you have to import the associated file. When installed using NPM, you can do it like this:
+
+```js
+import "blue-web/dist/js/dialog.js"
+import "blue-web/dist/js/progress.js"
+// ...
+```
+
+You can also use a CDN like unpkg.com. Only recommended for testing, not for production.
+
+```html
+<script src="https://unpkg.com/blue-web@latest/dist/js/dialog.js"></script>
+<script src="https://unpkg.com/blue-web@latest/dist/js/progress.js"></script>
+<!-- ... -->
+```
+
 ## Customization and theming
 
 Since Blue Web is based on Bootstrap, you can customize many things by overriding Sass or CSS variables. For more information, see the [Bootstrap documentation](https://getbootstrap.com/docs/5.3/customize/overview/). Blue Web also provides some additional variables that you can use and override. Take a look at [dist/styles/\_variables.scss](https://github.com/bruegmann/blue-web/blob/main/dist/styles/_variables.scss) to see all of them.

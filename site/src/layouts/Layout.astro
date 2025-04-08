@@ -9,6 +9,12 @@ import { ThemeGeneratorSwitch } from "$/components/ThemeGenerator"
 const { title, description } = Astro.props
 ---
 
+<script>
+    import "@/src/js/dialog.ts"
+    import "@/src/js/progress.ts"
+    import "@/src/js/read-view.ts"
+</script>
+
 <html lang="en">
     <head>
         <base href={import.meta.env.BASE_URL} />
