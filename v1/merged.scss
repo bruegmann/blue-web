@@ -1,5 +1,5 @@
 /*!
- * Blue Web v1.10.1 (https://bruegmann.github.io/blue-web)
+ * Blue Web v1.11.0 (https://bruegmann.github.io/blue-web)
  * Licensed under GNU General Public License v3.0 (https://github.com/bruegmann/blue-web/blob/master/LICENSE).
 */
 
@@ -11403,9 +11403,8 @@ body {
 
 .blue-actions {
     --max-width: calc(
-        var(--bs-btn-border-width, 1px) + var(--bs-btn-padding-x, 0.75rem) +
-            (var(--bs-btn-font-size, 1rem) * var(--bs-btn-line-height, 1.5)) + var(--bs-btn-padding-x, 0.75rem) +
-            var(--bs-btn-border-width, 1px)
+        var(--bs-btn-border-width, 1px) + var(--bs-btn-padding-x, 0.75rem) + var(--bs-btn-font-size, 1rem) +
+            var(--bs-btn-padding-x, 0.75rem) + var(--bs-btn-border-width, 1px)
     );
 
     display: inline;
@@ -12093,95 +12092,124 @@ dialog.blue-modal:has(.offcanvas-start) {
     --ani-translate-from: -100% 0;
 }
 
+/**
+ * The new approach for a global layout with a sidebar, header and main content.
+ * Checkboxes are used for states for expanded or drawer.
+ */
 
-/* Neumorphism effects */
+.blue-layout {
+    --spacing: 0.25rem;
+    --drawer-side-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+    --toggler-size: calc(
+        var(--bs-btn-border-width, 1px) + var(--bs-btn-padding-y, 0.375rem) +
+            (var(--bs-btn-font-size, 1rem) * var(--bs-btn-line-height, 1.5)) + var(--bs-btn-padding-y, 0.375rem) +
+            var(--bs-btn-border-width, 1px)
+    );
+    --side-width: 18rem;
+    --base-z-index: 0;
 
-@function neu-shadow($multiplicate: 1, $inset: false, $switch: false) {
-    $preset: "";
-    $bg-suffix: "";
+    --base-z-index: 500;
+    --side-width: var(--blue-sidebar-width);
+    --toggler-size: var(--blue-menu-item-height);
 
-    @if $inset {
-        $preset: "inset";
-        $bg-suffix: "-inset";
-    }
-
-    @if $switch {
-        @return $preset calc(var(--neu-distance) * #{$multiplicate}) calc(var(--neu-distance) * #{$multiplicate})
-                calc(var(--neu-blur) * #{$multiplicate}) var(--neu-shadow-high#{$bg-suffix}),
-            $preset calc(var(--neu-distance) * -#{$multiplicate}) calc(var(--neu-distance) * -#{$multiplicate})
-                calc(var(--neu-blur) * #{$multiplicate}) var(--neu-shadow-low#{$bg-suffix});
-    }
-
-    @return $preset calc(var(--neu-distance) * -#{$multiplicate}) calc(var(--neu-distance) * -#{$multiplicate})
-            calc(var(--neu-blur) * #{$multiplicate}) var(--neu-shadow-high#{$bg-suffix}),
-        $preset calc(var(--neu-distance) * #{$multiplicate}) calc(var(--neu-distance) * #{$multiplicate})
-            calc(var(--neu-blur) * #{$multiplicate}) var(--neu-shadow-low#{$bg-suffix});
+    min-height: 100dvh;
+    position: relative;
+    display: grid;
+    grid-template-columns: 0 var(--toggler-size) calc(var(--side-width) - var(--toggler-size)) auto;
+    grid-template-rows: var(--toggler-size) auto;
 }
 
-$neu-steps: (
-    1: 0.25,
-    2: 0.5,
-    3: 1,
-    4: 1.5,
-    5: 3
-);
-
-@mixin neu($bg: $theme, $bg-inset: $theme) {
-    --neu-bg: #{$bg};
-    --neu-bg-inset: #{$bg-inset};
-
-    --neu-shadow-high: #{lighten($bg, 3%)};
-    --neu-shadow-low: #{darken($bg, 4%)};
-    --neu-shadow-high-inset: #{lighten($bg-inset, 4%)};
-    --neu-shadow-low-inset: #{darken($bg-inset, 4%)};
-
-    --neu-distance: 0.37rem;
-    --neu-blur: 0.7rem;
-
-    @each $unit, $value in $neu-steps {
-        --neu-shadow-#{$unit}: #{neu-shadow($value)};
-        --neu-shadow-inset-#{$unit}: #{neu-shadow($value, true)};
-
-        --neu-shadow-switch-#{$unit}: #{neu-shadow($value, false, true)};
-        --neu-shadow-inset-switch-#{$unit}: #{neu-shadow($value, true, true)};
-    }
+.blue-layout-state {
+    position: absolute;
+    --size: 0;
+    height: var(--size);
+    width: var(--size);
+    appearance: none;
+    opacity: 0;
 }
 
-@mixin neu-define-utility-classes() {
-    @each $unit, $value in $neu-steps {
-        .neu-shadow-#{$unit} {
-            box-shadow: #{neu-shadow($value, $inset: false, $switch: false)} !important;
+.blue-layout-toggle {
+    grid-column-start: 2;
+    color: var(--blue-sidebar-color);
+    background-color: var(--blue-sidebar-bg);
+}
 
-            @each $unit, $value in $neu-steps {
-                &.neu-shadow-inset-#{$unit} {
-                    box-shadow: #{neu-shadow($value, $inset: false, $switch: false)},
-                        #{neu-shadow($value, $inset: true, $switch: false)} !important;
-                }
+.blue-layout-state:focus-visible + .blue-layout-toggle {
+    --trigger-box-shadow: var(--trigger-focus-box-shadow, inset 0 0 0.25rem);
+    box-shadow: var(--trigger-box-shadow);
+}
 
-                &.neu-shadow-inset-switch-#{$unit} {
-                    box-shadow: #{neu-shadow($value, $inset: false, $switch: false)},
-                        #{neu-shadow($value, $inset: true, $switch: true)} !important;
-                }
-            }
-        }
-        .neu-shadow-inset-#{$unit} {
-            box-shadow: #{neu-shadow($value, $inset: true, $switch: false)} !important;
-        }
-
-        // Uncommented to reduce CSS size.
-        // I don't see that `.neu-shadow-switch-#{$unit}` should be used in practice.
-        // .neu-shadow-switch-#{$unit} {
-        //     box-shadow: #{neu-shadow($value, $inset: false, $switch: true)} !important;
-        // }
-        .neu-shadow-inset-switch-#{$unit} {
-            box-shadow: #{neu-shadow($value, $inset: true, $switch: true)} !important;
-        }
+@media (width < 64rem) {
+    .blue-layout-toggle-expand,
+    #layout-expand {
+        display: none !important;
     }
 }
 
-:root {
-    @include neu();
+@media (width >= 64rem) {
+    .blue-layout-toggle-drawer,
+    #layout-drawer {
+        display: none !important;
+    }
 }
 
-@include neu-define-utility-classes();
+.blue-layout-header {
+    grid-column-start: 3;
+    grid-column-end: 5;
+}
+
+.blue-layout-side {
+    overflow: auto;
+}
+
+@media (width < 64rem) {
+    .blue-layout-side {
+        translate: -100% 0;
+        height: 100%;
+        transition: translate 0.2s ease;
+    }
+
+    .blue-layout-state-drawer:checked ~ .blue-layout-side {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: calc(var(--base-z-index) + 1);
+        translate: 0;
+        width: calc(var(--spacing) * 80);
+        box-shadow: var(--drawer-side-shadow);
+    }
+}
+
+@media (width >= 64rem) {
+    .blue-layout-state-expand:checked ~ .blue-layout-side {
+        grid-column-start: 2;
+        grid-column-end: 4;
+    }
+}
+
+.blue-layout-main {
+    overflow: auto;
+    grid-column-start: 2;
+    grid-column-end: 5;
+}
+
+@media (width >= 64rem) {
+    .blue-layout-state-expand:checked ~ .blue-layout-main {
+        grid-column-start: 4;
+    }
+}
+
+.blue-layout-overlay {
+    position: fixed;
+    z-index: var(--base-z-index);
+    inset: 0;
+    display: none;
+}
+
+@media (width < 64rem) {
+    .blue-layout-state-drawer:checked ~ .blue-layout-overlay {
+        display: block;
+    }
+}
 
