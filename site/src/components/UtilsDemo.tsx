@@ -8,7 +8,7 @@ import {
     guid,
     scrollToTop
 } from "@/src/js/utils"
-import { CheckCircleFill, ExclamationCircleFill, InfoCircleFill, PlayFill, XCircleFill } from "react-bootstrap-icons"
+import { PlayFill } from "react-bootstrap-icons"
 
 const utilitiesFunctions = [
     {

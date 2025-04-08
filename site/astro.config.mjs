@@ -6,8 +6,8 @@ import remarkRender from "./src/plugins/remark-render.mjs"
 
 // https://astro.build/config
 export default defineConfig({
-    site: "https://bruegmann.github.io/blue-web/vnext/",
-    base: "/blue-web/vnext/",
+    site: "https://bruegmann.github.io/blue-web/v1/",
+    base: "/blue-web/v1/",
     integrations: [react(), mdx()],
     vite: {
         css: {
