@@ -1,0 +1,23 @@
+---
+layout: $/layouts/DocsLayout.astro
+---
+
+import RenderBlock from "$/components/RenderBlock.tsx"
+
+# Tabs
+
+Tabs just with HTML and CSS, no JavaScript needed. The state is managed by the radio input elements.
+The tabs `.blue-tab` are designed to look just like `.nav-tabs .nav-link` by Bootstrap.
+
+```html use:RenderBlock
+<div role="tablist" class="blue-tabs">
+    <input role="tab" class="blue-tab" aria-label="Tab 1" type="radio" checked="" name="my_tabs_1" />
+    <div role="tabpanel" class="blue-tab-content p-3">Tab content 1</div>
+
+    <input role="tab" class="blue-tab" aria-label="Tab 2" type="radio" name="my_tabs_1" />
+    <div role="tabpanel" class="blue-tab-content p-3">Tab content 2</div>
+
+    <input role="tab" class="blue-tab" aria-label="Tab 3" type="radio" name="my_tabs_1" />
+    <div role="tabpanel" class="blue-tab-content p-3">Tab content 3</div>
+</div>
+```

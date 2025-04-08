@@ -1,0 +1,73 @@
+$theme: hsl(263, 23%, 16%);
+$primary: hsl(244, 76%, 64%);
+
+$body-bg: #efeeee;
+$body-bg-dark: lighten($theme, 4%);
+$body-color-dark: white;
+
+@import "../../../dist/style.scss";
+@import "../../../dist/neu.scss";
+@import "docs-nav";
+
+pre {
+    @extend .rounded;
+}
+
+.markdown-rendered > {
+    h1,
+    h2 {
+        @extend .page-header;
+    }
+}
+
+.bg-body {
+    @include neu($body-bg, $body-bg);
+}
+
+@include color-mode(dark) {
+    .bg-body {
+        @include neu($body-bg-dark, $body-bg-dark);
+    }
+}
+
+.blue-collapse {
+    interpolate-size: allow-keywords;
+
+    &:has(summary:focus) {
+        overflow: hidden;
+    }
+
+    summary {
+        list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .blue-collapse-chevron {
+        transition: transform 0.2s;
+    }
+
+    &[open] > summary > .blue-collapse-header > .blue-collapse-chevron,
+    &[open] > summary > .blue-collapse-chevron {
+        transform: rotate(90deg);
+    }
+
+    &::details-content {
+        block-size: 0;
+        transition: block-size 0.2s, content-visibility 0.2s;
+        transition-behavior: allow-discrete;
+    }
+
+    &[open]::details-content {
+        block-size: auto;
+    }
+}
+
+@media (prefers-reduced-motion) {
+    .blue-collapse .blue-collapse-chevron,
+    .blue-collapse::details-content {
+        transition: none;
+    }
+}

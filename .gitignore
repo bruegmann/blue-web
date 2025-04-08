@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+node_modules
 /.pnp
 .pnp.js
 
@@ -35,3 +35,9 @@ dist/**/*.ts
 dist/**/*.css
 dist/**/*.map
 dist/**/*.txt
+
+# build output
+site/dist/
+
+# generated types
+site/.astro/

@@ -1,0 +1,23 @@
+---
+import Layout from "./Layout.astro"
+let currentPath = Astro.url.pathname.replace(import.meta.env.BASE_URL, "")
+
+if (currentPath.endsWith("/")) {
+    currentPath = currentPath.slice(0, -1)
+}
+
+const currentTitle = decodeURIComponent(currentPath.split("/")[1])
+---
+
+<Layout title={`${currentTitle} • Blue Web`}>
+    <div class="container markdown-rendered">
+        <slot />
+
+        <div class="mb-3">
+            <a
+                href={`https://github.com/bruegmann/blue-web/edit/lgk-BLUE-16-switch-to-astro/site/src/pages/${currentPath}.mdx`}
+                class="link-secondary">Edit post on GitHub</a
+            >
+        </div>
+    </div>
+</Layout>
