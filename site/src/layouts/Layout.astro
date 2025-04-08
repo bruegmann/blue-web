@@ -5,6 +5,9 @@ import LayoutMain from "blue-react/dist/components/Layout/LayoutMain.js"
 import HeaderTitle from "blue-react/dist/components/HeaderTitle.js"
 import Menu from "../components/Menu.astro"
 import { ThemeGeneratorSwitch } from "$/components/ThemeGenerator"
+import MenuItem from "blue-react/dist/components/MenuItem.js"
+import ActionMenu from "blue-react/dist/components/ActionMenu.js"
+import { CodeSquare } from "react-bootstrap-icons"
 
 const { title, description } = Astro.props
 ---
@@ -116,7 +119,18 @@ const { title, description } = Astro.props
                     </div>
                 </nav>
 
-                <ThemeGeneratorSwitch client:only />
+                <ActionMenu client:only>
+                    <ThemeGeneratorSwitch client:only />
+
+                    <MenuItem
+                        label="Code on GitHub"
+                        href="https://github.com/bruegmann/blue-web"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <CodeSquare slot="icon" />
+                    </MenuItem>
+                </ActionMenu>
             </LayoutHeader>
         </header>
 
