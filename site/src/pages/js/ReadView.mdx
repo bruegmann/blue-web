@@ -10,6 +10,8 @@ A Web Component that displays a read view of its content and allows the user to 
 
 ## Demo
 
+### Basic usage
+
 ```html use:RenderBlock
 <read-view id="readViewDemo_readView">
     <a href="https://bruegmann.github.io/blue-web/" id="readViewDemo_link" target="_blank" rel="noopener noreferrer"
@@ -36,4 +38,15 @@ A Web Component that displays a read view of its content and allows the user to 
         readViewDemo_form.classList.add("d-none")
     })
 </script>
+```
+
+### Disabled
+
+```html use:RenderBlock
+<read-view disabled>
+    <a href="https://bruegmann.github.io/blue-web/" id="readViewDemo_link" target="_blank" rel="noopener noreferrer"
+        >Link</a
+    >
+    This one is disabled
+</read-view>
 ```

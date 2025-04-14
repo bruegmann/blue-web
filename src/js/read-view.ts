@@ -5,6 +5,7 @@ const DRAG_THRESHOLD = 5
  * Fires event "EditRequested" when the user clicks the read view.
  * @element read-view
  * @fires EditRequested
+ * @attr {boolean} disabled - Disables the component, preventing interactions and removing hover effects.
  * @cssprop --bs-primary-rgb - The primary color as an RGB value.
  * @cssprop --bs-secondary-bg-subtle - The subtle background color for the read view.
  * @cssprop --bs-border-radius-sm - The border radius for the read view.
@@ -29,8 +30,18 @@ export class ReadView extends HTMLElement {
         this.attachShadow({ mode: "open" })
     }
 
+    static get observedAttributes() {
+        return ["disabled"]
+    }
+
     connectedCallback() {
         this.render()
+    }
+
+    attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
+        if (name === "disabled") {
+            this.updateDisabledState()
+        }
     }
 
     private render() {
@@ -68,6 +79,10 @@ export class ReadView extends HTMLElement {
                 div:hover {
                     background-color: var(--bs-secondary-bg-subtle);
                 }
+
+                :host([disabled]) div {
+                    background-color: transparent;
+                }
             </style>
             <button aria-label="Edit"></button>
             <div role="presentation">
@@ -81,13 +96,23 @@ export class ReadView extends HTMLElement {
         this.button.addEventListener("click", this.onEditRequested.bind(this))
         this.container.addEventListener("click", this.onReadViewClick.bind(this))
         this.container.addEventListener("mousedown", this.onMouseDown.bind(this))
+
+        this.updateDisabledState()
+    }
+
+    private updateDisabledState() {
+        const isDisabled = this.hasAttribute("disabled")
+        this.button?.setAttribute("aria-disabled", String(isDisabled))
+        this.container?.setAttribute("aria-disabled", String(isDisabled))
     }
 
     private onEditRequested() {
+        if (this.hasAttribute("disabled")) return
         this.dispatchEvent(new CustomEvent("EditRequested", { bubbles: true, composed: true }))
     }
 
     private onMouseDown(event: MouseEvent) {
+        if (this.hasAttribute("disabled")) return
         this.startX = event.clientX
         this.startY = event.clientY
     }
@@ -100,6 +125,7 @@ export class ReadView extends HTMLElement {
     }
 
     private onReadViewClick(event: MouseEvent) {
+        if (this.hasAttribute("disabled")) return
         const target = event.target as HTMLElement
         if (target.tagName.toLowerCase() !== "a" && !this.mouseHasMovedAfterMouseDown(event)) {
             event.preventDefault()
