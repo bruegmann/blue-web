@@ -34,6 +34,8 @@ const { title, description } = Astro.props
         <meta name="generator" content={Astro.generator} />
         <title>{title || "Blue Web"}</title>
 
+        <link rel="stylesheet" href="inter/web/inter.css" />
+
         <link rel="stylesheet" href="prism-synthwave84.css" />
         <script src="https://elements.colorjs.io/src/channel-slider/channel-slider.js" type="module"></script>
 
@@ -141,7 +143,7 @@ const { title, description } = Astro.props
             <Menu />
         </aside>
         <main class="blue-layout-main">
-            <LayoutMain noPageBorder>
+            <LayoutMain>
                 <div class="d-flex flex-column h-100">
                     <slot />
 

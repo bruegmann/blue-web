@@ -46,14 +46,24 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
 ---
 
 <SidebarMenu>
-    <ul class="list-unstyled d-flex flex-column gap-3">
+    <ul class="list-unstyled d-flex flex-column">
         <li>
             <MenuItem href="." label="Start" isActive={currentPath === import.meta.env.BASE_URL}>
                 {currentPath === import.meta.env.BASE_URL ? <HouseFill slot="icon" /> : <House slot="icon" />}
             </MenuItem>
         </li>
 
-        <li>
+        <li class="mb-3">
+            <MenuItem
+                href="typography"
+                label="Typography"
+                isActive={currentPath === import.meta.env.BASE_URL + "typography"}
+            >
+                <Type slot="icon" />
+            </MenuItem>
+        </li>
+
+        <li class="mb-3">
             <strong class="ps-2">CSS</strong>
             <ul class="list-unstyled">
                 {

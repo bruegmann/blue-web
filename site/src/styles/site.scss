@@ -1,10 +1,3 @@
-$theme: hsl(263, 23%, 16%);
-$primary: hsl(244, 76%, 64%);
-
-$body-bg: #efeeee;
-$body-bg-dark: lighten($theme, 4%);
-$body-color-dark: white;
-
 @import "../../../dist/style.scss";
 @import "../../../dist/neu.scss";
 @import "docs-nav";
@@ -28,6 +21,10 @@ pre {
     .bg-body {
         @include neu($body-bg-dark, $body-bg-dark);
     }
+}
+
+.welcome-container > h1:first-child {
+    display: none;
 }
 
 .blue-collapse {
@@ -56,7 +53,9 @@ pre {
 
     &::details-content {
         block-size: 0;
-        transition: block-size 0.2s, content-visibility 0.2s;
+        transition:
+            block-size 0.2s,
+            content-visibility 0.2s;
         transition-behavior: allow-discrete;
     }
 
