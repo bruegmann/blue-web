@@ -27,46 +27,59 @@ pre {
     display: none;
 }
 
-.blue-collapse {
-    interpolate-size: allow-keywords;
+.docs-experimantal {
+    // Collapse with details and animated
+    // Right now not part of Blue Web, but could become one
 
-    &:has(summary:focus) {
-        overflow: hidden;
+    .blue-collapse {
+        interpolate-size: allow-keywords;
+
+        &:has(summary:focus) {
+            overflow: hidden;
+        }
+
+        summary {
+            list-style: none;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .blue-collapse-chevron {
+            transition: transform 0.2s;
+        }
+
+        &[open] > summary > .blue-collapse-header > .blue-collapse-chevron,
+        &[open] > summary > .blue-collapse-chevron {
+            transform: rotate(90deg);
+        }
+
+        &::details-content {
+            block-size: 0;
+            transition:
+                block-size 0.2s,
+                content-visibility 0.2s;
+            transition-behavior: allow-discrete;
+        }
+
+        &[open]::details-content {
+            block-size: auto;
+        }
     }
 
-    summary {
-        list-style: none;
-    }
-
-    summary::-webkit-details-marker {
-        display: none;
-    }
-
-    .blue-collapse-chevron {
-        transition: transform 0.2s;
-    }
-
-    &[open] > summary > .blue-collapse-header > .blue-collapse-chevron,
-    &[open] > summary > .blue-collapse-chevron {
-        transform: rotate(90deg);
-    }
-
-    &::details-content {
-        block-size: 0;
-        transition:
-            block-size 0.2s,
-            content-visibility 0.2s;
-        transition-behavior: allow-discrete;
-    }
-
-    &[open]::details-content {
-        block-size: auto;
+    @media (prefers-reduced-motion) {
+        .blue-collapse .blue-collapse-chevron,
+        .blue-collapse::details-content {
+            transition: none;
+        }
     }
 }
 
-@media (prefers-reduced-motion) {
-    .blue-collapse .blue-collapse-chevron,
-    .blue-collapse::details-content {
-        transition: none;
-    }
+.docs-masonry-grid {
+    display: grid;
+    width: 100%;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-rows: masonry;
 }

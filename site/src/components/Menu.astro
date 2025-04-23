@@ -13,6 +13,7 @@ import {
     LayoutSidebarInset,
     LayoutTextWindowReverse,
     MenuUp,
+    Palette,
     PlayBtn,
     PlayBtnFill,
     SegmentedNav,
@@ -53,13 +54,23 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
             </MenuItem>
         </li>
 
-        <li class="mb-3">
+        <li>
             <MenuItem
                 href="typography"
                 label="Typography"
-                isActive={currentPath === import.meta.env.BASE_URL + "typography"}
+                isActive={currentPath.includes(import.meta.env.BASE_URL + "typography")}
             >
                 <Type slot="icon" />
+            </MenuItem>
+        </li>
+
+        <li class="mb-3">
+            <MenuItem
+                href="theme-playground"
+                label="Theme Playground"
+                isActive={currentPath.includes(import.meta.env.BASE_URL + "theme-playground")}
+            >
+                <Palette slot="icon" />
             </MenuItem>
         </li>
 

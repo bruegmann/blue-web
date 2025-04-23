@@ -6,10 +6,13 @@ if (currentPath.endsWith("/")) {
     currentPath = currentPath.slice(0, -1)
 }
 
-const currentTitle = decodeURIComponent(currentPath.split("/")[1])
+const pathTitle = decodeURIComponent(currentPath.split("/")[1])
+
+// Extract title from frontmatter props or use path-based title as fallback
+const title = Astro.props.frontmatter.title || pathTitle
 ---
 
-<Layout title={`${currentTitle} • Blue Web`}>
+<Layout title={`${title} • Blue Web`}>
     <div class="container markdown-rendered">
         <slot />
 
