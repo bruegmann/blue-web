@@ -12,6 +12,7 @@ import {
     LayersHalf,
     LayoutSidebarInset,
     LayoutTextWindowReverse,
+    MenuAppFill,
     MenuUp,
     Palette,
     PlayBtn,
@@ -80,9 +81,15 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                 {
                     cssMenuItems.map((item) => (
                         <li>
-                            <MenuItem href={item.path} label={item.label} isActive={item.isActive}>
+                            <MenuItem
+                                href={item.path}
+                                label={item.label}
+                                isActive={item.isActive}
+                                labelClassName={item.label === "Collapse" ? "docs-badge docs-badge-new" : ""}
+                            >
                                 {item.label === "Button with icon" && <PlayBtn slot="icon" />}
                                 {item.label === "Buttons" && <PlayBtnFill slot="icon" />}
+                                {item.label === "Collapse" && <MenuAppFill slot="icon" />}
                                 {item.label === "Container Grid" && <Columns slot="icon" />}
                                 {item.label === "Layout" && <LayoutTextWindowReverse slot="icon" />}
                                 {item.label === "Modal" && <WindowStack slot="icon" />}

@@ -1,0 +1,90 @@
+---
+layout: $/layouts/DocsLayout.astro
+---
+
+import RenderBlock from "$/components/RenderBlock.tsx"
+
+# Collapse
+
+Animated collapse using HTML `details`.
+
+```html use:RenderBlock
+<details class="blue-collapse">
+    <summary>
+        <header class="blue-collapse-header d-flex">
+            <div class="blue-collapse-chevron" aria-hidden="true">&#10095;</div>
+            Collapse
+        </header>
+    </summary>
+    Show something
+</details>
+```
+
+Element with class `blue-collapse-chevron` will be rotated to `90deg` by default and if it is the first child.
+If it's the last child it will rotate to `-90deg`. Since text nodes aren't considered as child elements, you should wrap your text around an element.
+`<span>Collapse</span>` in this case:
+
+```html use:RenderBlock
+<details class="blue-collapse">
+    <summary>
+        <header class="blue-collapse-header d-flex">
+            <span>Collapse</span>
+            <div class="blue-collapse-chevron" aria-hidden="true">&#10094;</div>
+        </header>
+    </summary>
+    Show something
+</details>
+```
+
+You can also customize the rotation target position with the CSS variable `--blue-collapse-chevron-rotate`:
+
+```html use:RenderBlock
+<details class="blue-collapse">
+    <summary>
+        <header class="blue-collapse-header d-flex">
+            Collapse
+            <div class="blue-collapse-chevron" style="--blue-collapse-chevron-rotate: -45deg" aria-hidden="true">
+                &#10094;
+            </div>
+        </header>
+    </summary>
+    Show something
+</details>
+```
+
+## Combine with Menu Item
+
+```html use:RenderBlock
+<details class="blue-collapse">
+    <summary class="blue-collapse-header blue-menu-item btn">
+        <span class="blue-menu-item-icon" aria-hidden="true">☀️</span>
+        <span class="blue-menu-item-label">Parent</span>
+
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1em"
+            height="1em"
+            fill="currentColor"
+            class="blue-menu-item-dropdown-toggle blue-collapse-chevron blue-menu-item-chevron ms-auto"
+            style=" display: inline-block; vertical-align: -0.125em; transition: transform 0.2s;"
+            viewBox="0 0 16 16"
+        >
+            <path
+                class="blue-sidebar-exception"
+                fillRule="evenodd"
+                d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0"
+            ></path>
+        </svg>
+    </summary>
+    <div class="blue-menu-item-dropdown">
+        <button type="button" class="blue-menu-item btn">
+            <span class="blue-menu-item-icon" aria-hidden="true">🌍</span>
+            <span class="blue-menu-item-label">Child</span>
+        </button>
+        <button type="button" class="blue-menu-item btn">
+            <span class="blue-menu-item-icon" aria-hidden="true">🌑</span>
+            <span class="blue-menu-item-label">Child 2</span>
+        </button>
+    </div>
+</details>
+```
