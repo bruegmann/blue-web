@@ -8,6 +8,7 @@ import { ThemeGeneratorSwitch } from "$/components/ThemeGenerator"
 import MenuItem from "blue-react/dist/components/MenuItem.js"
 import ActionMenu from "blue-react/dist/components/ActionMenu.js"
 import { CodeSquare } from "react-bootstrap-icons"
+import ColorModeSwitch from "$/components/ColorModeSwitch"
 
 const { title, description } = Astro.props
 ---
@@ -16,6 +17,7 @@ const { title, description } = Astro.props
     import "@/src/js/dialog.ts"
     import "@/src/js/progress.ts"
     import "@/src/js/read-view.ts"
+    import "@/src/js/color-mode.ts"
 </script>
 
 <html lang="en">
@@ -181,7 +183,7 @@ const { title, description } = Astro.props
                                 </small>
                             </p>
 
-                            <!-- <ColorModeSwitch /> -->
+                            <!-- <ColorModeSwitch client:only /> -->
                         </div>
                     </footer>
                 </div>

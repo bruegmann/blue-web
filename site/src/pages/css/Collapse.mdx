@@ -3,6 +3,7 @@ layout: $/layouts/DocsLayout.astro
 ---
 
 import RenderBlock from "$/components/RenderBlock.tsx"
+import Grab from "$/components/Grab.astro"
 
 # Collapse
 
@@ -55,7 +56,7 @@ You can also customize the rotation target position with the CSS variable `--blu
 ## Combine with Menu Item
 
 ```html use:RenderBlock
-<details class="blue-collapse">
+<details class="blue-collapse position-relative">
     <summary class="blue-collapse-header blue-menu-item btn">
         <span class="blue-menu-item-icon" aria-hidden="true">☀️</span>
         <span class="blue-menu-item-label">Parent</span>
@@ -76,7 +77,10 @@ You can also customize the rotation target position with the CSS variable `--blu
             ></path>
         </svg>
     </summary>
-    <div class="blue-menu-item-dropdown">
+    <div
+        class="blue-menu-item-dropdown position-absolute text-body"
+        style="--blue-menu-item-dropdown-bg: var(--bs-body-bg)"
+    >
         <button type="button" class="blue-menu-item btn">
             <span class="blue-menu-item-icon" aria-hidden="true">🌍</span>
             <span class="blue-menu-item-label">Child</span>
@@ -88,3 +92,5 @@ You can also customize the rotation target position with the CSS variable `--blu
     </div>
 </details>
 ```
+
+<Grab items={[{ src: "@/dist/styles/_collapse.scss" }]} />
