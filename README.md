@@ -42,8 +42,9 @@ Here is an example of how to override variables using Sass:
 // Override Bootstrap Sass variable
 $primary: tomato;
 
-// Override Blue Web Sass variable
+// Override Blue Web Sass variables
 $theme: orange;
+$theme-dark: darken(orange, 10%);
 
 // Stylesheet for Blue Web. Already contains Bootstrap.
 @import "~blue-web/dist/style";

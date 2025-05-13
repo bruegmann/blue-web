@@ -1,5 +1,5 @@
 /*!
- * Blue Web v1.12.20 (https://bruegmann.github.io/blue-web)
+ * Blue Web v1.13.0 (https://bruegmann.github.io/blue-web)
  * Licensed under GNU General Public License v3.0 (https://github.com/bruegmann/blue-web/blob/master/LICENSE).
 */
 
@@ -18,8 +18,6 @@ $gray-700: hsl(217deg 9% 31%) !default;
 $gray-800: hsl(217deg 10% 23%) !default;
 $gray-900: hsl(217deg 11% 15%) !default;
 $black: #000 !default;
-$header-color: $gray-900 !default;
-$sidebar-color: $gray-900 !default;
 
 $light: #ecedf0 !default;
 
@@ -3694,8 +3692,8 @@ $sidebar-open-bg: darken($sidebar-bg, 30%) !default;
 $sidebar-deep-bg: darken($sidebar-bg, 4%) !default;
 
 // Text color of sidebar.
-$sidebar-color: color-contrast($sidebar-bg) !default;
-$sidebar-color-dark: color-contrast($sidebar-bg-dark) !default;
+$sidebar-color: color-contrast($sidebar-bg, $gray-900) !default;
+$sidebar-color-dark: color-contrast($sidebar-bg-dark, $gray-900) !default;
 
 // Color of indicator for active sidebar item.
 $sidebar-indicator-color: $sidebar-color !default;
@@ -3713,8 +3711,8 @@ $header-bg: $theme !default;
 $header-bg-dark: $theme-dark !default;
 
 // Text color of header elements
-$header-color: color-contrast($header-bg) !default;
-$header-color-dark: color-contrast($header-bg-dark) !default;
+$header-color: color-contrast($header-bg, $gray-900) !default;
+$header-color-dark: color-contrast($header-bg-dark, $gray-900) !default;
 
 // Background of header action menu dropdown menus
 $header-deep-bg: darken($header-bg, 4%) !default;
@@ -11648,13 +11646,6 @@ body {
     &:after {
         transform: translateX(var(--tt-pos, -0.25rem)) translateY(-50%) rotate(90deg);
         inset: 50% auto auto calc(var(--tt-tail) + 1px);
-    }
-}
-
-.blue-btn-silent {
-    &:not(:hover):not(:focus):not(:active) {
-        border-color: transparent;
-        color: inherit;
     }
 }
 

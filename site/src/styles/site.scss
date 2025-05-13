@@ -1,16 +1,3 @@
-$theme: #00005d;
-$theme-dark: #000046;
-$primary: #000090;
-$gray-100: hsl(240deg 17% 98%);
-$gray-200: hsl(240deg 16% 93%);
-$gray-300: hsl(240deg 14% 89%);
-$gray-400: hsl(240deg 14% 83%);
-$gray-500: hsl(240deg 11% 71%);
-$gray-600: hsl(240deg 7% 46%);
-$gray-700: hsl(240deg 9% 31%);
-$gray-800: hsl(240deg 10% 23%);
-$gray-900: hsl(240deg 11% 15%);
-
 @import "../../../dist/style.scss";
 @import "../../../dist/neu.scss";
 @import "docs-nav";
