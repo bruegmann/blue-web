@@ -54,3 +54,9 @@ pre {
     color: var(--bs-success-text-emphasis);
     background-color: var(--bs-success-bg-subtle);
 }
+
+.docs-badge-experimental::after {
+    content: "Experimental";
+    color: var(--bs-warning-text-emphasis);
+    background-color: var(--bs-warning-bg-subtle);
+}

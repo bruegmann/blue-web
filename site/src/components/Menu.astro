@@ -13,6 +13,7 @@ import {
     LayersHalf,
     LayoutSidebarInset,
     LayoutTextWindowReverse,
+    MenuApp,
     MenuAppFill,
     MenuUp,
     Palette,
@@ -118,8 +119,15 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 href={item.path}
                                 label={item.label}
                                 isActive={item.isActive}
-                                labelClassName={item.label === "ColorMode" ? "docs-badge docs-badge-new" : ""}
+                                labelClassName={
+                                    item.label === "ColorMode"
+                                        ? "docs-badge docs-badge-new"
+                                        : item.label === "Actions"
+                                          ? "docs-badge docs-badge-experimental"
+                                          : ""
+                                }
                             >
+                                {item.label === "Actions" && <MenuApp slot="icon" />}
                                 {item.label === "ColorMode" && <CircleHalf slot="icon" />}
                                 {item.label === "Dialog" && <WindowStack slot="icon" />}
                                 {item.label === "Progress" && <ArrowRepeat slot="icon" />}
