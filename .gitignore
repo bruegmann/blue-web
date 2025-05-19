@@ -32,7 +32,7 @@ yarn-error.log*
 
 dist/**/*.js
 dist/**/*.ts
-dist/**/*.css
+dist/*.css
 dist/**/*.map
 dist/**/*.txt
 
