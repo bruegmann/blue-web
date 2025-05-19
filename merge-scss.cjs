@@ -40,11 +40,17 @@ function mergeSCSS(filePath, processedFiles = new Set()) {
 
         let standardPath = path.resolve(scssDir, normalizedPath + ".scss")
         let partialPath = path.join(path.dirname(standardPath), "_" + path.basename(standardPath))
+        let standardCssPath = path.resolve(scssDir, normalizedPath + ".css")
+        let partialCssPath = path.join(path.dirname(standardPath), "_" + path.basename(standardCssPath))
 
         if (fs.existsSync(standardPath)) {
             return mergeSCSS(standardPath, processedFiles)
         } else if (fs.existsSync(partialPath)) {
             return mergeSCSS(partialPath, processedFiles)
+        } else if (fs.existsSync(standardCssPath)) {
+            return mergeSCSS(standardCssPath, processedFiles)
+        } else if (fs.existsSync(partialCssPath)) {
+            return mergeSCSS(partialCssPath, processedFiles)
         }
 
         console.warn(`⚠️ Datei nicht gefunden: ${importPath}`)

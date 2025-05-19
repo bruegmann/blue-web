@@ -24,12 +24,23 @@ import "blue-web/dist/js/progress.js"
 // ...
 ```
 
+**Important:** Since 1.14.0 JavaScript files are compiled as ES modules. When you embed them in HTML using the `<script>` don't forget the `type="module"` attribute.
+
 You can also use a CDN like unpkg.com. Only recommended for testing, not for production.
 
 ```html
-<script src="https://unpkg.com/blue-web@latest/dist/js/dialog.js"></script>
-<script src="https://unpkg.com/blue-web@latest/dist/js/progress.js"></script>
+<script type="module" src="https://unpkg.com/blue-web@latest/dist/js/dialog.js"></script>
+<script type="module" src="https://unpkg.com/blue-web@latest/dist/js/progress.js"></script>
 <!-- ... -->
+```
+
+JavaScript files are compiled as ES modules. This allows you to use import functions like this:
+
+```html
+<script type="module">
+    import { tell } from "https://unpkg.com/blue-web@latest/dist/js/dialog.js"
+    tell("You are awesome!")
+</script>
 ```
 
 ## Customization and theming
