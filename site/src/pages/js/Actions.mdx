@@ -10,7 +10,7 @@ import Grab from "$/components/Grab.astro"
 Combination of toolbar and a dropdown menu. Items in toolbar will only be shown if there is enough space.
 Otherwise they will be visible in the dropdown menu. JavaScript detects if space is changing and rearranges.
 
-## Demo 1: Use Menu Items of Blue Web
+## Demo 1: Use Menu Items of Blue Web and Dropdown with Popover and Anchor Positioning
 
 ```html use:RenderBlock
 <div
@@ -18,7 +18,96 @@ Otherwise they will be visible in the dropdown menu. JavaScript detects if space
     style="width: 460px"
     role="toolbar"
     aria-label="Toolbar with button groups"
-    id="actionsDemoMenuItems"
+    id="actionDemoPopover"
+>
+    <div class="BLUE-actions-menu">
+        <button type="button" class="blue-menu-item btn">
+            <span class="blue-menu-item-icon" aria-hidden="true">🌍</span>
+            <span class="blue-menu-item-label">Child</span>
+        </button>
+        <button type="button" class="blue-menu-item btn">
+            <span class="blue-menu-item-icon" aria-hidden="true">🌑</span>
+            <span class="blue-menu-item-label">Child 2</span>
+        </button>
+        <button type="button" class="blue-menu-item btn">
+            <span class="blue-menu-item-icon" aria-hidden="true">☀️</span>
+            <span class="blue-menu-item-label">Child 3</span>
+        </button>
+        <button type="button" class="blue-menu-item btn">
+            <span class="blue-menu-item-icon" aria-hidden="true">🚀</span>
+            <span class="blue-menu-item-label">Child 4</span>
+        </button>
+        <button type="button" class="blue-menu-item btn">
+            <span class="blue-menu-item-icon" aria-hidden="true">🌌</span>
+            <span class="blue-menu-item-label">Child 5</span>
+        </button>
+    </div>
+
+    <div class="BLUE-actions-collapse" style="--blue-anchor-name: --actionDemoPopoverAnchor">
+        <button type="button" popovertarget="actionDemoPopoverPopover" class="blue-anchor blue-menu-item btn px-3">
+            <span class="blue-menu-item-icon" aria-hidden="true">&#8942;</span>
+            <span class="visually-hidden">Toggle menu</span>
+        </button>
+
+        <div
+            id="actionDemoPopoverPopover"
+            popover
+            class="BLUE-actions-collapse-menu blue-anchored blue-anchored-end blue-anchored-fallback blue-menu-item-dropdown text-body"
+            style="--blue-menu-item-dropdown-bg: var(--bs-body-bg)"
+        >
+            <button type="button" class="blue-menu-item btn">
+                <span class="blue-menu-item-icon" aria-hidden="true">🌍</span>
+                <span class="blue-menu-item-label">Child</span>
+            </button>
+            <button type="button" class="blue-menu-item btn">
+                <span class="blue-menu-item-icon" aria-hidden="true">🌑</span>
+                <span class="blue-menu-item-label">Child 2</span>
+            </button>
+            <button type="button" class="blue-menu-item btn">
+                <span class="blue-menu-item-icon" aria-hidden="true">☀️</span>
+                <span class="blue-menu-item-label">Child 3</span>
+            </button>
+            <button type="button" class="blue-menu-item btn">
+                <span class="blue-menu-item-icon" aria-hidden="true">🚀</span>
+                <span class="blue-menu-item-label">Child 4</span>
+            </button>
+            <button type="button" class="blue-menu-item btn">
+                <span class="blue-menu-item-icon" aria-hidden="true">🌌</span>
+                <span class="blue-menu-item-label">Child 5</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<label
+    >Change container width
+    <input id="actionDemoPopoverRange" type="range" min="50" max="1200" value="460" />
+</label>
+
+<script>
+    window.actionDemoPopoverResponse = null
+    document.addEventListener("DOMContentLoaded", () => {
+        actionDemoPopoverResponse = blueWeb.actions.init(document.getElementById("actionDemoPopover"))
+
+        actionDemoPopoverRange.addEventListener("input", ({ target }) => {
+            actionDemoPopover.style.width = `${target.value}px`
+        })
+    })
+</script>
+```
+
+## Demo 2: Use Menu Items of Blue Web and Details
+
+[HTML Details](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details) will be used for the dropdown menu.
+Event handler in `actions.ts` automatically closes the Menu when clicking outside.
+
+```html use:RenderBlock
+<div
+    class="BLUE-actions border p-1"
+    style="width: 460px"
+    role="toolbar"
+    aria-label="Toolbar with button groups"
+    id="actionDemoDetails"
 >
     <div class="BLUE-actions-menu">
         <button type="button" class="blue-menu-item btn">
@@ -79,16 +168,16 @@ Otherwise they will be visible in the dropdown menu. JavaScript detects if space
 
 <label
     >Change container width
-    <input id="actionsDemoMenuItemsRange" type="range" min="50" max="1200" value="460" />
+    <input id="actionDemoDetailsRange" type="range" min="50" max="1200" value="460" />
 </label>
 
 <script>
-    window.actionsDemoMenuItemsResponse = null
+    window.actionDemoDetailsResponse = null
     document.addEventListener("DOMContentLoaded", () => {
-        actionsDemoMenuItemsResponse = blueWeb.actions.init(document.getElementById("actionsDemoMenuItems"))
+        actionDemoDetailsResponse = blueWeb.actions.init(document.getElementById("actionDemoDetails"))
 
-        actionsDemoMenuItemsRange.addEventListener("input", ({ target }) => {
-            actionsDemoMenuItems.style.width = `${target.value}px`
+        actionDemoDetailsRange.addEventListener("input", ({ target }) => {
+            actionDemoDetails.style.width = `${target.value}px`
         })
     })
 </script>

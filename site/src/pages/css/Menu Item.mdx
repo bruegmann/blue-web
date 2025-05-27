@@ -1,0 +1,138 @@
+---
+layout: $/layouts/DocsLayout.astro
+---
+
+import RenderBlock from "$/components/RenderBlock.tsx"
+import Grab from "$/components/Grab.astro"
+
+# Menu Item
+
+Styles for interactive elements in sidebar and in header area.
+
+```html use:RenderBlock
+<button type="button" class="blue-menu-item btn">
+    <span class="blue-menu-item-icon" aria-hidden="true">☀️</span>
+    <span class="blue-menu-item-label">Parent</span>
+</button>
+```
+
+## Dropdown with Popover API and Anchor Positioning
+
+In combination with the [Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API) and [CSS Anchor Positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_anchor_positioning)
+you can create a dropdown menu without the need for custom JavaScript.
+
+Blue Web provides some helper CSS classes for anchoring. With `.blue-anchor` you define the anchor, with `.blue-anchored` the target that will be attached to it.
+With the CSS variable `--blue-anchor-name` you define the shared anchor name.
+
+```html use:RenderBlock
+<button
+    type="button"
+    class="blue-anchor blue-menu-item btn"
+    popovertarget="popover-1"
+    style="--blue-anchor-name: --anchor-1"
+>
+    <span class="blue-menu-item-label">Parent</span>
+</button>
+<div
+    id="popover-1"
+    popover
+    class="blue-anchored blue-anchored-start blue-anchored-fallback blue-menu-item-dropdown text-body"
+    style="--blue-anchor-name: --anchor-1; --blue-menu-item-dropdown-bg: var(--bs-body-bg);"
+>
+    <button type="button" class="blue-menu-item btn">
+        <span class="blue-menu-item-icon" aria-hidden="true">🌍</span>
+        <span class="blue-menu-item-label">Child</span>
+    </button>
+    <button type="button" class="blue-menu-item btn">
+        <span class="blue-menu-item-icon" aria-hidden="true">🌑</span>
+        <span class="blue-menu-item-label">Child 2</span>
+    </button>
+</div>
+```
+
+### Polyfill
+
+As of writing this, CSS Anchor Positioning doesn't work in all major browsers yet ([Can I Use](https://caniuse.com/css-anchor-positioning)). You might need a polyfill.
+You can find one here: [https://github.com/oddbird/css-anchor-positioning](https://github.com/oddbird/css-anchor-positioning). You can quickly apply it like this:
+
+```html use:RenderBlock
+<button type="button" class="btn blue-btn-soft-secondary" onclick="applyPolyfill()">Apply polyfill</button>
+<script type="module">
+    function applyPolyfill() {
+        if (!("anchorName" in document.documentElement.style)) {
+            import("https://unpkg.com/@oddbird/css-anchor-positioning")
+        }
+    }
+</script>
+```
+
+### Fallback
+
+Add `.blue-anchored-fallback` to the dropdown element and on not supported browsers, it will be displayed with an overlay over the whole page.
+
+### Position
+
+This is how to place the menu right to the button:
+
+```html use:RenderBlock
+<button
+    type="button"
+    class="blue-anchor blue-menu-item btn"
+    style="--blue-anchor-name: --anchor-2"
+    popovertarget="popover-2"
+>
+    <span class="blue-menu-item-label">Parent</span>
+</button>
+<div
+    id="popover-2"
+    popover
+    class="blue-anchored blue-anchored-end blue-menu-item-dropdown text-body"
+    style="--blue-anchor-name: --anchor-2; --blue-menu-item-dropdown-bg: var(--bs-body-bg);"
+>
+    <button type="button" class="blue-menu-item btn">
+        <span class="blue-menu-item-icon" aria-hidden="true">🌍</span>
+        <span class="blue-menu-item-label">Child</span>
+    </button>
+</div>
+```
+
+### Initially open
+
+You can open the dropdown using JavaScript with `showPopover()`.
+
+```html use:RenderBlock
+<button type="button" class="blue-menu-item btn" popovertarget="popover-3" style="anchor-name: --anchor-3">
+    <span class="blue-menu-item-label">Parent</span>
+</button>
+<div
+    id="popover-3"
+    popover
+    class="blue-menu-item-dropdown text-body"
+    style="left: anchor(--anchor-3 left); top: anchor(--anchor-3 bottom); --blue-menu-item-dropdown-bg: var(--bs-body-bg);"
+>
+    <button type="button" class="blue-menu-item btn">
+        <span class="blue-menu-item-icon" aria-hidden="true">🌍</span>
+        <span class="blue-menu-item-label">Child</span>
+    </button>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("popover-3").showPopover()
+    })
+</script>
+```
+
+## Combine with Collapse
+
+Together with `.blue-collapse` and [`<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details) you can create a collapsable sub menu.
+Could be used inside the sidebar.
+
+[Click here to go the example on the Collapse page](css/Collapse#combine-with-menu-item).
+
+<Grab
+    items={[
+        { src: "@/dist/styles/mixins/_menu-item.scss" },
+        { src: "@/dist/styles/_menu-item.scss" },
+        { src: "@/dist/styles/_anchor.scss" }
+    ]}
+/>

@@ -4,6 +4,8 @@ import MenuItem from "blue-react/dist/components/MenuItem.js"
 import {
     ArrowRepeat,
     ArrowsVertical,
+    BarChartSteps,
+    CardHeading,
     CircleHalf,
     Columns,
     CursorText,
@@ -14,7 +16,7 @@ import {
     LayoutSidebarInset,
     LayoutTextWindowReverse,
     MenuApp,
-    MenuAppFill,
+    MenuButton,
     MenuUp,
     Palette,
     PlayBtn,
@@ -87,13 +89,20 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 href={item.path}
                                 label={item.label}
                                 isActive={item.isActive}
-                                labelClassName={item.label === "Collapse" ? "docs-badge docs-badge-new" : ""}
+                                labelClassName={
+                                    item.label === "Collapse"
+                                        ? "docs-badge docs-badge-new"
+                                        : item.label === "Menu Item"
+                                          ? "docs-badge docs-badge-update"
+                                          : ""
+                                }
                             >
                                 {item.label === "Button with icon" && <PlayBtn slot="icon" />}
                                 {item.label === "Buttons" && <PlayBtnFill slot="icon" />}
-                                {item.label === "Collapse" && <MenuAppFill slot="icon" />}
+                                {item.label === "Collapse" && <CardHeading slot="icon" />}
                                 {item.label === "Container Grid" && <Columns slot="icon" />}
                                 {item.label === "Layout" && <LayoutTextWindowReverse slot="icon" />}
+                                {item.label === "Menu Item" && <MenuButton slot="icon" />}
                                 {item.label === "Modal" && <WindowStack slot="icon" />}
                                 {item.label === "Neumorphism" && <LayersHalf slot="icon" />}
                                 {item.label === "Scrollbar" && <ArrowsVertical slot="icon" />}
@@ -120,7 +129,7 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 label={item.label}
                                 isActive={item.isActive}
                                 labelClassName={
-                                    item.label === "ColorMode"
+                                    item.label === "View Transition API"
                                         ? "docs-badge docs-badge-new"
                                         : item.label === "Actions"
                                           ? "docs-badge docs-badge-experimental"
@@ -134,6 +143,7 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 {item.label === "ReadView" && <CursorText slot="icon" />}
                                 {item.label === "SideLayout" && <LayoutTextWindowReverse slot="icon" />}
                                 {item.label === "Utils" && <Tools slot="icon" />}
+                                {item.label === "View Transition API" && <BarChartSteps slot="icon" />}
                             </MenuItem>
                         </li>
                     ))

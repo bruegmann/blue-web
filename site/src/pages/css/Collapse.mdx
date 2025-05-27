@@ -53,10 +53,10 @@ You can also customize the rotation target position with the CSS variable `--blu
 </details>
 ```
 
-## Combine with Menu Item
+## Combine with styling of Menu Item
 
 ```html use:RenderBlock
-<details class="blue-collapse position-relative">
+<details class="blue-collapse">
     <summary class="blue-collapse-header blue-menu-item btn">
         <span class="blue-menu-item-icon" aria-hidden="true">☀️</span>
         <span class="blue-menu-item-label">Parent</span>
@@ -77,10 +77,7 @@ You can also customize the rotation target position with the CSS variable `--blu
             ></path>
         </svg>
     </summary>
-    <div
-        class="blue-menu-item-dropdown position-absolute text-body"
-        style="--blue-menu-item-dropdown-bg: var(--bs-body-bg)"
-    >
+    <div class="blue-menu-item-dropdown text-body" style="--blue-menu-item-dropdown-bg: var(--bs-body-bg)">
         <button type="button" class="blue-menu-item btn">
             <span class="blue-menu-item-icon" aria-hidden="true">🌍</span>
             <span class="blue-menu-item-label">Child</span>
@@ -91,6 +88,49 @@ You can also customize the rotation target position with the CSS variable `--blu
         </button>
     </div>
 </details>
+```
+
+## Menu Item and Collapse grouped
+
+`.blue-collapse-group` let's you group a collapse together with another UI element like a button that should come before the collapse summary.
+
+```html use:RenderBlock
+<div class="blue-collapse-group">
+    <button type="button" class="blue-menu-item btn">
+        <span class="blue-menu-item-icon" aria-hidden="true">☀️</span>
+        <span class="blue-menu-item-label">Parent</span>
+    </button>
+    <details class="blue-collapse">
+        <summary class="blue-collapse-header blue-menu-item btn">
+            <span class="visually-hidden">Collapse sub menu</span>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                fill="currentColor"
+                class="blue-menu-item-dropdown-toggle blue-collapse-chevron blue-menu-item-chevron ms-auto"
+                style=" display: inline-block; vertical-align: -0.125em; transition: transform 0.2s;"
+                viewBox="0 0 16 16"
+            >
+                <path
+                    class="blue-sidebar-exception"
+                    fillRule="evenodd"
+                    d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0"
+                ></path>
+            </svg>
+        </summary>
+        <div class="blue-menu-item-dropdown text-body" style="--blue-menu-item-dropdown-bg: var(--bs-body-bg)">
+            <button type="button" class="blue-menu-item btn">
+                <span class="blue-menu-item-icon" aria-hidden="true">🌍</span>
+                <span class="blue-menu-item-label">Child</span>
+            </button>
+            <button type="button" class="blue-menu-item btn">
+                <span class="blue-menu-item-icon" aria-hidden="true">🌑</span>
+                <span class="blue-menu-item-label">Child 2</span>
+            </button>
+        </div>
+    </details>
+</div>
 ```
 
 <Grab items={[{ src: "@/dist/styles/_collapse.scss" }]} />
