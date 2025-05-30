@@ -3,6 +3,7 @@ import { type CSSProperties, type FC, useEffect, useState } from "react"
 import Code from "./Code.tsx"
 import { BoxArrowInDown, Braces, Palette2 } from "react-bootstrap-icons"
 import { A, MenuItem } from "blue-react"
+import { Tab, Tabs } from "$/components/Tabs.tsx"
 
 export interface ThemeInfoAppSettingsTemplateConfig {
     repo: string
@@ -260,33 +261,16 @@ export default function ThemeGenerator({ defaultThemeInfo }: ThemeGeneratorProps
                             </form>
                         </div>
                         <div className="modal-body">
-                            <div role="tablist" className="blue-tabs">
-                                <input
-                                    role="tab"
-                                    className="blue-tab"
-                                    style={{ whiteSpace: "nowrap" }}
-                                    aria-label="Theme info"
-                                    type="radio"
-                                    defaultChecked
-                                    name="ThemeGenerator_tabs_1"
-                                />
-                                <div role="tabpanel" className="blue-tab-content mw-100 overflow-auto">
+                            <Tabs>
+                                <Tab label="Theme info" active>
                                     <p className="p-3 pb-0">
                                         Configuration for this theme. You should save it to make changes to your theme
                                         later.
                                     </p>
                                     <Code code={JSON.stringify(themeInfo, null, 4)} language="json" />
-                                </div>
+                                </Tab>
 
-                                <input
-                                    role="tab"
-                                    className="blue-tab"
-                                    style={{ whiteSpace: "nowrap" }}
-                                    aria-label="HTML"
-                                    type="radio"
-                                    name="ThemeGenerator_tabs_1"
-                                />
-                                <div role="tabpanel" className="blue-tab-content mw-100 overflow-auto">
+                                <Tab label="HTML">
                                     <p className="p-3 pb-0">
                                         Since this a {themeInfo?.colorMode || "light"} theme, you should set the{" "}
                                         <code>data-bs-theme="{themeInfo?.colorMode || "light"}"</code> attribute to
@@ -306,40 +290,24 @@ export default function ThemeGenerator({ defaultThemeInfo }: ThemeGeneratorProps
                                         }
                                         language="html"
                                     />
-                                </div>
+                                </Tab>
 
-                                <input
-                                    role="tab"
-                                    className="blue-tab"
-                                    style={{ whiteSpace: "nowrap" }}
-                                    aria-label="CSS"
-                                    type="radio"
-                                    name="ThemeGenerator_tabs_1"
-                                />
-                                <div role="tabpanel" className="blue-tab-content mw-100 overflow-auto">
+                                <Tab label="CSS">
                                     <p className="p-3 pb-0">
                                         This CSS only contains all CSS variables. This allows you to change the look
                                         without running a Sass compiler. Especially useful if you want to change the
                                         theme while the page is running. CSS has to be embedded after the Blue Web CSS.
                                     </p>
                                     <Code code={css} language="css" />
-                                </div>
+                                </Tab>
 
-                                <input
-                                    role="tab"
-                                    className="blue-tab"
-                                    style={{ whiteSpace: "nowrap" }}
-                                    aria-label="SCSS variables"
-                                    type="radio"
-                                    name="ThemeGenerator_tabs_1"
-                                />
-                                <div role="tabpanel" className="blue-tab-content mw-100 overflow-auto">
+                                <Tab label="SCSS variables">
                                     <p className="p-3 pb-0">
                                         Set these variables in your SCSS file before you import the Blue Web SCSS file.
                                     </p>
                                     <Code code={scss} language="scss" />
-                                </div>
-                            </div>
+                                </Tab>
+                            </Tabs>
                         </div>
                     </div>
                 </div>

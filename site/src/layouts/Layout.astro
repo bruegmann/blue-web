@@ -18,6 +18,8 @@ const { title, description } = Astro.props
     import "@/src/js/read-view.ts"
     import "@/src/js/color-mode.ts"
     import "@/src/js/actions.ts"
+
+    import "$/../public/lib/prism.js"
 </script>
 
 <html lang="en">
@@ -38,7 +40,8 @@ const { title, description } = Astro.props
 
         <link rel="stylesheet" href="inter/web/inter.css" />
 
-        <link rel="stylesheet" href="prism-synthwave84.css" />
+        <link href="lib/prism.css" rel="stylesheet" />
+        <link href="lib/prism-dark.css" rel="stylesheet" media="(prefers-color-scheme: dark)" />
 
         <script>
             const fromStorage = localStorage.getItem("themeGenerator_theme")

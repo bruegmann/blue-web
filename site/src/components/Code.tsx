@@ -1,6 +1,6 @@
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { synthwave84 as syntaxHighlighterStyle } from "react-syntax-highlighter/dist/esm/styles/prism"
 import CopyToClipboard from "./CopyToClipboard"
+import { Prism } from "react-syntax-highlighter"
+import { synthwave84 } from "react-syntax-highlighter/dist/cjs/styles/prism"
 import { useState } from "react"
 
 export interface CodeProps {
@@ -14,15 +14,13 @@ export default function Code({ code, language = "html", expandable = false }: Co
 
     return (
         <div className="position-relative">
-            <CopyToClipboard content={code} className="position-absolute top-0 end-0 mt-1 me-1 btn-sm" />
-
             <div
                 className="overflow-auto rounded-3"
                 style={{ maxHeight: expandable && !expanded ? "200px" : "400px", transition: "max-height .2s" }}
             >
-                <SyntaxHighlighter style={syntaxHighlighterStyle} language={language}>
+                <Prism language={language} style={synthwave84}>
                     {code}
-                </SyntaxHighlighter>
+                </Prism>
             </div>
 
             {expandable && (
@@ -35,6 +33,8 @@ export default function Code({ code, language = "html", expandable = false }: Co
                     </button>
                 </div>
             )}
+
+            <CopyToClipboard content={code} className="position-absolute top-0 end-0 mt-1 me-1 btn-sm" />
         </div>
     )
 }

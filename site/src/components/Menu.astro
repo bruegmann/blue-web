@@ -92,7 +92,7 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 labelClassName={
                                     item.label === "Collapse"
                                         ? "docs-badge docs-badge-new"
-                                        : item.label === "Menu Item"
+                                        : item.label === "Menu Item" || item.label === "Tabs"
                                           ? "docs-badge docs-badge-update"
                                           : ""
                                 }
