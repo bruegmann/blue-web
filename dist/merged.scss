@@ -2779,6 +2779,11 @@ $rfs-mq-property-height: if($rfs-mode == max-media-query, max-height, min-height
   &:not(caption) {
     position: absolute !important;
   }
+
+  // Fix to prevent overflowing children to become focusable
+  * {
+    overflow: hidden !important;
+  }
 }
 
 // Use to only display content when it's focused, or one of its child elements is focused
@@ -4160,7 +4165,7 @@ $sidebar-expanded-breakpoint: 1400px !default;
 
 @mixin bsBanner($file) {
   /*!
-   * Bootstrap #{$file} v5.3.5 (https://getbootstrap.com/)
+   * Bootstrap #{$file} v5.3.6 (https://getbootstrap.com/)
    * Copyright 2011-2025 The Bootstrap Authors
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    */
@@ -8574,13 +8579,13 @@ textarea {
         &:not(:last-child) {
           @include border-end-radius(0);
 
-          .card-img-top,
-          .card-header {
+          > .card-img-top,
+          > .card-header {
             // stylelint-disable-next-line property-disallowed-list
             border-top-right-radius: 0;
           }
-          .card-img-bottom,
-          .card-footer {
+          > .card-img-bottom,
+          > .card-footer {
             // stylelint-disable-next-line property-disallowed-list
             border-bottom-right-radius: 0;
           }
@@ -8589,13 +8594,13 @@ textarea {
         &:not(:first-child) {
           @include border-start-radius(0);
 
-          .card-img-top,
-          .card-header {
+          > .card-img-top,
+          > .card-header {
             // stylelint-disable-next-line property-disallowed-list
             border-top-left-radius: 0;
           }
-          .card-img-bottom,
-          .card-footer {
+          > .card-img-bottom,
+          > .card-footer {
             // stylelint-disable-next-line property-disallowed-list
             border-bottom-left-radius: 0;
           }
