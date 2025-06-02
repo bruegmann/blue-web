@@ -5,10 +5,16 @@
 }
 
 .blue-tab {
+    // Unsetting to solve issues in Safari
+    width: unset;
+    height: unset;
+    border-radius: unset;
+
     position: relative;
     order: 0;
     cursor: pointer;
     user-select: none;
+    -webkit-appearance: none;
     appearance: none;
 }
 
