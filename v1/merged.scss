@@ -1,5 +1,5 @@
 /*!
- * Blue Web v1.14.2 (https://bruegmann.github.io/blue-web)
+ * Blue Web v1.14.3 (https://bruegmann.github.io/blue-web)
  * Licensed under GNU General Public License v3.0 (https://github.com/bruegmann/blue-web/blob/master/LICENSE).
 */
 
@@ -11858,10 +11858,16 @@ body {
 }
 
 .blue-tab {
+    // Unsetting to solve issues in Safari
+    width: unset;
+    height: unset;
+    border-radius: unset;
+
     position: relative;
     order: 0;
     cursor: pointer;
     user-select: none;
+    -webkit-appearance: none;
     appearance: none;
 }
 
