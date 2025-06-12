@@ -7,7 +7,6 @@ import { ThemeGeneratorSwitch } from "$/components/ThemeGenerator"
 import MenuItem from "blue-react/dist/components/MenuItem.js"
 import ActionMenu from "blue-react/dist/components/ActionMenu.js"
 import { CodeSquare } from "react-bootstrap-icons"
-import ColorModeSwitch from "$/components/ColorModeSwitch"
 
 const { title, description } = Astro.props
 ---
@@ -33,7 +32,7 @@ const { title, description } = Astro.props
             name="description"
             content={description || "UI library for the Web using Custom Components and Bootstrap"}
         />
-        <link rel="apple-touch-icon" href="logo192.png" />
+        <link rel="apple-touch-icon" href="blue-iOS-Default-83.5x83.5@4x.png" />
         <link rel="manifest" href="manifest.json" />
         <meta name="generator" content={Astro.generator} />
         <title>{title || "Blue Web"}</title>
@@ -57,7 +56,7 @@ const { title, description } = Astro.props
             }
         </script>
     </head>
-    <body>
+    <body style="--blue-header-title-image-size: 1.6rem">
         <BlueReactLayout>
             <Fragment slot="header">
                 <HeaderTitle logo="blue.svg" logoAlt="Blue logo" appTitle="Blue Web" href="." />

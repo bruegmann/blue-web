@@ -6,8 +6,6 @@ import RenderBlock from "$/components/RenderBlock.astro"
 
 # Layout
 
-**Experimental**: This component is experimental and may change in future releases.
-
 Blue Web offers a set of code to create a layout with a header, collapsible sidebar, and a main content area.
 
 ```html use:RenderBlock
@@ -51,3 +49,23 @@ Blue Web offers a set of code to create a layout with a header, collapsible side
     </label>
 </div>
 ```
+
+## Adjust header logo size using CSS variable
+
+Implementations for [React](https://bruegmann.github.io/blue-react/v10/component/HeaderTitle) and [Blazor](https://bruegmann.github.io/blue-blazor/components/header-title/props) provide components to set a layout header with a logo and app title.
+By default the logo size is `2rem`. You can override that value with CSS variable `--blue-header-title-image-size`:
+
+```html use:RenderBlock
+<div style="--blue-header-title-image-size: 1rem">
+    <div class="blue-header-title d-inline-flex gap-2 fw-medium align-items-center px-3 py-2">
+        <a href="."><img src="blue.svg" alt="My logo" class="blue-header-title-image" /></a>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href=".">My App</a></li>
+            </ol>
+        </nav>
+    </div>
+</div>
+```
+
+If your logo has another width than height, you can also use a combination of `--blue-header-title-image-width` and `--blue-header-title-image-height`.
