@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const readmeFilePath = path.join(__dirname, "../README.md")
-const directories = ["src/pages/css", "src/pages/js"]
+const directories = ["src/pages"]
 const outputFilePath = path.join(__dirname, "public/llms.txt")
 
 // @ts-ignore
