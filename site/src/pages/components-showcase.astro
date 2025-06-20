@@ -1,4 +1,6 @@
 ---
+import StickyListHeaders from "$/components-showcase/StickyListHeaders.astro"
+import Dropdown from "$/components-showcase/Dropdown.astro"
 import Layout from "$/layouts/Layout.astro"
 import { BarChartLine } from "react-bootstrap-icons"
 ---
@@ -13,6 +15,18 @@ import { BarChartLine } from "react-bootstrap-icons"
         </p>
 
         <masonry class="row" data-masonry='{"percentPosition": true }'>
+            <div class="col-sm-6 col-lg-4 mb-4">
+                <card class="card">
+                    <div class="card-body"><Dropdown /></div>
+                </card>
+            </div>
+
+            <div class="col-sm-6 col-lg-4 mb-4">
+                <card class="card">
+                    <div class="card-body"><StickyListHeaders /></div>
+                </card>
+            </div>
+
             <div class="col-sm-6 col-lg-4 mb-4">
                 <card class="card">
                     <div class="card-body">
