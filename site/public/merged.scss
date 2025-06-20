@@ -1,5 +1,5 @@
 /*!
- * Blue Web v1.15.1 (https://bruegmann.github.io/blue-web)
+ * Blue Web v1.15.2 (https://bruegmann.github.io/blue-web)
  * Licensed under GNU General Public License v3.0 (https://github.com/bruegmann/blue-web/blob/master/LICENSE).
 */
 
@@ -46,6 +46,8 @@ $link-hover-decoration: underline !default;
 // In a future Bootstrap release, this might not be necessary anymore.
 $focus-ring-color: #{rgba(var(--bs-primary-rgb), 25%)} !default;
 $input-focus-border-color: #{rgba(var(--bs-primary-rgb), 50%)} !default;
+
+$enable-button-pointers: false !default;
 
 
 // Bootstrap functions
@@ -11323,71 +11325,6 @@ body {
         }
     }
 }
-
-// .blue-search {
-//     display: flex;
-//     align-items: center;
-//     border: $input-border-width solid $input-border-color;
-//     border-radius: $input-border-radius;
-//     background-color: $input-bg;
-
-//     &.blue-search-body {
-//         border: 1px solid $input-border-color;
-
-//         .blue-search-input-group {
-//             display: flex;
-//         }
-
-//         &.focus,
-//         &:has(:focus) {
-//             box-shadow: $input-btn-focus-box-shadow;
-//         }
-//     }
-
-//     &.focus,
-//     &:has(:focus) {
-//         box-shadow: inset $input-btn-focus-box-shadow;
-//         border-color: $input-focus-border-color;
-
-//         .input-group-text {
-//             color: $primary-text-emphasis;
-//         }
-//     }
-// }
-
-// .blue-sidebar .blue-search:not(.blue-search-body) {
-//     margin-left: map-get($spacers, 1);
-//     margin-right: map-get($spacers, 1);
-// }
-
-// .blue-search-control {
-//     border: none;
-//     background-color: transparent !important;
-
-//     &:focus {
-//         box-shadow: none;
-//     }
-// }
-
-// .blue-search-reset-btn {
-//     color: rgba($input-color, 0.7);
-
-//     &:hover {
-//         color: $input-color;
-//     }
-// }
-
-// .blue-search.blue-search-sidebar {
-//     transition: opacity 0.2s ease-in-out;
-
-//     @media (prefers-reduced-motion) {
-//         transition: none;
-//     }
-// }
-
-// .blue-search.blue-search-sidebar:not(:hover):not(.focus, :has(:focus)) {
-//     opacity: 0.7;
-// }
 
 .blue-actions {
     --max-width: calc(
