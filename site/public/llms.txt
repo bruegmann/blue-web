@@ -257,6 +257,65 @@ You can also customize the rotation target position with the CSS variable `--blu
 </div>
 ```
 
+---
+
+```html
+<div class="bg-body-secondary py-4" style="width: 16.563rem">
+    <div class="blue-collapse-group blue-sidebar-visible-on-open">
+        <div class="blue-menu-item-wrapper blue-menu-item-wrapper-208d4903-3a8c-4e7b-9b27-ba27782210f8">
+            <button type="button" class="blue-menu-item btn">
+                <span class="blue-menu-item-icon  " aria-hidden="true"
+                    ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 10240 10240"
+                        class="o-collection-icon"
+                        width="1em"
+                        height="1em"
+                        fill="currentColor"
+                    >
+                        <path
+                            fill=""
+                            d="M1280 640l5230 0c352,0 656,126 905,375l1170 1170c249,249 375,553 375,905l0 6510 -7680 0 0 -8960zm5760 960l0 960 960 0 -960 -960zm-5120 -320l0 7680 6400 0 0 -5440c0,-176 -144,-320 -320,-320l-1600 0 0 -1600c0,-176 -144,-320 -320,-320l-4160 0z"
+                        ></path></svg></span
+                ><span class="blue-menu-item-label text-truncate ">Filter &amp; Controls</span>
+            </button>
+        </div>
+
+        <details class="blue-collapse " open="">
+            <summary class="blue-collapse-header blue-menu-item btn ">
+                <span class="blue-menu-item-label text-truncate visually-hidden">Öffnen</span
+                ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    fill="currentColor"
+                    class="blue-menu-item-dropdown-toggle blue-collapse-chevron blue-menu-item-chevron ms-auto"
+                    aria-hidden="true"
+                    style=" display: inline-block; vertical-align: -0.125em; transition: transform 0.2s;"
+                    viewBox="0 0 16 16"
+                >
+                    <path
+                        class="blue-sidebar-exception"
+                        fillrule="evenodd"
+                        d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0"
+                    ></path>
+                </svg>
+            </summary>
+
+            <div class="d-flex flex-column border-start position-relative ms-3">
+                <a href="#" class="blue-menu-item btn" rel=""
+                    ><span class="blue-menu-item-label text-truncate ">Listen</span></a
+                >
+
+                <a href="#" class="blue-menu-item btn" rel=""
+                    ><span class="blue-menu-item-label text-truncate">Ablage von Filtercontrols in XAML</span></a
+                >
+            </div>
+        </details>
+    </div>
+</div>
+```
+
 
 
 
@@ -735,6 +794,93 @@ Adds shadow if area is scrollable.
 </div>
 ```
 
+
+
+
+## Scrollspy
+
+Uses CSS Carousel specs for a scrollspy only with HTML and CSS. Inspired by [Scroll Spy example on chrome.dev](https://chrome.dev/carousel/vertical/scroll-spy/).
+
+Some browsers might not be supported. As of writing works best with Chromium based browsers.
+
+### Example with List group
+
+```html
+<div class="blue-scrollspy" aria-live="polite" style="height: 200px">
+    <section aria-label="Group 1" class="list-group mb-1 m-last-0">
+        <header class="list-group-item bg-body-tertiary fw-bold">Group 1</header>
+        <div class="list-group-item">Item 1.1</div>
+        <div class="list-group-item">Item 1.2</div>
+        <div class="list-group-item">Item 1.3</div>
+        <div class="list-group-item">Item 1.4</div>
+    </section>
+
+    <section aria-label="Group 2" class="list-group mb-1 m-last-0">
+        <header class="list-group-item bg-body-tertiary fw-bold">Group 2</header>
+        <div class="list-group-item">Item 2.1</div>
+        <div class="list-group-item">Item 2.2</div>
+        <div class="list-group-item">Item 2.3</div>
+        <div class="list-group-item">Item 2.4</div>
+    </section>
+
+    <section aria-label="Group 3" class="list-group mb-1 m-last-0">
+        <header class="list-group-item bg-body-tertiary fw-bold">Group 3</header>
+        <div class="list-group-item">Item 3.1</div>
+        <div class="list-group-item">Item 3.2</div>
+        <div class="list-group-item">Item 3.3</div>
+        <div class="list-group-item">Item 3.4</div>
+    </section>
+
+    <section aria-label="Group 4" class="list-group mb-1 m-last-0">
+        <header class="list-group-item bg-body-tertiary fw-bold">Group 4</header>
+        <div class="list-group-item">Item 4.1</div>
+        <div class="list-group-item">Item 4.2</div>
+        <div class="list-group-item">Item 4.3</div>
+        <div class="list-group-item">Item 4.4</div>
+    </section>
+</div>
+```
+
+### You can also make the scrollmarkers appear after
+
+```html
+<div class="blue-scrollspy blue-scrollspy-after" aria-live="polite" style="height: 200px">
+    <section aria-label="Group 1" class="list-group mb-1">
+        <header class="list-group-item bg-body-tertiary fw-bold">Group 1</header>
+        <div class="list-group-item">Item 1.1</div>
+        <div class="list-group-item">Item 1.2</div>
+        <div class="list-group-item">Item 1.3</div>
+        <div class="list-group-item">Item 1.4</div>
+    </section>
+
+    <section aria-label="Group 2" class="list-group mb-1">
+        <header class="list-group-item bg-body-tertiary fw-bold">Group 2</header>
+        <div class="list-group-item">Item 2.1</div>
+        <div class="list-group-item">Item 2.2</div>
+        <div class="list-group-item">Item 2.3</div>
+        <div class="list-group-item">Item 2.4</div>
+    </section>
+
+    <section aria-label="Group 3" class="list-group mb-1">
+        <header class="list-group-item bg-body-tertiary fw-bold">Group 3</header>
+        <div class="list-group-item">Item 3.1</div>
+        <div class="list-group-item">Item 3.2</div>
+        <div class="list-group-item">Item 3.3</div>
+        <div class="list-group-item">Item 3.4</div>
+    </section>
+
+    <section aria-label="Group 4" class="list-group">
+        <header class="list-group-item bg-body-tertiary fw-bold">Group 4</header>
+        <div class="list-group-item">Item 4.1</div>
+        <div class="list-group-item">Item 4.2</div>
+        <div class="list-group-item">Item 4.3</div>
+        <div class="list-group-item">Item 4.4</div>
+    </section>
+</div>
+```
+
+
+
 ## Sidebar
 
 ### `.blue-sidebar-exception`
@@ -1110,6 +1256,15 @@ This is how you can customize the tooltip content with HTML.
     <button class="btn btn-link">Hover me!</button>
 </div>
 ```
+
+
+
+## Additional utility classes
+
+Bootstrap already comes with a bunch of [utility classes](https://getbootstrap.com/docs/5.3/utilities/background/).
+Blue Web adds some additional to them.
+
+
 
 
 
@@ -1506,6 +1661,22 @@ They are not meant to be used as a replacement for more complex modals.
         const answer = await blueWeb.dialog.ask("What is the question?", {
             title: "Question"
         })
+        await blueWeb.dialog.tell("You asked: " + answer)
+    })
+</script>
+```
+
+#### Ask with default value
+
+```html
+<button id="ask_button2" type="button" class="btn blue-btn-soft-secondary">Ask</button>
+
+<script>
+    ask_button2.addEventListener("click", async () => {
+        const answer = await blueWeb.dialog.ask(
+            "What is your name?",
+            `{"title":"Save Query","defaultValue":"DEFAULT LGK"}`
+        )
         await blueWeb.dialog.tell("You asked: " + answer)
     })
 </script>

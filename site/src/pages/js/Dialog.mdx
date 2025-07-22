@@ -50,3 +50,19 @@ They are not meant to be used as a replacement for more complex modals.
     })
 </script>
 ```
+
+### Ask with default value
+
+```html use:RenderBlock
+<button id="ask_button2" type="button" class="btn blue-btn-soft-secondary">Ask</button>
+
+<script>
+    ask_button2.addEventListener("click", async () => {
+        const answer = await blueWeb.dialog.ask(
+            "What is your name?",
+            `{"title":"Save Query","defaultValue":"DEFAULT LGK"}`
+        )
+        await blueWeb.dialog.tell("You asked: " + answer)
+    })
+</script>
+```

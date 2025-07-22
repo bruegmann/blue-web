@@ -10,6 +10,7 @@ interface GrabItem {
 
 export interface Props {
     items: GrabItem[]
+    expandable?: boolean
 }
 
 const __filename = fileURLToPath(import.meta.url)
@@ -28,7 +29,7 @@ function resolveToGitHubLink(src: string) {
     return src.replace("@/", "https://github.com/bruegmann/blue-web/tree/main/")
 }
 
-const { items } = Astro.props
+const { items, expandable = true } = Astro.props
 
 const contents = items.map((item) => {
     try {
@@ -59,7 +60,7 @@ const contents = items.map((item) => {
                     <Code
                         code={contents[i]}
                         language={path.extname(item.src).replace(".", "")}
-                        expandable
+                        expandable={expandable}
                         client:only
                     />
                 </li>

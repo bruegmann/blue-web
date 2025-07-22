@@ -10,29 +10,31 @@ export interface DialogOptions {
     acceptBtnText?: string
     cancelBtnText?: string
     inputType?: string
+    defaultValue?: string
 }
 
-export async function ask(text: string, options: DialogOptions = {}): Promise<string | boolean> {
+export async function ask(text: string, options: DialogOptions | string = {}): Promise<string | boolean> {
     return await dialog("ask", text, options)
 }
 
-export async function tell(text: string, options: DialogOptions = {}): Promise<void> {
+export async function tell(text: string, options: DialogOptions | string = {}): Promise<void> {
     await dialog("tell", text, options)
 }
 
-export async function verify(text: string, options: DialogOptions = {}): Promise<boolean> {
+export async function verify(text: string, options: DialogOptions | string = {}): Promise<boolean> {
     return (await dialog("verify", text, options)) === true
 }
 
-async function dialog(dialogType: DialogType, text: string, options: DialogOptions = {}) {
+async function dialog(dialogType: DialogType, text: string, options: DialogOptions | string = {}) {
     let {
         title = getPhrase("Message"),
         icon = undefined,
         switchPrimaryBtn = false,
         acceptBtnText = dialogType === "verify" ? getPhrase("Yes") : "OK",
         cancelBtnText = dialogType === "verify" ? getPhrase("No") : getPhrase("Cancel"),
-        inputType = "text"
-    } = options
+        inputType = "text",
+        defaultValue
+    } = typeof options === "string" ? JSON.parse(options) : options
     const id = guid()
 
     const addToDom = () => {
@@ -55,7 +57,12 @@ async function dialog(dialogType: DialogType, text: string, options: DialogOptio
                             <div class="modal-body">
                                 ${dialogType === "ask"
                                     ? /* HTML */ `<label for="${id}-input">${text}</label>
-                                          <input type="${inputType}" id="${id}-input" class="form-control mt-3" />`
+                                          <input
+                                              type="${inputType}"
+                                              ${defaultValue !== undefined ? ` value="${defaultValue}"` : ""}
+                                              id="${id}-input"
+                                              class="form-control mt-3"
+                                          />`
                                     : text}
                             </div>
                             <div class="modal-footer">

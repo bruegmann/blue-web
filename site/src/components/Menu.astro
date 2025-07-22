@@ -91,7 +91,11 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 href={item.path}
                                 label={item.label}
                                 isActive={item.isActive}
-                                labelClassName={item.label === "Input group" ? "docs-badge docs-badge-update" : ""}
+                                labelClassName={
+                                    item.label === "Utilities" || item.label === "Scrollspy"
+                                        ? "docs-badge docs-badge-new"
+                                        : ""
+                                }
                             >
                                 {item.label === "Button with icon" && <PlayBtn slot="icon" />}
                                 {item.label === "Buttons" && <PlayBtnFill slot="icon" />}
@@ -102,11 +106,13 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 {item.label === "Modal" && <WindowStack slot="icon" />}
                                 {item.label === "Neumorphism" && <LayersHalf slot="icon" />}
                                 {item.label === "Scrollbar" && <ArrowsVertical slot="icon" />}
+                                {item.label === "Scrollspy" && <SegmentedNav slot="icon" />}
                                 {item.label === "Input group" && <Search slot="icon" />}
                                 {item.label === "Sidebar" && <LayoutSidebarInset slot="icon" />}
                                 {item.label === "Tabs" && <SegmentedNav slot="icon" />}
                                 {item.label === "Text and Icons" && <Type slot="icon" />}
                                 {item.label === "Tooltip" && <MenuUp slot="icon" />}
+                                {item.label === "Utilities" && <Tools slot="icon" />}
                                 {item.label === "Visibility" && <EyeSlash slot="icon" />}
                             </MenuItem>
                         </li>
@@ -125,7 +131,13 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 href={item.path}
                                 label={item.label}
                                 isActive={item.isActive}
-                                labelClassName={item.label === "Actions" ? "docs-badge docs-badge-experimental" : ""}
+                                labelClassName={
+                                    item.label === "Actions"
+                                        ? "docs-badge docs-badge-experimental"
+                                        : item.label === "Dialog"
+                                          ? "docs-badge docs-badge-update"
+                                          : ""
+                                }
                             >
                                 {item.label === "Actions" && <MenuApp slot="icon" />}
                                 {item.label === "ColorMode" && <CircleHalf slot="icon" />}
