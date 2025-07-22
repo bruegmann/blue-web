@@ -1348,8 +1348,8 @@ Otherwise they will be visible in the dropdown menu. JavaScript detects if space
         <div
             id="actionDemoPopoverPopover"
             popover
-            class="BLUE-actions-collapse-menu blue-anchored blue-anchored-end blue-anchored-fallback blue-menu-item-dropdown text-body"
-            style="--blue-menu-item-dropdown-bg: var(--bs-body-bg)"
+            class="BLUE-actions-collapse-menu blue-anchored blue-anchored-end blue-anchored-fallback blue-menu-item-dropdown text-body gap-1 flex-column p-1"
+            style="--blue-menu-item-dropdown-bg: var(--bs-body-bg); --display: flex;"
         >
             <button type="button" class="blue-menu-item btn">
                 <span class="blue-menu-item-icon" aria-hidden="true">🌍</span>
