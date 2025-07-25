@@ -1684,6 +1684,71 @@ They are not meant to be used as a replacement for more complex modals.
 
 
 
+
+## Input Splitted
+
+Group of input fields. Perfect e.g. for entering PIN or TOTP.
+
+### Demo
+
+```html
+<bl-input-splitted length="4"></bl-input-splitted>
+```
+
+### Styling With CSS Variables
+
+Even if `light-dom` isn't enabled, you can still use CSS variables to style the input elements.
+
+```html
+<div id="StylingWithCssVariables">
+    <style>
+        ##StylingWithCssVariables bl-input-splitted {
+            --blue-input-splitted-border: 1px solid #dee2e6;
+            --blue-input-splitted-border-radius: 0.375rem;
+            --blue-input-splitted-padding: 0.375rem 0.75rem;
+            --blue-input-splitted-text-align: center;
+
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        ##StylingWithCssVariables bl-input-splitted:focus {
+            --blue-input-splitted-border: 1px solid #86b7fe;
+            --blue-input-splitted-box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+        }
+
+        /* If the input elements are bordered red, shadow is open. */
+        ##StylingWithCssVariables input {
+            border-color: red !important;
+        }
+    </style>
+
+    <bl-input-splitted length="4"></bl-input-splitted>
+</div>
+```
+
+### Use Label
+
+```html
+<div>
+    <label for="my-pin-input-1">Enter a PIN</label>
+    <bl-input-splitted id="my-pin-input-1" length="4"></bl-input-splitted>
+</div>
+```
+
+### Use Label Without Shadow
+
+```html
+<div>
+    <label for="my-pin-input">Enter a PIN</label>
+    <bl-input-splitted light-dom control-1-id="my-pin-input" length="4"></bl-input-splitted>
+</div>
+```
+
+
+
+
+
 ## Progress
 
 A "fake" progress bar that will appear fixed at the top of the page.
@@ -1739,7 +1804,7 @@ You can customize the element further by setting a custom ID, parent element and
 
 
 
-## ReadView
+## Read View
 
 A Web Component that displays a read view of its content and allows the user to switch to an edit view.
 
@@ -1748,12 +1813,12 @@ A Web Component that displays a read view of its content and allows the user to 
 #### Basic usage
 
 ```html
-<read-view id="readViewDemo_readView">
+<bl-read-view id="readViewDemo_readView">
     <a href="https://bruegmann.github.io/blue-web/" id="readViewDemo_link" target="_blank" rel="noopener noreferrer"
         >Link</a
     >
     Click to edit the link
-</read-view>
+</bl-read-view>
 <form id="readViewDemo_form" class="d-none">
     <input type="text" placeholder="Edit me" value="https://bruegmann.github.io/blue-web/" class="form-control" />
     <button type="submit" class="btn blue-btn-soft-secondary">Submit</button>
@@ -1778,17 +1843,46 @@ A Web Component that displays a read view of its content and allows the user to 
 #### Disabled
 
 ```html
-<read-view disabled>
+<bl-read-view disabled>
     <a href="https://bruegmann.github.io/blue-web/" id="readViewDemo_link" target="_blank" rel="noopener noreferrer"
         >Link</a
     >
     This one is disabled
-</read-view>
+</bl-read-view>
 ```
 
 
 
-## SideLayout
+
+## Select List
+
+A Web Component to create a list with selectable items. Combine it an input element to create a search results UI.
+
+### Demo
+
+Take a look at the browser console. When you select an item, an event listener will log it.
+
+```html
+<input type="search" class="form-control mb-3" id="myinput" />
+
+<bl-select-list class="list-group" id="myselectlist" for="myinput">
+    <button class="list-group-item list-group-item-action">Item 1</button>
+    <button class="list-group-item list-group-item-action">Item 2</button>
+    <button class="list-group-item list-group-item-action">Item 3</button>
+</bl-select-list>
+
+<script>
+    document.getElementById("myselectlist").addEventListener("bl-select", ({ detail }) => {
+        console.log("Selected: ", detail)
+    })
+</script>
+```
+
+
+
+
+
+## Side Layout
 
 <div class="alert alert-warning" role="alert">
     Using the Web Component as a global layout in production might not be ideal because of FOUC (Flash of Unstyled
@@ -1800,18 +1894,18 @@ A Web Component that displays a read view of its content and allows the user to 
 Layout with a sidebar as a Web Component.
 
 ```html
-<side-layout>
+<bl-side-layout>
     <div slot="header">Header</div>
     <div slot="side">Side</div>
     Main
-</side-layout>
+</bl-side-layout>
 ```
 
 ### Example with Blue Web (Bootstap) classes
 
 ```html
 <div class="bg-primary-subtle" style="height: 100dvh;">
-    <side-layout>
+    <bl-side-layout>
         <div slot="expand-toggler" class="w-100 h-100 p-1">
             <div class="btn blue-btn-plain-theme w-100 h-100" style="box-shadow: var(--trigger-box-shadow);">
                 <svg
@@ -1852,7 +1946,7 @@ Layout with a sidebar as a Web Component.
                 <div class="h1 page-header">Hello World</div>
             </div>
         </div>
-    </side-layout>
+    </bl-side-layout>
 </div>
 ```
 
@@ -1860,7 +1954,7 @@ Layout with a sidebar as a Web Component.
 
 ```html
 <div class="text-secondary-500 dark:bg-secondary-900 dark:text-secondary-400 bg-white h-screen">
-    <side-layout>
+    <bl-side-layout>
         <div slot="expand-toggler" class="size-full p-1">
             <div class="btn flex size-full items-center justify-center">
                 <svg
@@ -1912,7 +2006,7 @@ Layout with a sidebar as a Web Component.
                 </div>
             </div>
         </div>
-    </side-layout>
+    </bl-side-layout>
 </div>
 ```
 
