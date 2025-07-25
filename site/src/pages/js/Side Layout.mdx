@@ -4,7 +4,7 @@ layout: $/layouts/DocsLayout.astro
 
 import RenderBlock from "$/components/RenderBlock.astro"
 
-# SideLayout
+# Side Layout
 
 <div class="alert alert-warning" role="alert">
     Using the Web Component as a global layout in production might not be ideal because of FOUC (Flash of Unstyled
@@ -16,18 +16,18 @@ import RenderBlock from "$/components/RenderBlock.astro"
 Layout with a sidebar as a Web Component.
 
 ```html use:RenderBlock
-<side-layout>
+<bl-side-layout>
     <div slot="header">Header</div>
     <div slot="side">Side</div>
     Main
-</side-layout>
+</bl-side-layout>
 ```
 
 ## Example with Blue Web (Bootstap) classes
 
 ```html use:RenderBlock
 <div class="bg-primary-subtle" style="height: 100dvh;">
-    <side-layout>
+    <bl-side-layout>
         <div slot="expand-toggler" class="w-100 h-100 p-1">
             <div class="btn blue-btn-plain-theme w-100 h-100" style="box-shadow: var(--trigger-box-shadow);">
                 <svg
@@ -68,7 +68,7 @@ Layout with a sidebar as a Web Component.
                 <div class="h1 page-header">Hello World</div>
             </div>
         </div>
-    </side-layout>
+    </bl-side-layout>
 </div>
 ```
 
@@ -76,7 +76,7 @@ Layout with a sidebar as a Web Component.
 
 ```html
 <div class="text-secondary-500 dark:bg-secondary-900 dark:text-secondary-400 bg-white h-screen">
-    <side-layout>
+    <bl-side-layout>
         <div slot="expand-toggler" class="size-full p-1">
             <div class="btn flex size-full items-center justify-center">
                 <svg
@@ -128,6 +128,6 @@ Layout with a sidebar as a Web Component.
                 </div>
             </div>
         </div>
-    </side-layout>
+    </bl-side-layout>
 </div>
 ```

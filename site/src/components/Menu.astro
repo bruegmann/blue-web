@@ -6,6 +6,7 @@ import {
     ArrowsVertical,
     BarChartSteps,
     BodyText,
+    CardChecklist,
     CardHeading,
     CircleHalf,
     Columns,
@@ -13,6 +14,7 @@ import {
     EyeSlash,
     House,
     HouseFill,
+    InputCursorText,
     LayersHalf,
     LayoutSidebarInset,
     LayoutTextWindowReverse,
@@ -134,17 +136,19 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 labelClassName={
                                     item.label === "Actions"
                                         ? "docs-badge docs-badge-experimental"
-                                        : item.label === "Dialog"
-                                          ? "docs-badge docs-badge-update"
+                                        : item.label === "Select List" || item.label === "Input Splitted"
+                                          ? "docs-badge docs-badge-new"
                                           : ""
                                 }
                             >
                                 {item.label === "Actions" && <MenuApp slot="icon" />}
-                                {item.label === "ColorMode" && <CircleHalf slot="icon" />}
+                                {item.label === "Color Mode" && <CircleHalf slot="icon" />}
                                 {item.label === "Dialog" && <WindowStack slot="icon" />}
+                                {item.label === "Input Splitted" && <InputCursorText slot="icon" />}
                                 {item.label === "Progress" && <ArrowRepeat slot="icon" />}
-                                {item.label === "ReadView" && <CursorText slot="icon" />}
-                                {item.label === "SideLayout" && <LayoutTextWindowReverse slot="icon" />}
+                                {item.label === "Read View" && <CursorText slot="icon" />}
+                                {item.label === "Select List" && <CardChecklist slot="icon" />}
+                                {item.label === "Side Layout" && <LayoutTextWindowReverse slot="icon" />}
                                 {item.label === "Utils" && <Tools slot="icon" />}
                                 {item.label === "View Transition API" && <BarChartSteps slot="icon" />}
                             </MenuItem>

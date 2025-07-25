@@ -4,7 +4,7 @@ layout: $/layouts/DocsLayout.astro
 
 import RenderBlock from "$/components/RenderBlock.astro"
 
-# ReadView
+# Read View
 
 A Web Component that displays a read view of its content and allows the user to switch to an edit view.
 
@@ -13,12 +13,12 @@ A Web Component that displays a read view of its content and allows the user to 
 ### Basic usage
 
 ```html use:RenderBlock
-<read-view id="readViewDemo_readView">
+<bl-read-view id="readViewDemo_readView">
     <a href="https://bruegmann.github.io/blue-web/" id="readViewDemo_link" target="_blank" rel="noopener noreferrer"
         >Link</a
     >
     Click to edit the link
-</read-view>
+</bl-read-view>
 <form id="readViewDemo_form" class="d-none">
     <input type="text" placeholder="Edit me" value="https://bruegmann.github.io/blue-web/" class="form-control" />
     <button type="submit" class="btn blue-btn-soft-secondary">Submit</button>
@@ -43,10 +43,10 @@ A Web Component that displays a read view of its content and allows the user to 
 ### Disabled
 
 ```html use:RenderBlock
-<read-view disabled>
+<bl-read-view disabled>
     <a href="https://bruegmann.github.io/blue-web/" id="readViewDemo_link" target="_blank" rel="noopener noreferrer"
         >Link</a
     >
     This one is disabled
-</read-view>
+</bl-read-view>
 ```

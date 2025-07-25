@@ -7,6 +7,7 @@ import { ThemeGeneratorSwitch } from "$/components/ThemeGenerator"
 import MenuItem from "blue-react/dist/components/MenuItem.js"
 import ActionMenu from "blue-react/dist/components/ActionMenu.js"
 import { CodeSquare } from "react-bootstrap-icons"
+import Search from "$/components/Search.astro"
 
 const { title, description } = Astro.props
 ---
@@ -17,6 +18,8 @@ const { title, description } = Astro.props
     import "@/src/js/read-view.ts"
     import "@/src/js/color-mode.ts"
     import "@/src/js/actions.ts"
+    import "@/src/js/select-list.ts"
+    import "@/src/js/input-splitted.ts"
 
     import "$/../public/lib/prism.js"
 </script>
@@ -70,6 +73,8 @@ const { title, description } = Astro.props
                         <a href="https://bruegmann.github.io/blue-blazor" class="nav-link"> Blazor </a>
                     </div>
                 </nav>
+
+                <Search />
 
                 <ActionMenu client:only>
                     <ThemeGeneratorSwitch client:only />

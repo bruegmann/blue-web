@@ -32,10 +32,15 @@ export function init(
     }
     updateActions()
 
-    const resizeObserver = new ResizeObserver(() => {
+    const callback = () => {
         requestAnimationFrame(updateActions)
-    })
+    }
+
+    const resizeObserver = new ResizeObserver(callback)
     resizeObserver.observe(actionsElement)
+
+    const mutationObserver = new MutationObserver(callback)
+    mutationObserver.observe(actionsElement, { attributes: false, childList: true, subtree: true })
 
     const outsideClickHandler = (event: MouseEvent) => {
         if (!actionsElement) return
@@ -52,8 +57,10 @@ export function init(
     return {
         updateActions,
         resizeObserver,
+        mutationObserver,
         destroy() {
             resizeObserver.disconnect()
+            mutationObserver.disconnect()
             document.removeEventListener("click", outsideClickHandler)
         }
     }

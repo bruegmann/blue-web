@@ -1,4 +1,4 @@
-// @ts-check
+// @ts-nocheck
 import { defineConfig } from "astro/config"
 import mdx from "@astrojs/mdx"
 import react from "@astrojs/react"
@@ -13,9 +13,15 @@ const __dirname = path.dirname(__filename)
 
 const readmeFilePath = path.join(__dirname, "../README.md")
 const directories = ["src/pages"]
-const outputFilePath = path.join(__dirname, "public/llms.txt")
+const llmsTxtOutput = path.join(__dirname, "public/llms.txt")
+const searchIndexOutput = path.join(__dirname, "public/search-index.json")
 
-// @ts-ignore
+function readPages(dir) {
+    return fs
+        .readdirSync(path.resolve(__dirname, "src/pages", dir))
+        .map((f) => `${dir}/${encodeURIComponent(f.replace(".astro", "").replace(".mdx", "").replace(".md", ""))}`)
+}
+
 function readMDXFiles(dir) {
     const files = fs.readdirSync(dir)
     let content = ""
@@ -46,9 +52,7 @@ function readMDXFiles(dir) {
     return content
 }
 
-let allContent = ""
-
-allContent += fs.readFileSync(readmeFilePath, "utf-8")
+let allContent = fs.readFileSync(readmeFilePath, "utf-8")
 
 directories.forEach((dir) => {
     const fullPath = path.join(__dirname, dir)
@@ -56,7 +60,10 @@ directories.forEach((dir) => {
 })
 
 // Schreibe den gesammelten Inhalt in die llms.txt-Datei
-fs.writeFileSync(outputFilePath, allContent.trim(), "utf-8")
+fs.writeFileSync(llmsTxtOutput, allContent.trim(), "utf-8")
+
+const searchIndex = [...readPages("css"), ...readPages("js")]
+fs.writeFileSync(searchIndexOutput, JSON.stringify(searchIndex), "utf-8")
 
 console.log("llms.txt wurde erfolgreich erstellt!")
 
