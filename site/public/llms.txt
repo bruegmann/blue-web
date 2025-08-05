@@ -1878,6 +1878,39 @@ Take a look at the browser console. When you select an item, an event listener w
 </script>
 ```
 
+### Dropdown menu
+
+Together with `popover` and CSS Anchoring, it's also useful to create a dropdown list.
+
+```html
+<button
+    type="button"
+    class="blue-anchor blue-menu-item btn"
+    id="anchor-1"
+    popovertarget="popover-1"
+    style="--blue-anchor-name: --anchor-1"
+>
+    <span class="blue-menu-item-label">Parent</span>
+</button>
+
+<bl-select-list
+    id="popover-1"
+    for="anchor-1"
+    popover
+    class="blue-anchored blue-anchored-start blue-anchored-fallback blue-menu-item-dropdown text-body"
+    style="--blue-anchor-name: --anchor-1; --blue-menu-item-dropdown-bg: var(--bs-body-bg);"
+>
+    <button type="button" class="blue-menu-item btn">
+        <span class="blue-menu-item-icon" aria-hidden="true">🌍</span>
+        <span class="blue-menu-item-label">Child</span>
+    </button>
+    <button type="button" class="blue-menu-item btn">
+        <span class="blue-menu-item-icon" aria-hidden="true">🌑</span>
+        <span class="blue-menu-item-label">Child 2</span>
+    </button>
+</bl-select-list>
+```
+
 
 
 

@@ -1,5 +1,6 @@
 /**
  * A Web Component that provides a keyboard-accessible selectable list, typically used for dropdowns or autocomplete lists.
+ * Together with `popover` and CSS Anchoring, it's also useful to create a dropdown list.
  * Supports keyboard navigation and selection, and integrates with an input element for combobox behavior.
  *
  * The Web Component will automatically set attributes for accessibility.
@@ -41,7 +42,6 @@ export class SelectList extends HTMLElement {
         if (this.inputElement) {
             this.inputElement.setAttribute("role", "combobox")
             this.inputElement.setAttribute("aria-controls", this.id)
-            this.inputElement.setAttribute("aria-autocomplete", "list")
             this.inputElement.setAttribute("aria-expanded", "true")
 
             this.inputElement.addEventListener("keydown", this.onKeyDown.bind(this))
@@ -72,6 +72,7 @@ export class SelectList extends HTMLElement {
     }
 
     onKeyDown(e: { key: string; preventDefault: () => void }) {
+        console.log("select-list onKeyDown")
         if (!this.items.length) return
 
         if (e.key === "ArrowDown") {
