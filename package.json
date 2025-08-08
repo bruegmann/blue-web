@@ -1,6 +1,6 @@
 {
     "name": "blue-web",
-    "version": "1.3.2",
+    "version": "1.3.3",
     "description": "UI components built on top of Bootstrap 5",
     "license": "LGPL-3.0-or-later",
     "homepage": "https://bruegmann.github.io/blue-web/v1",
@@ -17,9 +17,9 @@
         "build-types": "tsc --declaration --emitDeclarationOnly --declarationDir ./dist/js --noEmit false --project tsconfig.build.json",
         "build": "babel ./src/js --out-dir ./dist/js --extensions \".tsx,.js,.ts\"",
         "build-bundles": "webpack",
-        "build-css": "node ./setVersionToStyleScss.js && node-sass ./dist/style.scss ./dist/style.css && npx postcss ./dist/style.css --use autoprefixer -r && npx postcss ./dist/style.css --use postcss-minify -o ./dist/style.min.css",
-        "build-neu-css": "node-sass ./dist/neu.scss ./dist/neu.css && npx postcss ./dist/neu.css --use autoprefixer -r && npx postcss ./dist/neu.css --use postcss-minify -o ./dist/neu.min.css",
-        "build-release": "npm run build-types && npm run build && npm run build-bundles && npm run build-css",
+        "build-css": "node ./setVersionToStyleScss.js && sass --load-path=. ./dist/style.scss:./dist/style.css && npx postcss ./dist/style.css --use autoprefixer -r && npx postcss ./dist/style.css --use postcss-minify -o ./dist/style.min.css",
+        "build-neu-css": "sass --load-path=. ./dist/neu.scss:./dist/neu.css && npx postcss ./dist/neu.css --use autoprefixer -r && npx postcss ./dist/neu.css --use postcss-minify -o ./dist/neu.min.css",
+        "build-release": "npm run build-types && npm run build && npm run build-bundles && npm run build-css && node merge-scss.cjs dist/style.scss",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "predeploy": "npm run build-docs",
@@ -31,7 +31,8 @@
     },
     "dependencies": {
         "@popperjs/core": "^2.11.5",
-        "bootstrap": "~5.3.3"
+        "bootstrap": "~5.3.3",
+        "sass": "^1.90.0"
     },
     "devDependencies": {
         "@babel/cli": "^7.10.4",
@@ -53,7 +54,6 @@
         "gh-pages": "^3.1.0",
         "license-report": "^6.2.0",
         "lint-staged": "^11.1.2",
-        "node-sass": "^9.0.0",
         "postcss-cli": "^9.0.1",
         "postcss-minify": "^1.1.0",
         "prettier": "2.4.1",

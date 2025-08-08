@@ -33,4 +33,6 @@ yarn-error.log*
 dist/**/*.js
 dist/**/*.ts
 dist/**/*.css
+dist/**/*.map
+dist/**/merged.scss
 dist/**/*.txt
