@@ -2,7 +2,7 @@ import "themify"
 import { type CSSProperties, type FC, useEffect, useState } from "react"
 import Code from "./Code.tsx"
 import { BoxArrowInDown, Braces, Palette2 } from "react-bootstrap-icons"
-import { A, MenuItem } from "blue-react"
+import { MenuItem } from "blue-react"
 import { Tab, Tabs } from "$/components/Tabs.tsx"
 
 export interface ThemeInfoAppSettingsTemplateConfig {
@@ -212,7 +212,7 @@ export default function ThemeGenerator({ defaultThemeInfo }: ThemeGeneratorProps
 }`
             }</style>
 
-            <div className="ms-auto d-flex gap-1" role="toolbar" aria-label="Theme generator controls">
+            <div className="ms-auto d-flex gap-1 mb-3" role="toolbar" aria-label="Theme generator controls">
                 <button
                     type="button"
                     className="btn blue-btn-soft-primary btn-sm icon-link icon-link-hover"
@@ -268,28 +268,6 @@ export default function ThemeGenerator({ defaultThemeInfo }: ThemeGeneratorProps
                                         later.
                                     </p>
                                     <Code code={JSON.stringify(themeInfo, null, 4)} language="json" />
-                                </Tab>
-
-                                <Tab label="HTML">
-                                    <p className="p-3 pb-0">
-                                        Since this a {themeInfo?.colorMode || "light"} theme, you should set the{" "}
-                                        <code>data-bs-theme="{themeInfo?.colorMode || "light"}"</code> attribute to
-                                        avoid weird looking Bootstrap components.{" "}
-                                        <A
-                                            href="https://getbootstrap.com/docs/5.3/customize/color-modes/"
-                                            target="_blank"
-                                        >
-                                            Learn more about Bootstrap color modes.
-                                        </A>
-                                    </p>
-                                    <Code
-                                        code={
-                                            /* html */ `<!DOCTYPE html>
-<html data-bs-theme="${themeInfo?.colorMode || "light"}">
-<!-- Rest of your HTML -->`
-                                        }
-                                        language="html"
-                                    />
                                 </Tab>
 
                                 <Tab label="CSS">
