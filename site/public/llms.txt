@@ -145,30 +145,14 @@ Animated collapse using HTML `details`.
 </details>
 ```
 
-Element with class `blue-collapse-chevron` will be rotated to `90deg` by default and if it is the first child.
-If it's the last child it will rotate to `-90deg`. Since text nodes aren't considered as child elements, you should wrap your text around an element.
-`<span>Collapse</span>` in this case:
-
-```html
-<details class="blue-collapse">
-    <summary>
-        <header class="blue-collapse-header d-flex">
-            <span>Collapse</span>
-            <div class="blue-collapse-chevron" aria-hidden="true">&#10094;</div>
-        </header>
-    </summary>
-    Show something
-</details>
-```
-
-You can also customize the rotation target position with the CSS variable `--blue-collapse-chevron-rotate`:
+Element with class `blue-collapse-chevron` will be rotated to `90deg` by default. But you can also customize the rotation target position with the CSS variable `--blue-collapse-chevron-rotate`:
 
 ```html
 <details class="blue-collapse">
     <summary>
         <header class="blue-collapse-header d-flex">
             Collapse
-            <div class="blue-collapse-chevron" style="--blue-collapse-chevron-rotate: -45deg" aria-hidden="true">
+            <div class="blue-collapse-chevron" style="--blue-collapse-chevron-rotate: -90deg" aria-hidden="true">
                 &#10094;
             </div>
         </header>
@@ -195,10 +179,9 @@ You can also customize the rotation target position with the CSS variable `--blu
             viewBox="0 0 16 16"
         >
             <path
-                class="blue-sidebar-exception"
-                fillRule="evenodd"
-                d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0"
-            ></path>
+                fill-rule="evenodd"
+                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
+            />
         </svg>
     </summary>
     <div class="blue-menu-item-dropdown text-body" style="--blue-menu-item-dropdown-bg: var(--bs-body-bg)">
@@ -237,10 +220,9 @@ You can also customize the rotation target position with the CSS variable `--blu
                 viewBox="0 0 16 16"
             >
                 <path
-                    class="blue-sidebar-exception"
-                    fillRule="evenodd"
-                    d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0"
-                ></path>
+                    fill-rule="evenodd"
+                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
+                />
             </svg>
         </summary>
         <div class="blue-menu-item-dropdown text-body" style="--blue-menu-item-dropdown-bg: var(--bs-body-bg)">
@@ -295,10 +277,9 @@ You can also customize the rotation target position with the CSS variable `--blu
                     viewBox="0 0 16 16"
                 >
                     <path
-                        class="blue-sidebar-exception"
-                        fillrule="evenodd"
-                        d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0"
-                    ></path>
+                        fill-rule="evenodd"
+                        d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
+                    />
                 </svg>
             </summary>
 

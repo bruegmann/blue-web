@@ -93,11 +93,7 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 href={item.path}
                                 label={item.label}
                                 isActive={item.isActive}
-                                labelClassName={
-                                    item.label === "Utilities" || item.label === "Scrollspy"
-                                        ? "docs-badge docs-badge-new"
-                                        : ""
-                                }
+                                labelClassName={item.label === "Collapse" ? "docs-badge docs-badge-update" : ""}
                             >
                                 {item.label === "Button with icon" && <PlayBtn slot="icon" />}
                                 {item.label === "Buttons" && <PlayBtnFill slot="icon" />}
