@@ -3,6 +3,8 @@ export function init(
     menu: HTMLElement | undefined = undefined,
     collapseMenu: HTMLElement | undefined = undefined
 ) {
+    const targetElement = actionsElement.parentElement || actionsElement
+
     if (!menu) menu = actionsElement.querySelector<HTMLElement>(".BLUE-actions-menu")!
     if (!collapseMenu) collapseMenu = actionsElement.querySelector<HTMLElement>(".BLUE-actions-collapse-menu")!
 
@@ -21,7 +23,7 @@ export function init(
             ;(item as HTMLElement).style.display = ""
             ;(collapseMenu!.children[i] as HTMLElement).style.display = "none"
             collapseMenu!.children[i].classList.remove("BLUE-actions-collapse-visible")
-            if (actionsElement.scrollWidth > actionsElement.clientWidth) {
+            if (targetElement.scrollWidth > targetElement.clientWidth) {
                 ;(item as HTMLElement).style.display = "none"
                 ;(collapseMenu!.children[i] as HTMLElement).style.display = ""
                 collapseMenu!.children[i].classList.add("BLUE-actions-collapse-visible")
@@ -37,22 +39,10 @@ export function init(
     }
 
     const resizeObserver = new ResizeObserver(callback)
-    resizeObserver.observe(actionsElement)
+    resizeObserver.observe(targetElement)
 
     const mutationObserver = new MutationObserver(callback)
-    mutationObserver.observe(actionsElement, { attributes: false, childList: true, subtree: true })
-
-    const outsideClickHandler = (event: MouseEvent) => {
-        if (!actionsElement) return
-        const openDetails = actionsElement.querySelectorAll("details[open]")
-        if (!openDetails || openDetails.length <= 0) return
-        openDetails.forEach((details) => {
-            if (!details.contains(event.target as Node)) {
-                details.removeAttribute("open")
-            }
-        })
-    }
-    document.addEventListener("click", outsideClickHandler)
+    mutationObserver.observe(targetElement, { attributes: false, childList: true, subtree: true })
 
     return {
         updateActions,
@@ -61,7 +51,6 @@ export function init(
         destroy() {
             resizeObserver.disconnect()
             mutationObserver.disconnect()
-            document.removeEventListener("click", outsideClickHandler)
         }
     }
 }

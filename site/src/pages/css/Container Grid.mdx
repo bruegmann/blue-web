@@ -3,6 +3,7 @@ layout: $/layouts/DocsLayout.astro
 ---
 
 import RenderBlock from "$/components/RenderBlock.astro"
+import Grab from "$/components/Grab.astro"
 
 # Container Grid
 
@@ -35,3 +36,5 @@ With container queries, you can apply breaks based on a custom container.
     This is a container grid. Resize the box around to see the effect.
 </div>
 ```
+
+<Grab items={[{ src: "@/dist/styles/_container-grid.scss" }]} />

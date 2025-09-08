@@ -8,8 +8,21 @@ import RenderBlock from "$/components/RenderBlock.astro"
 
 Blue Web offers a set of code to create a layout with a header, collapsible sidebar, and a main content area.
 
+## Without sidebar
+
 ```html use:RenderBlock
-<div class="blue-layout">
+<div class="blue-layout" style="height: 400px">
+    <header class="blue-layout-header">Your header here</header>
+    <main class="blue-layout-main">
+        <div class="blue-layout-body">Your main content here</div>
+    </main>
+</div>
+```
+
+## With sidebar
+
+```html use:RenderBlock
+<div class="blue-layout" style="height: 400px">
     <input id="my-layout-expand" type="checkbox" class="blue-layout-state blue-layout-state-expand" checked />
     <label
         class="blue-layout-toggle blue-layout-toggle-expand"
@@ -38,7 +51,7 @@ Blue Web offers a set of code to create a layout with a header, collapsible side
     >
         Your sidebar here
     </aside>
-    <main class="blue-layout-main">Your main content here</main>
+    <main class="blue-layout-main"><div class="blue-layout-body">Your main content here</div></main>
 
     <label
         aria-label="Close sidebar"

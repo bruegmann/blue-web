@@ -5,7 +5,7 @@ import HeaderTitle from "blue-react/dist/components/HeaderTitle.js"
 import Menu from "../components/Menu.astro"
 import { ThemeGeneratorSwitch } from "$/components/ThemeGenerator"
 import MenuItem from "blue-react/dist/components/MenuItem.js"
-import ActionMenu from "blue-react/dist/components/ActionMenu.js"
+import Actions from "blue-react/dist/components/Actions.js"
 import { CodeSquare } from "react-bootstrap-icons"
 import Search from "$/components/Search.astro"
 
@@ -76,7 +76,7 @@ const { title, description } = Astro.props
 
                 <Search />
 
-                <ActionMenu client:only>
+                <Actions client:only>
                     <ThemeGeneratorSwitch client:only />
 
                     <MenuItem
@@ -87,7 +87,7 @@ const { title, description } = Astro.props
                     >
                         <CodeSquare slot="icon" />
                     </MenuItem>
-                </ActionMenu>
+                </Actions>
             </Fragment>
             <Menu slot="side" />
 

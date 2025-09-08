@@ -1,6 +1,8 @@
 .BLUE-actions {
     display: flex;
     white-space: nowrap;
+    // overflow-x: auto;
+    // overflow-y: visible;
 }
 
 .BLUE-actions-menu {
@@ -22,4 +24,14 @@
 
 .BLUE-actions-collapse-menu:popover-open {
     display: var(--display);
+}
+
+// Compatibility with MenuItems having dropdowns
+.BLUE-actions-menu > .blue-menu-item-wrapper:has(> .blue-menu-item-dropdown) {
+    display: block;
+    position: relative;
+}
+
+.BLUE-actions-menu > .blue-menu-item-wrapper > .blue-menu-item-dropdown {
+    position: absolute;
 }

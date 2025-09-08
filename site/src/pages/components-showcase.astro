@@ -3,6 +3,7 @@ import StickyListHeaders from "$/components-showcase/StickyListHeaders.astro"
 import Dropdown from "$/components-showcase/Dropdown.astro"
 import Layout from "$/layouts/Layout.astro"
 import { BarChartLine } from "react-bootstrap-icons"
+import ActionsInLayoutHeader from "$/components-showcase/ActionsInLayoutHeader.astro"
 ---
 
 <Layout title={`Components Showcase • Blue Web`}>
@@ -13,6 +14,10 @@ import { BarChartLine } from "react-bootstrap-icons"
             Here you can see how different components by Bootstrap and Blue Web will like with the current theme
             settings.
         </p>
+
+        <ActionsInLayoutHeader />
+
+        <hr />
 
         <masonry class="row" data-masonry='{"percentPosition": true }'>
             <div class="col-sm-6 col-lg-4 mb-4">
