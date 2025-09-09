@@ -1,5 +1,5 @@
 /*!
- * Blue Web v1.17.4 (https://bruegmann.github.io/blue-web)
+ * Blue Web v1.17.5 (https://bruegmann.github.io/blue-web)
  * Licensed under GNU General Public License v3.0 (https://github.com/bruegmann/blue-web/blob/master/LICENSE).
 */
 
@@ -3709,8 +3709,8 @@ $sidebar-color: color-contrast($sidebar-bg, $gray-900) !default;
 $sidebar-color-dark: color-contrast($sidebar-bg-dark, $gray-900) !default;
 
 // Color of indicator for active sidebar item.
-$sidebar-indicator-color: $sidebar-color !default;
-$sidebar-indicator-color-dark: $sidebar-color-dark !default;
+$sidebar-indicator-color: #{var(--bs-primary)} !default;
+$sidebar-indicator-color-dark: #{var(--bs-primary-text-emphasis)} !default;
 
 // Background of search control in sidebar.
 $sidebar-search-bg: $input-bg !default;
@@ -11852,14 +11852,27 @@ body {
         --#{$prefix}nav-link-color: var(--#{$prefix}list-group-action-color);
     }
 
+    .nav-link:hover,
+    .nav-link:focus {
+        border-bottom-color: transparent;
+    }
+
     .nav-link.active,
-    .show > .nav-link {
-        font-weight: var(--blue-tabs-underline-active-font-weight, $font-weight-semibold);
-        border-bottom-color: var(--blue-tabs-underline-active-border-bottom-color, var(--bs-primary));
+    .show > .nav-link,
+    .blue-tab:checked {
+        &::after {
+            @include blue-menu-item-indicator();
+            @include blue-menu-item-indicator-horizontal();
+        }
+
+        position: relative;
+        font-weight: var(--blue-tabs-underline-active-font-weight, $font-weight-base);
+        border-bottom-color: transparent;
+        color: var(--bs-nav-underline-link-active-color);
     }
 }
 
-.blue-tabs {
+.nav-underline .blue-tabs {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -11912,11 +11925,6 @@ input.blue-tab:checked + .blue-tab-content {
 
 .blue-tabs.nav-underline {
     row-gap: 0;
-    .blue-tab:checked {
-        font-weight: var(--blue-tabs-underline-active-font-weight, $font-weight-semibold);
-        color: var(--bs-nav-underline-link-active-color);
-        border-bottom-color: var(--blue-tabs-underline-active-border-bottom-color, var(--bs-primary));
-    }
 }
 
 /**
