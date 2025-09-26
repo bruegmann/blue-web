@@ -93,7 +93,7 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 href={item.path}
                                 label={item.label}
                                 isActive={item.isActive}
-                                labelClassName={item.label === "Collapse" ? "docs-badge docs-badge-update" : ""}
+                                labelClassName={item.label === "Collapse NO MORE" ? "docs-badge docs-badge-update" : ""}
                             >
                                 {item.label === "Button with icon" && <PlayBtn slot="icon" />}
                                 {item.label === "Buttons" && <PlayBtnFill slot="icon" />}
@@ -132,7 +132,7 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 labelClassName={
                                     item.label === "Actions"
                                         ? "docs-badge docs-badge-experimental"
-                                        : item.label === "Select List" || item.label === "Input Splitted"
+                                        : item.label === "Auto Theme"
                                           ? "docs-badge docs-badge-new"
                                           : ""
                                 }
