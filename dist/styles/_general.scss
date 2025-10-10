@@ -41,12 +41,11 @@ body {
             color 0.15s,
             box-shadow 0.3s,
             opacity 0.3s;
+        position: relative;
 
         @media (prefers-reduced-motion) {
             transition: none;
         }
-
-        position: relative;
 
         &:hover,
         &:active,
@@ -105,13 +104,12 @@ body {
     padding-left: calc(#{$normal-size} + #{$spacer});
     transform: translateX(-100%);
     transition: transform 0.4s;
+    background: var(--blue-sidebar-bg);
+    color: $sidebar-color;
 
     @media (prefers-reduced-motion) {
         transition: none;
     }
-
-    background: var(--blue-sidebar-bg);
-    color: $sidebar-color;
 }
 
 .blue-scroll-shadow {
