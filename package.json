@@ -1,6 +1,6 @@
 {
     "name": "blue-web",
-    "version": "1.17.8",
+    "version": "1.17.8002",
     "description": "UI components built on top of Bootstrap 5",
     "license": "LGPL-3.0-or-later",
     "type": "module",
@@ -63,7 +63,7 @@
         "react-dom": "^19.0.0",
         "react-markdown": "^8.0.3",
         "react-syntax-highlighter": "^15.4.3",
-        "sass": "~1.77.6",
+        "sass": "^1.93.2",
         "themify": "file:../themify/themify-0.0.8.tgz",
         "typescript": "^4.3.5",
         "webpack": "^5.95.0",

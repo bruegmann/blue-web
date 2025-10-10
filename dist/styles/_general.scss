@@ -9,24 +9,6 @@ body {
 
 body {
     background: var(--blue-app-bg, #{$app-bg});
-
-    .blue-wrapper {
-        position: fixed;
-        width: 100%;
-        width: 100%;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        z-index: 1;
-        display: none;
-    }
-
-    &.open {
-        .blue-wrapper {
-            display: block;
-        }
-    }
 }
 
 // Idee für Effekt von http://www.w3schools.com/howto/howto_css_animate_buttons.asp
@@ -55,27 +37,6 @@ body {
     }
 }
 
-.page-link {
-    &:hover,
-    &:focus {
-        text-decoration: none;
-    }
-}
-
-.blue-wrapper {
-    z-index: 3 !important;
-
-    &.active {
-        display: block;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .blue-header-extension .blue-header-title-labels:not(.keep) {
-        display: none;
-    }
-}
-
 .sign-in-screen {
     padding-top: $normal-size;
 
@@ -93,10 +54,6 @@ body {
             width: var(--blue-sign-in-container-md-width, auto);
         }
     }
-}
-
-.w-bla-sidebar-width {
-    width: $bla-sidebar-width;
 }
 
 .blue-header-title.sidebar {
