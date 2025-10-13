@@ -6,7 +6,7 @@
 
 <button
     onclick="document.getElementById('mysearchdialog').showModal()"
-    class="form-control form-control-sm w-auto btn-sm mx-auto my-1"
+    class="form-control form-control-sm w-auto btn-sm rounded-pill mx-auto my-1"
 >
     Search <kbd class="ms-1">
         <kbd class="small">
@@ -22,10 +22,10 @@
 
 <dialog class="blue-modal modal" id="mysearchdialog" closedby="any">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content rounded-5">
             <div class="modal-body">
                 <search>
-                    <div class="blue-input-group input-group">
+                    <div class="blue-input-group input-group rounded-pill">
                         <label for="docsSearchInput" class="input-group-text">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@
                     <bl-select-list
                         id="docsSearchResults"
                         for="docsSearchInput"
-                        class="list-group"
+                        class="list-group rounded-4"
                         aria-label="Search results"
                     >
                     </bl-select-list>

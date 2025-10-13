@@ -1,6 +1,6 @@
 {
     "name": "blue-web",
-    "version": "1.17.8002",
+    "version": "1.18.0",
     "description": "UI components built on top of Bootstrap 5",
     "license": "LGPL-3.0-or-later",
     "type": "module",
@@ -36,8 +36,8 @@
         "bootstrap": "~5.3.8"
     },
     "devDependencies": {
-        "@astrojs/mdx": "^4.3.4",
-        "@astrojs/react": "^4.3.0",
+        "@astrojs/mdx": "^4.3.7",
+        "@astrojs/react": "^4.4.0",
         "@babel/cli": "^7.10.4",
         "@babel/preset-env": "^7.10.4",
         "@babel/preset-typescript": "^7.9.0",
@@ -46,7 +46,7 @@
         "@types/react": "^19.0.8",
         "@types/react-dom": "^19.0.3",
         "@types/react-syntax-highlighter": "^13.5.0",
-        "astro": "^5.13.5",
+        "astro": "^5.14.4",
         "autoprefixer": "^10.3.6",
         "babel-loader": "^8.4.1",
         "blue-react": "^10.2.0",
