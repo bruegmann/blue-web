@@ -72,7 +72,6 @@ export class SelectList extends HTMLElement {
     }
 
     onKeyDown(e: { key: string; preventDefault: () => void }) {
-        console.log("select-list onKeyDown")
         if (!this.items.length) return
 
         if (e.key === "ArrowDown") {
