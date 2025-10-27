@@ -1652,6 +1652,41 @@ Even if `light-dom` isn't enabled, you can still use CSS variables to style the 
 
 
 
+
+## Odometer
+
+A Web Component that displays a numeric value with a smooth rolling animation — similar to a mechanical odometer or number counter.
+It’s designed for use in badges, notifications, dashboards, or any place where numbers change dynamically.
+
+```html
+<bl-odometer id="basicOdometer"></bl-odometer>
+
+<div class="btn-group" role="group">
+    <button class="btn blue-btn-soft-secondary" onclick="basicOdometer.value--" aria-label="Decrement">➖</button>
+    <button class="btn blue-btn-soft-secondary" onclick="basicOdometer.value++" aria-label="Increment">➕</button>
+</div>
+```
+
+### Styled as badge
+
+```html
+<button type="button" class="btn btn-outline-primary">
+    <span aria-hidden="true">🔔</span> Notifications
+    <span class="badge bg-primary-subtle text-primary-emphasis">
+        <bl-odometer id="badgeOdometer" value="2"></bl-odometer>
+    </span>
+</button>
+
+<div class="btn-group" role="group">
+    <button class="btn blue-btn-soft-secondary" onclick="badgeOdometer.value--" aria-label="Decrement">➖</button>
+    <button class="btn blue-btn-soft-secondary" onclick="badgeOdometer.value++" aria-label="Increment">➕</button>
+</div>
+```
+
+
+
+
+
 ## Progress
 
 A "fake" progress bar that will appear fixed at the top of the page.
@@ -1707,6 +1742,7 @@ You can customize the element further by setting a custom ID, parent element and
 
 
 
+
 ## Read View
 
 A Web Component that displays a read view of its content and allows the user to switch to an edit view.
@@ -1753,6 +1789,8 @@ A Web Component that displays a read view of its content and allows the user to 
     This one is disabled
 </bl-read-view>
 ```
+
+
 
 
 
