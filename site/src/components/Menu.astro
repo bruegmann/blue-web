@@ -14,6 +14,7 @@ import {
     EyeSlash,
     House,
     HouseFill,
+    Icon9Square,
     InputCursorText,
     LayersHalf,
     LayoutSidebarInset,
@@ -132,7 +133,7 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 labelClassName={
                                     item.label === "Actions"
                                         ? "docs-badge docs-badge-experimental"
-                                        : item.label === "Auto Theme"
+                                        : item.label === "Odometer"
                                           ? "docs-badge docs-badge-new"
                                           : ""
                                 }
@@ -141,6 +142,7 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 {item.label === "Color Mode" && <CircleHalf slot="icon" />}
                                 {item.label === "Dialog" && <WindowStack slot="icon" />}
                                 {item.label === "Input Splitted" && <InputCursorText slot="icon" />}
+                                {item.label === "Odometer" && <Icon9Square slot="icon" />}
                                 {item.label === "Progress" && <ArrowRepeat slot="icon" />}
                                 {item.label === "Read View" && <CursorText slot="icon" />}
                                 {item.label === "Select List" && <CardChecklist slot="icon" />}
