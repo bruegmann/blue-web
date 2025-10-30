@@ -1683,6 +1683,17 @@ It’s designed for use in badges, notifications, dashboards, or any place where
 </div>
 ```
 
+### Custom max number
+
+```html
+<bl-odometer id="maxOdometer" value="89" max="99"></bl-odometer>
+
+<div class="btn-group" role="group">
+    <button class="btn blue-btn-soft-secondary" onclick="maxOdometer.value--" aria-label="Decrement">➖</button>
+    <button class="btn blue-btn-soft-secondary" onclick="maxOdometer.value++" aria-label="Increment">➕</button>
+</div>
+```
+
 
 
 
