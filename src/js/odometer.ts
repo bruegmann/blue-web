@@ -3,7 +3,7 @@ class Odometer extends HTMLElement {
     private _initialized = false
 
     static get observedAttributes() {
-        return ["value"]
+        return ["value", "max"]
     }
 
     constructor() {
@@ -48,30 +48,46 @@ class Odometer extends HTMLElement {
         wrapper.classList.add("numbers")
         wrapper.setAttribute("aria-hidden", "true")
 
-        for (let i = 0; i <= 9; i++) {
-            const s = document.createElement("span")
-            s.textContent = String(i)
-            wrapper.appendChild(s)
-        }
-        const plus = document.createElement("span")
-        plus.textContent = "9+"
-        wrapper.appendChild(plus)
-
         this.shadowRoot!.append(style, wrapper)
         this.wrapper = wrapper
+        this.rebuildNumbers()
+    }
+
+    private rebuildNumbers() {
+        this.wrapper.innerHTML = ""
+        const max = this.max
+
+        for (let i = 0; i <= max; i++) {
+            const s = document.createElement("span")
+            s.textContent = String(i)
+            this.wrapper.appendChild(s)
+        }
+        const plus = document.createElement("span")
+        plus.textContent = `${max}+`
+        this.wrapper.appendChild(plus)
+
+        // Aktuellen Wert neu anwenden
+        if (this._initialized) {
+            this.updateValue(this.value)
+        }
     }
 
     attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
-        if (name === "value" && newValue !== oldValue && this._initialized) {
-            this.updateValue(parseInt(newValue ?? "0", 10))
+        if (newValue !== oldValue && this._initialized) {
+            if (name === "value") {
+                this.updateValue(parseInt(newValue ?? "0", 10))
+            } else if (name === "max") {
+                this.rebuildNumbers()
+            }
         }
     }
 
     private updateValue(value: number) {
-        const index = value > 9 ? 10 : Math.max(0, value)
+        const max = this.max
+        const index = value > max ? max + 1 : Math.max(0, value)
         const height = this.wrapper.getBoundingClientRect().height || 16
         this.wrapper.style.transform = `translateY(-${index * height}px)`
-        const displayValue = value > 9 ? "9+" : `${value}`
+        const displayValue = value > max ? `${max}+` : `${value}`
         this.setAttribute("aria-label", displayValue)
     }
 
@@ -81,12 +97,27 @@ class Odometer extends HTMLElement {
             this.setAttribute("value", String(value))
             if (this._initialized) {
                 this.updateValue(value)
+                this.dispatchEvent(
+                    new CustomEvent("change", {
+                        detail: { value },
+                        bubbles: true,
+                        composed: true
+                    })
+                )
             }
         }
     }
 
     get value(): number {
         return parseInt(this.getAttribute("value") || "0", 10) || 0
+    }
+
+    set max(value: number) {
+        this.setAttribute("max", String(value))
+    }
+
+    get max(): number {
+        return parseInt(this.getAttribute("max") || "9", 10) || 9
     }
 }
 
