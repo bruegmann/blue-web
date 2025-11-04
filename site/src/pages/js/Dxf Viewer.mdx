@@ -1,0 +1,68 @@
+---
+layout: $/layouts/DocsLayout.astro
+---
+
+import RenderBlock from "$/components/RenderBlock.astro"
+
+# DXF Viewer
+
+A Web Component for viewing DXF (Drawing Exchange Format) files in the browser using Three.js.
+
+## Basic Usage
+
+```html use:RenderBlock
+<div style="height: 500px; border: 1px solid var(--bs-border-color); border-radius: 0.375rem;">
+    <dxf-viewer src="http://localhost:4321/blue-web/v1/bmw.dxf" clear-color="#f8f9fa"></dxf-viewer>
+</div>
+
+<script>
+    const viewer = document.querySelector("dxf-viewer")
+
+    viewer.addEventListener("dxf-loaded", (e) => {
+        console.log("DXF file loaded successfully", e.detail.viewer)
+    })
+
+    viewer.addEventListener("dxf-error", (e) => {
+        console.error("Failed to load DXF file", e.detail.error)
+    })
+</script>
+```
+
+## Attributes
+
+- `src` - URL of the DXF file to load (required)
+- `clear-color` - Background color (default: `#ffffff`)
+- `auto-resize` - Enable/disable auto-resize (default: `true`)
+- `wireframe` - Enable wireframe rendering (default: `false`)
+- `fonts` - Comma-separated list of font URLs for text rendering
+
+## Events
+
+- `dxf-loaded` - Fired when the DXF file loads successfully
+- `dxf-error` - Fired when loading fails
+
+## Methods
+
+Access the component's methods via JavaScript:
+
+```js
+const viewer = document.querySelector("dxf-viewer")
+
+// Get the underlying DxfViewer instance
+const viewerInstance = viewer.getViewer()
+
+// Reload the DXF file
+await viewer.reload()
+
+// Show/hide a layer
+viewer.showLayer("LayerName", true)
+
+// Get all layers
+const layers = viewer.getLayers()
+
+// Get drawing bounds
+const bounds = viewer.getBounds()
+
+// Fit view to specific bounds
+viewer.fitView(minX, maxX, minY, maxY, padding)
+```

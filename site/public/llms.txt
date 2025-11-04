@@ -1587,6 +1587,14 @@ They are not meant to be used as a replacement for more complex modals.
 
 
 
+## DxF Viewer
+
+```html
+<dxf-viewer>test</dxf-viewer>
+```
+
+
+
 
 ## Input Splitted
 
