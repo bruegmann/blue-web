@@ -1,8 +1,7 @@
-import "themify"
-import { type CSSProperties, type FC, useEffect, useState } from "react"
+import "blue-themify"
+import { type CSSProperties, type FC, useEffect, useId, useState } from "react"
 import Code from "./Code.tsx"
 import { BoxArrowInDown, Braces, Palette2 } from "react-bootstrap-icons"
-import { MenuItem } from "blue-react"
 import { Tab, Tabs } from "$/components/Tabs.tsx"
 
 export interface ThemeInfoAppSettingsTemplateConfig {
@@ -26,6 +25,8 @@ export interface ThemeInfo {
     includeNeuScss: boolean
     colorMode?: "light" | "dark"
     appearance?: "soft" | "bold"
+    rounding?: "none" | "minimal" | "default" | "maximal"
+    useSquircles?: boolean
 }
 
 type CompileEvent = CustomEvent<{ css: string; themeInfo: ThemeInfo }>
@@ -49,9 +50,10 @@ export function ThemeGeneratorSwitch() {
     const [show, setShow] = useState(false)
     const [defaultTheme, setDefaultTheme] = useState<{ themeInfo: ThemeInfo; css: string }>()
 
+    const popoverId = useId()
+
     const action = () => {
         setShow(true)
-        document.querySelector<HTMLDialogElement>("#themeGenerator_dialog")?.showModal()
     }
 
     useEffect(() => {
@@ -64,26 +66,30 @@ export function ThemeGeneratorSwitch() {
 
     return (
         <>
-            <MenuItem icon={<Palette2 className="bi" />} label="Try the new theme generator" onClick={action} />
+            <button
+                type="button"
+                onClick={action}
+                className="btn blue-halo icon-link"
+                style={{ anchorName: "--anchor-theme-generator" } as CSSProperties}
+                popoverTarget={popoverId}
+            >
+                <Palette2 className="bi" /> Theme Generator
+            </button>
 
-            <dialog className="blue-modal modal" id="themeGenerator_dialog">
-                <div className="offcanvas offcanvas-end show">
-                    <div className="offcanvas-header">
-                        <h1 className="h5 offcanvas-title" id="offcanvasExampleLabel">
-                            Theme Generator (Beta)
-                        </h1>
-                        <form method="dialog" style={{ display: "contents" }}>
-                            <button type="submit" className="btn-close" aria-label="Close"></button>
-                        </form>
-                    </div>
-                    <div className="offcanvas-body">
-                        {show && <ThemeGenerator defaultThemeInfo={defaultTheme?.themeInfo} />}
-                    </div>
-                </div>
-                <form method="dialog" className="blue-modal-backdrop">
-                    <button>Close</button>
-                </form>
-            </dialog>
+            <div
+                id={popoverId}
+                popover=""
+                className="blue-anchored-fallback position-fixed m-0 p-3 border rounded shadow"
+                style={
+                    {
+                        anchorName: "--anchor-theme-generator",
+                        positionArea: "bottom span-left",
+                        "--blue-menu-item-dropdown-bg": "var(--bs-body-bg)"
+                    } as CSSProperties
+                }
+            >
+                {show && <ThemeGenerator defaultThemeInfo={defaultTheme?.themeInfo} />}
+            </div>
         </>
     )
 }
