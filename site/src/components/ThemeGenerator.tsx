@@ -69,7 +69,7 @@ export function ThemeGeneratorSwitch() {
             <button
                 type="button"
                 onClick={action}
-                className="btn blue-halo icon-link"
+                className="btn blue-menu-item icon-link"
                 style={{ anchorName: "--anchor-theme-generator" } as CSSProperties}
                 popoverTarget={popoverId}
             >
