@@ -118,6 +118,7 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                             {["Menu Item", "Collapse", "Buttons"].includes(item.label) && (
                                 <span class="docs-badge docs-badge-update" />
                             )}
+                            {["Sidebar"].includes(item.label) && <span class="docs-badge docs-badge-deprecated" />}
                         </MenuItem>
                     ))
                 }
@@ -144,7 +145,6 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 {item.label === "View Transition API" && <BarChartSteps slot="iconBefore" />}
 
                                 {item.label === "Actions" && <span class="docs-badge docs-badge-experimental" />}
-                                {item.label === "Odometer" && <span class="docs-badge docs-badge-new" />}
                             </MenuItem>
                         </li>
                     ))

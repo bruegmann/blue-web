@@ -19,15 +19,13 @@ I recommend to use [the anchor position tool](https://chrome.dev/anchor-tool/) t
 Add `.blue-anchored-fallback` to the dropdown element and on not supported browsers, it will be displayed with an overlay over the whole page.
 
 ```html use:RenderBlock
-<button type="button" class="btn blue-halo" popovertarget="popover-basic" style="anchor-name: popover-basic-anchor">
-    Open popover
-</button>
+<button type="button" class="btn blue-halo" popovertarget="popover-basic">Open popover</button>
 
 <div
     id="popover-basic"
     popover
     class="blue-anchored-fallback position-fixed m-0 p-3 border rounded shadow"
-    style="anchor-name: popover-basic-anchor; position-area: bottom span-right"
+    style="position-area: bottom span-right"
 >
     Hello from popover!
 </div>
@@ -38,25 +36,19 @@ Add `.blue-anchored-fallback` to the dropdown element and on not supported brows
 `.blue-anchor`, `.blue-anchored` and some other classes help you with some common stylings.
 
 ```html use:RenderBlock
-<span style="--blue-anchor-name: --popover-helpers-anchor-start">
-    <button type="button" class="blue-anchor btn blue-halo" popovertarget="popover-helpers-start">Open to start</button>
+<button type="button" class="blue-anchor btn blue-halo" popovertarget="popover-helpers-start">Open to start</button>
+<div id="popover-helpers-start" popover class="blue-anchored blue-anchored-start blue-anchored-fallback">
+    Hello from popover!
+</div>
 
-    <div id="popover-helpers-start" popover class="blue-anchored blue-anchored-start blue-anchored-fallback">
-        Hello from popover!
-    </div>
-</span>
-
-<span style="--blue-anchor-name: --popover-helpers-anchor-end">
-    <button type="button" class="blue-anchor btn blue-halo" popovertarget="popover-helpers-end">Open to end</button>
-
-    <div id="popover-helpers-end" popover class="blue-anchored blue-anchored-end blue-anchored-fallback">
-        Hello from popover!
-    </div>
-</span>
+<button type="button" class="blue-anchor btn blue-halo" popovertarget="popover-helpers-end">Open to end</button>
+<div id="popover-helpers-end" popover class="blue-anchored blue-anchored-end blue-anchored-fallback">
+    Hello from popover!
+</div>
 
 <hr />
 
-<div class="hstack" style="--blue-anchor-name: --popover-helpers-anchor-try">
+<div class="hstack">
     <button type="button" class="blue-anchor btn blue-halo ms-auto" popovertarget="popover-helpers-try">
         Popover will automatically flip inline if not enough space.
     </button>

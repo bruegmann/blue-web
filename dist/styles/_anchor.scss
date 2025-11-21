@@ -1,9 +1,4 @@
-.blue-anchor {
-    anchor-name: var(--blue-anchor-name, --anchor-1);
-}
-
 .blue-anchored {
-    anchor-name: var(--blue-anchor-name, --anchor-1);
     position-try: flip-inline;
     position-area: bottom span-right;
     position: fixed;

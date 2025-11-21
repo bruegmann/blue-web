@@ -57,6 +57,14 @@ pre {
     }
 }
 
+.docs-badge-deprecated {
+    color: var(--bs-danger-text-emphasis);
+    background-color: var(--bs-danger-bg-subtle);
+    &::before {
+        content: "Deprecated";
+    }
+}
+
 .example-code pre {
     margin: 0;
 }
