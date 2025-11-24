@@ -1,5 +1,5 @@
 /*!
- * Blue Web v1.19.1016 (https://bruegmann.github.io/blue-web)
+ * Blue Web v1.19.1020 (https://bruegmann.github.io/blue-web)
  * Licensed under GNU General Public License v3.0 (https://github.com/bruegmann/blue-web/blob/master/LICENSE).
 */
 
@@ -11047,6 +11047,9 @@ body {
         color 0.15s,
         box-shadow 0.3s,
         opacity 0.3s !important;
+    color: inherit;
+    border-color: transparent;
+    --bs-btn-disabled-border-color: transparent;
 
     @media (prefers-reduced-motion) {
         transition: none !important;
@@ -11081,10 +11084,6 @@ body {
     &:active,
     &.active,
     &:has(+ :popover-open) {
-        color: inherit;
-        border-color: transparent;
-        --bs-btn-active-border-color: transparent;
-
         &::before {
             transform: scale(1);
             opacity: 0.25;
@@ -12226,7 +12225,7 @@ dialog.blue-modal:has(.offcanvas-start) {
             grid-column: 2;
 
             & + * {
-                width: calc(100% + var(--margin-inline-start) - 2px);
+                width: calc(100% + var(--margin-inline-start) - 3px);
             }
         }
     }
@@ -12270,12 +12269,7 @@ dialog.blue-modal:has(.offcanvas-start) {
     position: absolute;
 }
 
-.blue-anchor {
-    anchor-name: var(--blue-anchor-name, --anchor-1);
-}
-
 .blue-anchored {
-    anchor-name: var(--blue-anchor-name, --anchor-1);
     position-try: flip-inline;
     position-area: bottom span-right;
     position: fixed;
@@ -12492,13 +12486,8 @@ body.modal-open .dxbl-popup-cell[style="z-index: 1050;"] {
 
 :root {
     --bs-font-sans-serif: Inter, #{$font-family-sans-serif};
-    font-feature-settings:
-        "liga" 1,
-        "calt" 1,
-        "cv05" 1,
-        "cv07" 1,
-        "tnum" 1,
-        "zero" 1;
+    --blue-font-feature-settings: "liga" 1, "calt" 1, "cv05" 1, "cv07" 1, "tnum" 1, "zero" 1;
+    font-feature-settings: var(--blue-font-feature-settings);
     font-size: 14px;
 }
 @supports (font-variation-settings: normal) {

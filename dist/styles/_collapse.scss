@@ -65,7 +65,7 @@
             grid-column: 2;
 
             & + * {
-                width: calc(100% + var(--margin-inline-start) - 2px);
+                width: calc(100% + var(--margin-inline-start) - 3px);
             }
         }
     }
