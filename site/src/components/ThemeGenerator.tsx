@@ -1,9 +1,9 @@
 import "blue-themify"
-import { type CSSProperties, type FC, useEffect, useId, useState } from "react"
+import { type CSSProperties, type FC, useEffect, useState } from "react"
 import Code from "./Code.tsx"
 import { BoxArrowInDown, Braces, Palette2 } from "react-bootstrap-icons"
 import { Tab, Tabs } from "$/components/Tabs.tsx"
-import NewMenuItem from "blue-react/dist/components/NewMenuItem"
+import MenuItem from "blue-react/dist/components/MenuItem"
 
 export interface ThemeInfoAppSettingsTemplateConfig {
     repo: string
@@ -51,8 +51,6 @@ export function ThemeGeneratorSwitch() {
     const [show, setShow] = useState(false)
     const [defaultTheme, setDefaultTheme] = useState<{ themeInfo: ThemeInfo; css: string }>()
 
-    const popoverId = useId()
-
     const action = () => {
         setShow(true)
     }
@@ -66,30 +64,9 @@ export function ThemeGeneratorSwitch() {
     }, [])
 
     return (
-        <>
-            <NewMenuItem
-                style={{ anchorName: "--anchor-theme-generator" } as CSSProperties}
-                onClick={action}
-                popoverTarget={popoverId}
-                iconBefore={<Palette2 />}
-                label="Theme Generator"
-            />
-
-            <div
-                id={popoverId}
-                popover=""
-                className="blue-anchored-fallback position-fixed m-0 p-3 border rounded shadow"
-                style={
-                    {
-                        anchorName: "--anchor-theme-generator",
-                        positionArea: "bottom span-left",
-                        "--blue-menu-item-dropdown-bg": "var(--bs-body-bg)"
-                    } as CSSProperties
-                }
-            >
-                {show && <ThemeGenerator defaultThemeInfo={defaultTheme?.themeInfo} />}
-            </div>
-        </>
+        <MenuItem onClick={action} iconBefore={<Palette2 />} label="Theme Generator" as="popover-group">
+            <div className="p-2">{show && <ThemeGenerator defaultThemeInfo={defaultTheme?.themeInfo} />}</div>
+        </MenuItem>
     )
 }
 
