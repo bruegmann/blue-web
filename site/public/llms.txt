@@ -2290,7 +2290,7 @@ As fallback, when Inter couldn't be loaded, the default font family setting by B
 
 ### Extend font features
 
-Font features are stores inside the CSS variable `--blue-font-feature-settings`. Allows you to extend them without overriding them:
+Font features are stored inside the CSS variable `--blue-font-feature-settings`. This allows you to extend them without overriding them:
 
 ```html
 <p>This text is not condensed.</p>
