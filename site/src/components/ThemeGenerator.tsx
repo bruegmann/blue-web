@@ -3,6 +3,7 @@ import { type CSSProperties, type FC, useEffect, useId, useState } from "react"
 import Code from "./Code.tsx"
 import { BoxArrowInDown, Braces, Palette2 } from "react-bootstrap-icons"
 import { Tab, Tabs } from "$/components/Tabs.tsx"
+import NewMenuItem from "blue-react/dist/components/NewMenuItem"
 
 export interface ThemeInfoAppSettingsTemplateConfig {
     repo: string
@@ -66,15 +67,13 @@ export function ThemeGeneratorSwitch() {
 
     return (
         <>
-            <button
-                type="button"
-                onClick={action}
-                className="btn blue-menu-item icon-link"
+            <NewMenuItem
                 style={{ anchorName: "--anchor-theme-generator" } as CSSProperties}
+                onClick={action}
                 popoverTarget={popoverId}
-            >
-                <Palette2 className="bi" /> Theme Generator
-            </button>
+                iconBefore={<Palette2 />}
+                label="Theme Generator"
+            />
 
             <div
                 id={popoverId}

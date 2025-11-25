@@ -1,6 +1,6 @@
 ---
 import SidebarMenu from "blue-react/dist/components/SidebarMenu.js"
-import MenuItem from "blue-react/dist/components/MenuItem.js"
+import MenuItem from "blue-react/dist/components/NewMenuItem.js"
 import {
     ArrowRepeat,
     ArrowsVertical,
@@ -21,9 +21,9 @@ import {
     LayoutTextWindowReverse,
     MenuApp,
     MenuButton,
+    MenuDown,
     MenuUp,
     Palette,
-    PlayBtn,
     PlayBtnFill,
     Search,
     SegmentedNav,
@@ -59,8 +59,14 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
 <SidebarMenu>
     <ul class="list-unstyled d-flex flex-column">
         <li>
-            <MenuItem href="." label="Start" isActive={currentPath === import.meta.env.BASE_URL}>
-                {currentPath === import.meta.env.BASE_URL ? <HouseFill slot="icon" /> : <House slot="icon" />}
+            <MenuItem href="." label="Start" current={currentPath === import.meta.env.BASE_URL}>
+                {
+                    currentPath === import.meta.env.BASE_URL ? (
+                        <HouseFill slot="iconBefore" />
+                    ) : (
+                        <House slot="iconBefore" />
+                    )
+                }
             </MenuItem>
         </li>
 
@@ -68,9 +74,9 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
             <MenuItem
                 href="typography"
                 label="Typography"
-                isActive={currentPath.includes(import.meta.env.BASE_URL + "typography")}
+                current={currentPath.includes(import.meta.env.BASE_URL + "typography")}
             >
-                <Type slot="icon" />
+                <Type slot="iconBefore" />
             </MenuItem>
         </li>
 
@@ -78,46 +84,45 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
             <MenuItem
                 href="components-showcase"
                 label="Components Showcase"
-                isActive={currentPath.includes(import.meta.env.BASE_URL + "components-showcase")}
+                current={currentPath.includes(import.meta.env.BASE_URL + "components-showcase")}
             >
-                <Palette slot="icon" />
+                <Palette slot="iconBefore" />
             </MenuItem>
         </li>
 
         <li class="mb-3">
             <strong class="ps-2">CSS</strong>
-            <ul class="list-unstyled">
+            <div class="vstack">
                 {
                     cssMenuItems.map((item) => (
-                        <li>
-                            <MenuItem
-                                href={item.path}
-                                label={item.label}
-                                isActive={item.isActive}
-                                labelClassName={item.label === "Collapse NO MORE" ? "docs-badge docs-badge-update" : ""}
-                            >
-                                {item.label === "Button with icon" && <PlayBtn slot="icon" />}
-                                {item.label === "Buttons" && <PlayBtnFill slot="icon" />}
-                                {item.label === "Collapse" && <CardHeading slot="icon" />}
-                                {item.label === "Container Grid" && <Columns slot="icon" />}
-                                {item.label === "Layout" && <LayoutTextWindowReverse slot="icon" />}
-                                {item.label === "Menu Item" && <MenuButton slot="icon" />}
-                                {item.label === "Modal" && <WindowStack slot="icon" />}
-                                {item.label === "Neumorphism" && <LayersHalf slot="icon" />}
-                                {item.label === "Scrollbar" && <ArrowsVertical slot="icon" />}
-                                {item.label === "Scrollspy" && <SegmentedNav slot="icon" />}
-                                {item.label === "Input group" && <Search slot="icon" />}
-                                {item.label === "Sidebar" && <LayoutSidebarInset slot="icon" />}
-                                {item.label === "Tabs" && <SegmentedNav slot="icon" />}
-                                {item.label === "Text and Icons" && <Type slot="icon" />}
-                                {item.label === "Tooltip" && <MenuUp slot="icon" />}
-                                {item.label === "Utilities" && <Tools slot="icon" />}
-                                {item.label === "Visibility" && <EyeSlash slot="icon" />}
-                            </MenuItem>
-                        </li>
+                        <MenuItem href={item.path} label={item.label} current={item.isActive}>
+                            {item.label === "Buttons" && <PlayBtnFill slot="iconBefore" />}
+                            {item.label === "Collapse" && <CardHeading slot="iconBefore" />}
+                            {item.label === "Container Grid" && <Columns slot="iconBefore" />}
+                            {item.label === "Layout" && <LayoutTextWindowReverse slot="iconBefore" />}
+                            {item.label === "Menu Item" && <MenuButton slot="iconBefore" />}
+                            {item.label === "Modal" && <WindowStack slot="iconBefore" />}
+                            {item.label === "Neumorphism" && <LayersHalf slot="iconBefore" />}
+                            {item.label === "Popover" && <MenuDown slot="iconBefore" />}
+                            {item.label === "Scrollbar" && <ArrowsVertical slot="iconBefore" />}
+                            {item.label === "Scrollspy" && <SegmentedNav slot="iconBefore" />}
+                            {item.label === "Input group" && <Search slot="iconBefore" />}
+                            {item.label === "Sidebar" && <LayoutSidebarInset slot="iconBefore" />}
+                            {item.label === "Tabs" && <SegmentedNav slot="iconBefore" />}
+                            {item.label === "Text and Icons" && <Type slot="iconBefore" />}
+                            {item.label === "Tooltip" && <MenuUp slot="iconBefore" />}
+                            {item.label === "Utilities" && <Tools slot="iconBefore" />}
+                            {item.label === "Visibility" && <EyeSlash slot="iconBefore" />}
+
+                            {["Popover"].includes(item.label) && <span class="docs-badge docs-badge-new" />}
+                            {["Menu Item", "Collapse", "Buttons"].includes(item.label) && (
+                                <span class="docs-badge docs-badge-update" />
+                            )}
+                            {["Sidebar"].includes(item.label) && <span class="docs-badge docs-badge-deprecated" />}
+                        </MenuItem>
                     ))
                 }
-            </ul>
+            </div>
         </li>
 
         <li class="mb-3">
@@ -126,29 +131,20 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                 {
                     jsMenuItems.map((item) => (
                         <li>
-                            <MenuItem
-                                href={item.path}
-                                label={item.label}
-                                isActive={item.isActive}
-                                labelClassName={
-                                    item.label === "Actions"
-                                        ? "docs-badge docs-badge-experimental"
-                                        : item.label === "Odometer"
-                                          ? "docs-badge docs-badge-new"
-                                          : ""
-                                }
-                            >
-                                {item.label === "Actions" && <MenuApp slot="icon" />}
-                                {item.label === "Color Mode" && <CircleHalf slot="icon" />}
-                                {item.label === "Dialog" && <WindowStack slot="icon" />}
-                                {item.label === "Input Splitted" && <InputCursorText slot="icon" />}
-                                {item.label === "Odometer" && <Icon9Square slot="icon" />}
-                                {item.label === "Progress" && <ArrowRepeat slot="icon" />}
-                                {item.label === "Read View" && <CursorText slot="icon" />}
-                                {item.label === "Select List" && <CardChecklist slot="icon" />}
-                                {item.label === "Side Layout" && <LayoutTextWindowReverse slot="icon" />}
-                                {item.label === "Utils" && <Tools slot="icon" />}
-                                {item.label === "View Transition API" && <BarChartSteps slot="icon" />}
+                            <MenuItem href={item.path} label={item.label} current={item.isActive}>
+                                {item.label === "Actions" && <MenuApp slot="iconBefore" />}
+                                {item.label === "Color Mode" && <CircleHalf slot="iconBefore" />}
+                                {item.label === "Dialog" && <WindowStack slot="iconBefore" />}
+                                {item.label === "Input Splitted" && <InputCursorText slot="iconBefore" />}
+                                {item.label === "Odometer" && <Icon9Square slot="iconBefore" />}
+                                {item.label === "Progress" && <ArrowRepeat slot="iconBefore" />}
+                                {item.label === "Read View" && <CursorText slot="iconBefore" />}
+                                {item.label === "Select List" && <CardChecklist slot="iconBefore" />}
+                                {item.label === "Side Layout" && <LayoutTextWindowReverse slot="iconBefore" />}
+                                {item.label === "Utils" && <Tools slot="iconBefore" />}
+                                {item.label === "View Transition API" && <BarChartSteps slot="iconBefore" />}
+
+                                {item.label === "Actions" && <span class="docs-badge docs-badge-experimental" />}
                             </MenuItem>
                         </li>
                     ))
@@ -161,7 +157,7 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
             <ul class="list-unstyled">
                 <li>
                     <MenuItem href={import.meta.env.BASE_URL + "llms.txt"} label="llms.txt">
-                        <BodyText slot="icon" />
+                        <BodyText slot="iconBefore" />
                     </MenuItem>
                 </li>
             </ul>
