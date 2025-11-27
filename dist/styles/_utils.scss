@@ -5,6 +5,9 @@
     margin: 0 !important;
 }
 
+// Shows empty message if the element has no children.
+// Can be used for lists and such.
+// For localization you should override CSS variable `--message` dynamically.
 .blue-empty-message {
     --message: "No items found.";
     &:empty::before {

@@ -6,12 +6,12 @@ export default function Usage() {
     const [selectedValue, setSelectedValue] = useState("Banana")
 
     return (
-        <div className="row">
+        <div className="row g-5 row-cols-lg-3">
             <div className="col">
                 <h3>Bindable</h3>
 
                 <Combobox value={selectedValue} onChange={setSelectedValue}>
-                    <ComboboxOption value="Apple">🍎 Apple</ComboboxOption>
+                    <ComboboxOption value="Apple" />
                     <ComboboxOption value="Banana" />
                     <ComboboxOption value="Cherry" />
                     <ComboboxOption value="Date" />
@@ -32,14 +32,85 @@ export default function Usage() {
             </div>
 
             <div className="col">
-                <h3>Color prop will affect the button and active item</h3>
+                <h3>Variants and colors</h3>
 
-                <Combobox variant="filled" color="dark">
+                <p>Color prop will affect the button and active item.</p>
+
+                <Combobox variant="filled" color="dark" className="mb-1">
                     <ComboboxOption value="Apple" />
                     <ComboboxOption value="Banana" />
                     <ComboboxOption value="Cherry" />
                     <ComboboxOption value="Date" />
                 </Combobox>
+                <br />
+
+                <Combobox variant="menu-item" className="mb-1">
+                    <ComboboxOption value="Apple" />
+                    <ComboboxOption value="Banana" />
+                    <ComboboxOption value="Cherry" />
+                    <ComboboxOption value="Date" />
+                </Combobox>
+                <br />
+
+                <Combobox variant="plain" color="success">
+                    <ComboboxOption value="Apple" />
+                    <ComboboxOption value="Banana" />
+                    <ComboboxOption value="Cherry" />
+                    <ComboboxOption value="Date" />
+                </Combobox>
+            </div>
+
+            <div className="col">
+                <h3>Scrollable</h3>
+
+                <Combobox>
+                    <ComboboxOption value="Apple" />
+                    <ComboboxOption value="Banana" />
+                    <ComboboxOption value="Cherry" />
+                    <ComboboxOption value="Date" />
+                    <ComboboxOption value="Elderberry" />
+                    <ComboboxOption value="Fig" />
+                    <ComboboxOption value="Grape" />
+                    <ComboboxOption value="Honeydew" />
+                    <ComboboxOption value="Kiwi" />
+                    <ComboboxOption value="Lemon" />
+                    <ComboboxOption value="Mango" />
+                    <ComboboxOption value="Nectarine" />
+                    <ComboboxOption value="Orange" />
+                    <ComboboxOption value="Papaya" />
+                    <ComboboxOption value="Quince" />
+                    <ComboboxOption value="Raspberry" />
+                </Combobox>
+            </div>
+
+            <div className="col">
+                <h3>Custom content and styling</h3>
+
+                <Combobox>
+                    <ComboboxOption value="Apple" className="fw-bold">
+                        🍎 Apple
+                    </ComboboxOption>
+                    <ComboboxOption value="Banana" className="fw-bold">
+                        🍌 Banana
+                    </ComboboxOption>
+                    <ComboboxOption value="Cherry" className="fw-bold">
+                        🍒 Cherry
+                    </ComboboxOption>
+                    <ComboboxOption value="Kiwi" className="fw-bold">
+                        🥝 Kiwi
+                    </ComboboxOption>
+                </Combobox>
+            </div>
+
+            <div className="col">
+                <h3>Empty state</h3>
+
+                <p>
+                    If the listbox is empty or there are no search matches, a localized message will be shown using{" "}
+                    <code>.blue-empty-message</code>.
+                </p>
+
+                <Combobox></Combobox>
             </div>
         </div>
     )

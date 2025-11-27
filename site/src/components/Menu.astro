@@ -17,7 +17,6 @@ import {
     Icon9Square,
     InputCursorText,
     LayersHalf,
-    LayoutSidebarInset,
     LayoutTextWindowReverse,
     MenuApp,
     MenuButton,
@@ -49,9 +48,14 @@ function prepareSectionMenuItem(path: string, section: "css" | "js") {
     }
 }
 
-const cssMenuItems = Object.keys(import.meta.glob("/src/pages/css/*")).map((path) =>
+const deprecated = ["Sidebar"]
+
+const allCssMenuItems = Object.keys(import.meta.glob("/src/pages/css/*")).map((path) =>
     prepareSectionMenuItem(path, "css")
 )
+
+const cssMenuItems = allCssMenuItems.filter((item) => !deprecated.includes(item.label))
+const deprecatedMenuItems = allCssMenuItems.filter((item) => deprecated.includes(item.label))
 
 const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) => prepareSectionMenuItem(path, "js"))
 ---
@@ -107,7 +111,6 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                             {item.label === "Scrollbar" && <ArrowsVertical slot="iconBefore" />}
                             {item.label === "Scrollspy" && <SegmentedNav slot="iconBefore" />}
                             {item.label === "Input group" && <Search slot="iconBefore" />}
-                            {item.label === "Sidebar" && <LayoutSidebarInset slot="iconBefore" />}
                             {item.label === "Tabs" && <SegmentedNav slot="iconBefore" />}
                             {item.label === "Text and Icons" && <Type slot="iconBefore" />}
                             {item.label === "Tooltip" && <MenuUp slot="iconBefore" />}
@@ -117,11 +120,8 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                             {["Popover"].includes(item.label) && (
                                 <span slot="buttonContent" class="docs-badge docs-badge-new" />
                             )}
-                            {["Menu Item", "Collapse", "Buttons"].includes(item.label) && (
+                            {["Menu Item", "Collapse", "Buttons", "Utilities"].includes(item.label) && (
                                 <span slot="buttonContent" class="docs-badge docs-badge-update" />
-                            )}
-                            {["Sidebar"].includes(item.label) && (
-                                <span slot="buttonContent" class="docs-badge docs-badge-deprecated" />
                             )}
                         </MenuItem>
                     ))
@@ -151,6 +151,9 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 {item.label === "Actions" && (
                                     <span slot="buttonContent" class="docs-badge docs-badge-experimental" />
                                 )}
+                                {["Select List"].includes(item.label) && (
+                                    <span slot="buttonContent" class="docs-badge docs-badge-update" />
+                                )}
                             </MenuItem>
                         </li>
                     ))
@@ -169,4 +172,8 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
             </ul>
         </li>
     </ul>
+
+    <MenuItem label="Deprecated" as="collapse">
+        {deprecatedMenuItems.map((item) => <MenuItem href={item.path} label={item.label} current={item.isActive} />)}
+    </MenuItem>
 </SidebarMenu>
