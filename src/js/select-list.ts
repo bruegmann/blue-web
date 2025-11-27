@@ -33,7 +33,6 @@ class SelectList extends HTMLElement {
     activeIndex: number
     items: HTMLElement[]
     inputElement: HTMLElement | null
-    // Neu: Referenzen für Beobachtung
     slotElement: HTMLSlotElement | null
     observer: MutationObserver | null
 
@@ -182,9 +181,9 @@ class SelectList extends HTMLElement {
         const selectedItem = this.items[index]
         if (selectedItem) {
             selectedItem.setAttribute("data-selected", "")
-            this.updateActiveItem()
             this.dispatchEvent(new BlSelectEvent(index, selectedItem))
             selectedItem.click()
+            this.updateActiveItem()
         }
     }
 }
