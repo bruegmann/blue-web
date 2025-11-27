@@ -11,6 +11,7 @@ interface GrabItem {
 export interface Props {
     items: GrabItem[]
     expandable?: boolean
+    reduced?: boolean
 }
 
 const __filename = fileURLToPath(import.meta.url)
@@ -29,7 +30,7 @@ function resolveToGitHubLink(src: string) {
     return src.replace("@/", "https://github.com/bruegmann/blue-web/tree/main/")
 }
 
-const { items, expandable = true } = Astro.props
+const { items, expandable = true, reduced = false } = Astro.props
 
 const contents = items.map((item) => {
     try {
@@ -41,20 +42,12 @@ const contents = items.map((item) => {
 })
 ---
 
-<div class="border rounded p-3 shadow mb-3">
-    <h2>Grab the code</h2>
-
-    <p>
-        When you don't use the entire Blue Web library, you can also just copy and paste the required code into your own
-        project.
-    </p>
-
-    <ol>
-        {
-            items.map((item, i) => (
+{
+    reduced ? (
+        <ol class="list-unstyled mb-0">
+            {items.map((item, i) => (
                 <li>
-                    <strong>
-                        Copy and paste the following code into your project. Source:{" "}
+                    <strong class="d-block p-3 py-1">
                         <a href={resolveToGitHubLink(item.src)}>{item.src}</a>
                     </strong>
                     <Code
@@ -64,7 +57,33 @@ const contents = items.map((item) => {
                         client:only
                     />
                 </li>
-            ))
-        }
-    </ol>
-</div>
+            ))}
+        </ol>
+    ) : (
+        <div class="border rounded p-3 shadow mb-3">
+            <h2>Grab the code</h2>
+
+            <p>
+                When you don't use the entire Blue Web library, you can also just copy and paste the required code into
+                your own project.
+            </p>
+
+            <ol>
+                {items.map((item, i) => (
+                    <li>
+                        <strong>
+                            Copy and paste the following code into your project. Source:{" "}
+                            <a href={resolveToGitHubLink(item.src)}>{item.src}</a>
+                        </strong>
+                        <Code
+                            code={contents[i]}
+                            language={path.extname(item.src).replace(".", "")}
+                            expandable={expandable}
+                            client:only
+                        />
+                    </li>
+                ))}
+            </ol>
+        </div>
+    )
+}
