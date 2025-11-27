@@ -114,11 +114,15 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                             {item.label === "Utilities" && <Tools slot="iconBefore" />}
                             {item.label === "Visibility" && <EyeSlash slot="iconBefore" />}
 
-                            {["Popover"].includes(item.label) && <span class="docs-badge docs-badge-new" />}
-                            {["Menu Item", "Collapse", "Buttons"].includes(item.label) && (
-                                <span class="docs-badge docs-badge-update" />
+                            {["Popover"].includes(item.label) && (
+                                <span slot="buttonContent" class="docs-badge docs-badge-new" />
                             )}
-                            {["Sidebar"].includes(item.label) && <span class="docs-badge docs-badge-deprecated" />}
+                            {["Menu Item", "Collapse", "Buttons"].includes(item.label) && (
+                                <span slot="buttonContent" class="docs-badge docs-badge-update" />
+                            )}
+                            {["Sidebar"].includes(item.label) && (
+                                <span slot="buttonContent" class="docs-badge docs-badge-deprecated" />
+                            )}
                         </MenuItem>
                     ))
                 }
@@ -144,7 +148,9 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 {item.label === "Utils" && <Tools slot="iconBefore" />}
                                 {item.label === "View Transition API" && <BarChartSteps slot="iconBefore" />}
 
-                                {item.label === "Actions" && <span class="docs-badge docs-badge-experimental" />}
+                                {item.label === "Actions" && (
+                                    <span slot="buttonContent" class="docs-badge docs-badge-experimental" />
+                                )}
                             </MenuItem>
                         </li>
                     ))
