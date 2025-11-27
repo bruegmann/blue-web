@@ -10906,6 +10906,17 @@ body {
     margin: 0 !important;
 }
 
+.blue-empty-message {
+    --message: "No items found.";
+    &:empty::before {
+        content: var(--message);
+        color: var(--bs-secondary-color);
+        display: flex;
+        padding: 1rem;
+        justify-content: center;
+    }
+}
+
 .blue-loading {
     background-color: $primary;
 }

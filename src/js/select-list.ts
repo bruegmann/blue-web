@@ -1,3 +1,16 @@
+class BlSelectEvent extends Event {
+    static readonly eventName = "bl-select"
+
+    readonly index: number
+    readonly item: HTMLElement
+
+    constructor(index: number, item: HTMLElement) {
+        super(BlSelectEvent.eventName, { bubbles: true, composed: true })
+        this.index = index
+        this.item = item
+    }
+}
+
 /**
  * A Web Component that provides a keyboard-accessible selectable list, typically used for dropdowns or autocomplete lists.
  * Together with `popover` and CSS Anchoring, it's also useful to create a dropdown list.
@@ -5,20 +18,24 @@
  *
  * The Web Component will automatically set attributes for accessibility.
  *
- * @element blue-select-list
+ * @element bl-select-list
  * @attr {string} for - The id of the input element to associate as the combobox controller.
+ * @attr {string} active-class - The CSS class name to apply to the active item (default: "active").
  * @slot - The list options.
  * @example
  * <input id="my-input" />
- * <blue-select-list for="my-input">
+ * <bl-select-list for="my-input">
  *   <div>Option 1</div>
  *   <div>Option 2</div>
- * </blue-select-list>
+ * </bl-select-list>
  */
-export class SelectList extends HTMLElement {
+class SelectList extends HTMLElement {
     activeIndex: number
     items: HTMLElement[]
     inputElement: HTMLElement | null
+    // Neu: Referenzen für Beobachtung
+    slotElement: HTMLSlotElement | null
+    observer: MutationObserver | null
 
     constructor() {
         super()
@@ -28,14 +45,21 @@ export class SelectList extends HTMLElement {
         this.activeIndex = -1
         this.items = []
         this.inputElement = null
+        this.slotElement = null
+        this.observer = null
+    }
+
+    get activeClass(): string {
+        return this.getAttribute("active-class") || "active"
     }
 
     connectedCallback() {
         this.setAttribute("role", "listbox")
         this.tabIndex = -1
         this.updateItems()
+        this.syncActiveIndexFromDataSelected()
+        this.updateActiveItem()
 
-        // Input zuweisen über Attribut oder fallback
         const inputId = this.getAttribute("for")
         this.inputElement = inputId ? document.getElementById(inputId) : null
 
@@ -43,19 +67,63 @@ export class SelectList extends HTMLElement {
             this.inputElement.setAttribute("role", "combobox")
             this.inputElement.setAttribute("aria-controls", this.id)
             this.inputElement.setAttribute("aria-expanded", "true")
-
             this.inputElement.addEventListener("keydown", this.onKeyDown.bind(this))
         }
 
         this.addEventListener("keydown", this.onKeyDown.bind(this))
 
         this.addEventListener("click", (e) => {
-            const target = e.target instanceof Element ? e.target.closest("[data-blue-select-list-index]") : null
-            if (target && target.hasAttribute("data-blue-select-list-index")) {
-                const index = Number(target.getAttribute("data-blue-select-list-index"))
+            const target = e.target instanceof Element ? e.target.closest("[data-select-list-index]") : null
+            if (target && target.hasAttribute("data-select-list-index")) {
+                const index = Number(target.getAttribute("data-select-list-index"))
                 this.select(index)
             }
         })
+
+        this.observer = new MutationObserver((mutations) => {
+            if (mutations.some((m) => m.type === "childList")) {
+                this.handleChildrenChanged()
+            }
+
+            if (mutations.some((m) => m.type === "attributes" && m.attributeName === "data-selected")) {
+                this.syncActiveIndexFromDataSelected()
+                this.updateActiveItem()
+            }
+        })
+        this.observer.observe(this, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ["data-selected"]
+        })
+
+        this.slotElement = this.shadowRoot?.querySelector("slot") as HTMLSlotElement | null
+        this.slotElement?.addEventListener("slotchange", this.handleChildrenChanged)
+    }
+
+    disconnectedCallback() {
+        this.observer?.disconnect()
+        this.observer = null
+        this.slotElement?.removeEventListener("slotchange", this.handleChildrenChanged)
+    }
+
+    handleChildrenChanged = () => {
+        const previousActiveId = this.items[this.activeIndex]?.id
+        this.updateItems()
+        if (previousActiveId) {
+            const newIndex = this.items.findIndex((el) => el.id === previousActiveId)
+            this.activeIndex = newIndex >= 0 ? newIndex : -1
+        } else {
+            this.activeIndex = -1
+        }
+        this.updateActiveItem()
+    }
+
+    syncActiveIndexFromDataSelected() {
+        const selectedIndex = this.items.findIndex((el) => el.hasAttribute("data-selected"))
+        if (selectedIndex >= 0) {
+            this.activeIndex = selectedIndex
+        }
     }
 
     updateItems() {
@@ -64,7 +132,7 @@ export class SelectList extends HTMLElement {
             if (!el.hasAttribute("id")) {
                 el.setAttribute("id", `${this.id}-option-${i}`)
             }
-            el.setAttribute("data-blue-select-list-index", i.toString())
+            el.setAttribute("data-select-list-index", i.toString())
             el.setAttribute("aria-selected", "false")
             el.setAttribute("role", "option")
             el.tabIndex = -1
@@ -83,15 +151,19 @@ export class SelectList extends HTMLElement {
             this.activeIndex = (this.activeIndex - 1 + this.items.length) % this.items.length
             this.updateActiveItem()
         } else if (e.key === "Enter" && this.activeIndex >= 0) {
+            e.preventDefault()
             const item = this.items[this.activeIndex]
             item?.click()
         }
     }
 
     updateActiveItem() {
+        const activeClassNames = this.activeClass.split(" ")
         this.items.forEach((el, i) => {
             const active = i === this.activeIndex
-            el.classList.toggle("active", active)
+            activeClassNames.forEach((activeClassName) => {
+                el.classList.toggle(activeClassName, active)
+            })
             el.setAttribute("aria-selected", active.toString())
         })
 
@@ -99,25 +171,27 @@ export class SelectList extends HTMLElement {
         if (activeItem && this.inputElement) {
             this.inputElement.setAttribute("aria-activedescendant", activeItem.id)
             activeItem.scrollIntoView({ block: "nearest" })
+        } else if (this.inputElement) {
+            this.inputElement.removeAttribute("aria-activedescendant")
         }
     }
 
     select(index: number) {
         this.activeIndex = index
-        this.updateActiveItem()
+        this.items.forEach((el) => el.removeAttribute("data-selected"))
         const selectedItem = this.items[index]
         if (selectedItem) {
-            // Fire a custom event with the selected item and index
-            this.dispatchEvent(
-                new CustomEvent("bl-select", {
-                    detail: { index, item: selectedItem },
-                    bubbles: true,
-                    composed: true
-                })
-            )
+            selectedItem.setAttribute("data-selected", "")
+            this.updateActiveItem()
+            this.dispatchEvent(new BlSelectEvent(index, selectedItem))
             selectedItem.click()
         }
     }
 }
 
-customElements.define("bl-select-list", SelectList)
+if (!customElements.get("bl-select-list")) {
+    customElements.define("bl-select-list", SelectList)
+}
+
+export { SelectList, BlSelectEvent }
+export default SelectList
