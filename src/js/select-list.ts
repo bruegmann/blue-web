@@ -182,7 +182,6 @@ class SelectList extends HTMLElement {
         if (selectedItem) {
             selectedItem.setAttribute("data-selected", "")
             this.dispatchEvent(new BlSelectEvent(index, selectedItem))
-            selectedItem.click()
             this.updateActiveItem()
         }
     }

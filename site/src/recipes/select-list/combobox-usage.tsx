@@ -112,6 +112,31 @@ export default function Usage() {
 
                 <Combobox></Combobox>
             </div>
+
+            <div className="col">
+                <h3>Grouped with input</h3>
+
+                <div className="input-group">
+                    <input
+                        type="text"
+                        className="form-control"
+                        value={selectedValue}
+                        onChange={({ target }) => setSelectedValue(target.value)}
+                    />
+                    <Combobox
+                        value={selectedValue}
+                        onChange={setSelectedValue}
+                        className="rounded-end blue-btn-square"
+                        popoverEnd
+                        labelHidden
+                    >
+                        <ComboboxOption value="Apple" />
+                        <ComboboxOption value="Banana" />
+                        <ComboboxOption value="Cherry" />
+                        <ComboboxOption value="Date" />
+                    </Combobox>
+                </div>
+            </div>
         </div>
     )
 }

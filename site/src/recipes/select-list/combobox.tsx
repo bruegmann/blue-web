@@ -1,5 +1,15 @@
 import { default as Button, type ButtonVariant, type ButtonColor } from "blue-react/dist/components/Button"
-import { createContext, useContext, useId, useRef, useState, type CSSProperties, type FC, type ReactNode } from "react"
+import {
+    createContext,
+    useContext,
+    useEffect,
+    useId,
+    useRef,
+    useState,
+    type CSSProperties,
+    type FC,
+    type ReactNode
+} from "react"
 import { CheckLg, ChevronDown, Search } from "react-bootstrap-icons"
 import clsx from "clsx"
 
@@ -17,8 +27,20 @@ const SelectedContext = createContext("")
 const SearchContext = createContext("")
 
 const t = {
-    de: { Select: "Auswählen", Selected: "Ausgewählt", Search: "Suchen", NoItemsFound: "Keine Einträge gefunden." },
-    en: { Select: "Select", Selected: "Selected", Search: "Search", NoItemsFound: "No items found." }
+    de: {
+        Select: "Auswählen",
+        Selected: "Ausgewählt",
+        NothingSelected: "Nichts ausgewählt",
+        Search: "Suchen",
+        NoItemsFound: "Keine Einträge gefunden."
+    },
+    en: {
+        Select: "Select",
+        Selected: "Selected",
+        NothingSelected: "Nothing selected",
+        Search: "Search",
+        NoItemsFound: "No items found."
+    }
 }[navigator.language.startsWith("de") ? "de" : "en"]
 
 export function ComboboxOption({
@@ -41,6 +63,7 @@ export function ComboboxOption({
     return (
         <button
             className={clsx("list-group-item list-group-item-action d-flex", className)}
+            type="button"
             style={{ border: "0", ...style }}
             data-value={value}
             data-selected={isThisSelected ? "" : undefined}
@@ -58,12 +81,14 @@ export function ComboboxOption({
 
 export function Combobox({
     children,
-    value = "",
+    value,
     onChange,
     variant,
     color,
     className,
-    style
+    style,
+    popoverEnd,
+    labelHidden
 }: {
     children?: ReactNode
     value?: string
@@ -72,6 +97,8 @@ export function Combobox({
     color?: ButtonColor
     className?: string
     style?: CSSProperties
+    popoverEnd?: boolean
+    labelHidden?: boolean
 }) {
     const [search, setSearch] = useState("")
     const [selected, setSelected] = useState("")
@@ -82,12 +109,14 @@ export function Combobox({
     const popoverId = useId()
     const listboxId = useId()
 
-    const selectedValue = value || selected
+    const selectedValue = value === undefined ? selected : value
+    const selectedValueDisplay = selectedValue.trim()
 
     return (
         <>
             <Button
-                label={selectedValue || `${t.Select}...`}
+                label={selectedValueDisplay || `${t.Select}...`}
+                labelHidden={labelHidden}
                 iconAfter={<ChevronDown />}
                 popoverTarget={popoverId}
                 variant={variant}
@@ -95,7 +124,11 @@ export function Combobox({
                 aria-haspopup="listbox"
                 className={className}
                 style={style}
-            />
+            >
+                <span className="visually-hidden">
+                    {selectedValueDisplay ? `${t.Selected}: ${selectedValueDisplay}` : t.NothingSelected}
+                </span>
+            </Button>
 
             <div
                 ref={popoverRef}
@@ -106,7 +139,9 @@ export function Combobox({
                         inputRef.current?.focus()
                     }
                 }}
-                className="blue-anchored blue-anchored-fallback rounded-bottom-4 border shadow bg-body mt-1"
+                className={clsx("blue-anchored blue-anchored-fallback border rounded-bottom-4 shadow bg-body mt-1", {
+                    "blue-anchored-end": popoverEnd
+                })}
                 style={{ borderRadius: "calc(var(--bs-border-radius-xl) + .5rem)" }}
             >
                 <div className="m-1">
@@ -130,7 +165,7 @@ export function Combobox({
                 </div>
 
                 <BlSelectList
-                    class="blue-empty-message list-group list-group-flush overflow-auto rounded-0 rounded-bottom-4"
+                    class="blue-empty-message list-group list-group-flush overflow-auto"
                     style={{ "--message": `"${t.NoItemsFound}"`, maxHeight: "400px" } as CSSProperties}
                     active-class={`bg-${color || "primary"}-subtle text-${color || "primary"}-emphasis`}
                     id={listboxId}
