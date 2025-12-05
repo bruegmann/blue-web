@@ -126,7 +126,17 @@ class SelectList extends HTMLElement {
     }
 
     updateItems() {
-        this.items = Array.from(this.children) as HTMLElement[]
+        const selectableSelectors = [
+            "button:not([disabled])",
+            "a[href]",
+            "input:not([disabled])",
+            "select:not([disabled])",
+            "textarea:not([disabled])",
+            '[tabindex]:not([tabindex="-1"])',
+            '[role="option"]'
+        ].join(", ")
+
+        this.items = Array.from(this.querySelectorAll(selectableSelectors)) as HTMLElement[]
         this.items.forEach((el, i) => {
             if (!el.hasAttribute("id")) {
                 el.setAttribute("id", `${this.id}-option-${i}`)
