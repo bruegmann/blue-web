@@ -120,9 +120,6 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                             {["Popover"].includes(item.label) && (
                                 <span slot="buttonContent" class="docs-badge docs-badge-new" />
                             )}
-                            {["Menu Item", "Collapse", "Buttons", "Utilities"].includes(item.label) && (
-                                <span slot="buttonContent" class="docs-badge docs-badge-update" />
-                            )}
                         </MenuItem>
                     ))
                 }
