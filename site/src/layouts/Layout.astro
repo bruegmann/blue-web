@@ -65,15 +65,47 @@ const { title, description } = Astro.props
             <Fragment slot="header">
                 <HeaderTitle logo="blue.svg" logoAlt="Blue logo" appTitle="Blue Web" href="." />
 
-                <nav class="docs-nav">
-                    <div class="navbar-nav">
-                        <a href="https://bruegmann.github.io/blue-web" class="nav-link active" aria-current="page">
-                            Web
-                        </a>
-                        <a href="https://bruegmann.github.io/blue-react" class="nav-link"> React </a>
-                        <a href="https://bruegmann.github.io/blue-blazor" class="nav-link"> Blazor </a>
+                <button
+                    type="button"
+                    class="btn blue-menu-item icon-link d-flex blue-btn-square"
+                    popovertarget="docsNavPopover"
+                    ><span class="visually-hidden">Navigate to a Blue library</span><span
+                        class="blue-btn-icon-wrapper"
+                        aria-hidden="true"
+                        ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
+                            ><path
+                                fill-rule="evenodd"
+                                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"
+                            ></path></svg
+                        ></span
+                    ></button
+                >
+                <div
+                    id="docsNavPopover"
+                    popover=""
+                    class="blue-anchored blue-anchored-fallback border rounded-4 shadow"
+                >
+                    <div class="vstack">
+                        <a
+                            class="btn blue-menu-item icon-link current d-flex"
+                            href="https://bruegmann.github.io/blue-web"
+                            aria-current="page"
+                            ><span class="blue-btn-icon-wrapper" aria-hidden="true"></span><span class="text-truncate"
+                                >Blue Web</span
+                            ></a
+                        >
+                        <a class="btn blue-menu-item icon-link d-flex" href="https://bruegmann.github.io/blue-react"
+                            ><span class="blue-btn-icon-wrapper" aria-hidden="true"></span><span class="text-truncate"
+                                >Blue React</span
+                            ></a
+                        >
+                        <a class="btn blue-menu-item icon-link d-flex" href="https://bruegmann.github.io/blue-blazor"
+                            ><span class="blue-btn-icon-wrapper" aria-hidden="true"></span><span class="text-truncate"
+                                >Blue Blazor</span
+                            ></a
+                        >
                     </div>
-                </nav>
+                </div>
 
                 <Search />
 
@@ -85,6 +117,7 @@ const { title, description } = Astro.props
                         href="https://github.com/bruegmann/blue-web"
                         target="_blank"
                         rel="noopener noreferrer"
+                        className="d-none d-md-flex"
                     >
                         <CodeSquare slot="icon" />
                     </MenuItem>
@@ -109,6 +142,10 @@ const { title, description } = Astro.props
                             </a>
                             {" - "}
                             <a href="license-report">License Report</a>
+                            {" - "}
+                            <a href="https://github.com/bruegmann/blue-web" target="_blank" rel="noopener noreferrer">
+                                Code on GitHub
+                            </a>
                             {" - "}
                             <a href="https://bruegmann.github.io/" target="_blank" rel="noopener noreferrer">
                                 More projects
