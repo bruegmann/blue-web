@@ -1,6 +1,16 @@
+/**
+ * Odometer web component for animated number display
+ *
+ * @element bl-odometer
+ * @attr {number} value - Current value to display
+ * @attr {number} max - Maximum value before showing "+"
+ * @fires change - Fired when value changes
+ * @cssprop --bl-odometer-duration - Transition duration for number animation (default: 0.4s)
+ */
 class Odometer extends HTMLElement {
     private wrapper!: HTMLSpanElement
     private _initialized = false
+    private _resetTimer: number | null = null
 
     static get observedAttributes() {
         return ["value", "max"]
@@ -30,12 +40,11 @@ class Odometer extends HTMLElement {
           text-align: center;
           overflow: hidden;
           line-height: 1em;
-          transition: background-color 0.3s;
         }
         .numbers {
           display: flex;
           flex-direction: column;
-          transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+          transition: transform var(--bl-odometer-duration, 0.4s) cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .numbers span {
           display: flex;
@@ -75,7 +84,10 @@ class Odometer extends HTMLElement {
     attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
         if (newValue !== oldValue && this._initialized) {
             if (name === "value") {
-                this.updateValue(parseInt(newValue ?? "0", 10))
+                const prev = parseInt(oldValue ?? "0", 10) || 0
+                const next = parseInt(newValue ?? "0", 10) || 0
+                this.applyChangeState(prev, next)
+                this.updateValue(next)
             } else if (name === "max") {
                 this.rebuildNumbers()
             }
@@ -91,12 +103,37 @@ class Odometer extends HTMLElement {
         this.setAttribute("aria-label", displayValue)
     }
 
+    private clearResetTimer() {
+        if (this._resetTimer !== null) {
+            clearTimeout(this._resetTimer)
+            this._resetTimer = null
+        }
+    }
+
+    private scheduleResetChange() {
+        this.clearResetTimer()
+        const delay = 3000
+        this._resetTimer = window.setTimeout(() => {
+            this.removeAttribute("data-change")
+            this._resetTimer = null
+        }, delay)
+    }
+
+    private applyChangeState(previous: number, next: number) {
+        if (next > previous) {
+            this.setAttribute("data-change", "up")
+            this.scheduleResetChange()
+        } else if (next < previous) {
+            this.setAttribute("data-change", "down")
+            this.scheduleResetChange()
+        }
+    }
+
     set value(value: number) {
         const current = this.value
         if (current !== value) {
             this.setAttribute("value", String(value))
             if (this._initialized) {
-                this.updateValue(value)
                 this.dispatchEvent(
                     new CustomEvent("change", {
                         detail: { value },
