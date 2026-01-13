@@ -6,8 +6,7 @@
     "type": "module",
     "homepage": "https://bruegmann.github.io/blue-web/v1",
     "repository": {
-        "type": "git",
-        "url": "https://github.com/bruegmann/blue-react.git"
+        "url": "https://github.com/bruegmann/blue-web"
     },
     "bugs": {
         "url": "https://github.com/bruegmann/blue-react/issues"
