@@ -338,6 +338,31 @@ This variant is especially useful for search input.
 
 
 
+
+### Intro
+
+Styles for a login screen.
+
+```html
+<div style="background: var(--blue-app-bg)">
+    <div class="sign-in-screen">
+        <div class="sign-in-container mx-1">
+            <div class="bg-body rounded-3 shadow-lg px-4 py-5">
+                <div class="text-center">
+                    <img style="max-width: 100px;" src="blue.svg" alt="Logo" />
+                    <h1 class="h2 mt-4 mb-3">Hello World</h1>
+                </div>
+                Here could be a sign in form.
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+
+
+
+
 ## Layout
 
 Blue Web offers a set of code to create a layout with a header, collapsible sidebar, and a main content area.
@@ -1812,11 +1837,23 @@ A Web Component that displays a numeric value with a smooth rolling animation �
 It’s designed for use in badges, notifications, dashboards, or any place where numbers change dynamically.
 
 ```html
-<bl-odometer id="basicOdometer"></bl-odometer>
+<bl-odometer></bl-odometer>
 
 <div class="btn-group" role="group">
-    <button class="btn blue-btn-soft-secondary" onclick="basicOdometer.value--" aria-label="Decrement">➖</button>
-    <button class="btn blue-btn-soft-secondary" onclick="basicOdometer.value++" aria-label="Increment">➕</button>
+    <button
+        class="btn blue-btn-soft-secondary"
+        onclick="this.parentNode.previousElementSibling.value--"
+        aria-label="Decrement"
+    >
+        ➖
+    </button>
+    <button
+        class="btn blue-btn-soft-secondary"
+        onclick="this.parentNode.previousElementSibling.value++"
+        aria-label="Increment"
+    >
+        ➕
+    </button>
 </div>
 ```
 
@@ -1826,24 +1863,130 @@ It’s designed for use in badges, notifications, dashboards, or any place where
 <button type="button" class="btn btn-outline-primary">
     <span aria-hidden="true">🔔</span> Notifications
     <span class="badge bg-primary-subtle text-primary-emphasis">
-        <bl-odometer id="badgeOdometer" value="2"></bl-odometer>
+        <bl-odometer value="2"></bl-odometer>
     </span>
 </button>
 
 <div class="btn-group" role="group">
-    <button class="btn blue-btn-soft-secondary" onclick="badgeOdometer.value--" aria-label="Decrement">➖</button>
-    <button class="btn blue-btn-soft-secondary" onclick="badgeOdometer.value++" aria-label="Increment">➕</button>
+    <button
+        class="btn blue-btn-soft-secondary"
+        onclick="this.parentNode.previousElementSibling.querySelector('bl-odometer').value--"
+        aria-label="Decrement"
+    >
+        ➖
+    </button>
+    <button
+        class="btn blue-btn-soft-secondary"
+        onclick="this.parentNode.previousElementSibling.querySelector('bl-odometer').value++"
+        aria-label="Increment"
+    >
+        ➕
+    </button>
 </div>
 ```
 
 ### Custom max number
 
 ```html
-<bl-odometer id="maxOdometer" value="89" max="99"></bl-odometer>
+<bl-odometer value="89" max="99"></bl-odometer>
 
 <div class="btn-group" role="group">
-    <button class="btn blue-btn-soft-secondary" onclick="maxOdometer.value--" aria-label="Decrement">➖</button>
-    <button class="btn blue-btn-soft-secondary" onclick="maxOdometer.value++" aria-label="Increment">➕</button>
+    <button
+        class="btn blue-btn-soft-secondary"
+        onclick="this.parentNode.previousElementSibling.value--"
+        aria-label="Decrement"
+    >
+        ➖
+    </button>
+    <button
+        class="btn blue-btn-soft-secondary"
+        onclick="this.parentNode.previousElementSibling.value++"
+        aria-label="Increment"
+    >
+        ➕
+    </button>
+</div>
+```
+
+### Style based on change
+
+When the value changes, the element will get attribute `data-change="up"` or `data-change="down"` depending on if the number increased or decreased.
+This allows you to add styling based on the new state. After 3 seconds the attribute will be reset.
+
+```html
+<span class="badge rounded-pill bg-body-tertiary text-body border">
+    <style>
+        @scope {
+            :scope {
+                transition:
+                    background-color 0.3s,
+                    color 0.4s;
+            }
+
+            :scope:has([data-change="up"]) {
+                background-color: var(--bs-success-bg-subtle) !important;
+                color: var(--bs-success-text-emphasis) !important;
+                border-color: var(--bs-success-bg-subtle) !important;
+            }
+
+            :scope:has([data-change="down"]) {
+                background-color: var(--bs-danger-bg-subtle) !important;
+                color: var(--bs-danger-text-emphasis) !important;
+                border-color: var(--bs-danger-bg-subtle) !important;
+            }
+
+            bl-odometer[data-change="up"]::after {
+                content: "↑";
+            }
+            bl-odometer[data-change="down"]::after {
+                content: "↓";
+            }
+        }
+    </style>
+
+    <bl-odometer></bl-odometer>
+</span>
+
+<div class="btn-group" role="group">
+    <button
+        class="btn blue-btn-soft-secondary"
+        onclick="this.parentNode.previousElementSibling.querySelector('bl-odometer').value--"
+        aria-label="Decrement"
+    >
+        ➖
+    </button>
+    <button
+        class="btn blue-btn-soft-secondary"
+        onclick="this.parentNode.previousElementSibling.querySelector('bl-odometer').value++"
+        aria-label="Increment"
+    >
+        ➕
+    </button>
+</div>
+```
+
+### Change transition duration
+
+You can change the duration using CSS variable `--bl-odometer-duration`. Default value is `0.4s`. In this example it is set to `5s`:
+
+```html
+<bl-odometer style="--bl-odometer-duration: 5s"></bl-odometer>
+
+<div class="btn-group" role="group">
+    <button
+        class="btn blue-btn-soft-secondary"
+        onclick="this.parentNode.previousElementSibling.value--"
+        aria-label="Decrement"
+    >
+        ➖
+    </button>
+    <button
+        class="btn blue-btn-soft-secondary"
+        onclick="this.parentNode.previousElementSibling.value++"
+        aria-label="Increment"
+    >
+        ➕
+    </button>
 </div>
 ```
 
