@@ -2,8 +2,8 @@ window.blueWeb = window.blueWeb || {}
 
 window.blueWeb.progress = {
     progress: 0,
-    interval: null as any,
-    showTimeout: null as any,
+    interval: null as number | null,
+    showTimeout: null as number | null,
     isVisible: false
 }
 
