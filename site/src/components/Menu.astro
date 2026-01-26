@@ -117,9 +117,9 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                             {item.label === "Utilities" && <Tools slot="iconBefore" />}
                             {item.label === "Visibility" && <EyeSlash slot="iconBefore" />}
 
-                            {["Popover"].includes(item.label) && (
+                            {/* {["Popover"].includes(item.label) && (
                                 <span slot="buttonContent" class="docs-badge docs-badge-new" />
-                            )}
+                            )} */}
                         </MenuItem>
                     ))
                 }
@@ -148,7 +148,7 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 {item.label === "Actions" && (
                                     <span slot="buttonContent" class="docs-badge docs-badge-experimental" />
                                 )}
-                                {["Select List"].includes(item.label) && (
+                                {["Progress"].includes(item.label) && (
                                     <span slot="buttonContent" class="docs-badge docs-badge-update" />
                                 )}
                             </MenuItem>
