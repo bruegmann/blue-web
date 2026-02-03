@@ -303,6 +303,25 @@ With container queries, you can apply breaks based on a custom container.
 
 
 
+## Header
+
+Provided helper classes designed to be used inside a header.
+
+```html
+<header class="blue-header-title d-inline-flex gap-2 fw-medium align-items-center">
+    <a href="#">
+        <img src="blue.svg" alt="Logo" class="blue-header-title-image" />
+    </a>
+
+    <a href="#">AppTitle</a>
+</header>
+```
+
+
+
+
+
+
 ## Input group
 
 Special variant of [input group](https://getbootstrap.com/docs/5.3/forms/input-group).
@@ -345,11 +364,11 @@ Styles for a login screen.
 
 ```html
 <div style="background: var(--blue-app-bg)">
-    <div class="sign-in-screen">
-        <div class="sign-in-container mx-1">
+    <div class="blue-intro">
+        <div class="blue-intro-container mx-1">
             <div class="bg-body rounded-3 shadow-lg px-4 py-5">
                 <div class="text-center">
-                    <img style="max-width: 100px;" src="blue.svg" alt="Logo" />
+                    <img class="blue-intro-image" src="blue.svg" alt="Logo" />
                     <h1 class="h2 mt-4 mb-3">Hello World</h1>
                 </div>
                 Here could be a sign in form.
