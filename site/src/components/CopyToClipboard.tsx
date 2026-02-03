@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react"
+import Button from "blue-react/dist/components/button"
+import { useEffect, useState, type ComponentProps } from "react"
 import { Clipboard, ClipboardCheck } from "react-bootstrap-icons"
 
 export interface CopyToClipboardProps {
     content: string
-    className?: string
 }
 
-export default function CopyToClipboard({ content, className }: CopyToClipboardProps) {
+export default function CopyToClipboard({ content, ...rest }: CopyToClipboardProps & ComponentProps<typeof Button>) {
     const [copied, setCopied] = useState(false)
 
     useEffect(() => {
@@ -22,15 +22,15 @@ export default function CopyToClipboard({ content, className }: CopyToClipboardP
     }, [copied])
 
     return (
-        <button
-            className={`btn icon-link ${copied ? "btn-success" : "btn-primary"} ${className}`}
+        <Button
+            color={copied ? "success" : "primary"}
             onClick={() => {
                 navigator.clipboard.writeText(content)
                 setCopied(true)
             }}
-        >
-            {copied ? <ClipboardCheck /> : <Clipboard />}
-            {copied ? "Copied!" : "Copy"}
-        </button>
+            iconBefore={copied ? <ClipboardCheck /> : <Clipboard />}
+            label={copied ? "Copied!" : "Copy"}
+            {...rest}
+        />
     )
 }

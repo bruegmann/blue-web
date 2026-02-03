@@ -24,6 +24,7 @@ import {
     MenuUp,
     Palette,
     PlayBtnFill,
+    Postcard,
     Search,
     SegmentedNav,
     Tools,
@@ -103,6 +104,7 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                             {item.label === "Buttons" && <PlayBtnFill slot="iconBefore" />}
                             {item.label === "Collapse" && <CardHeading slot="iconBefore" />}
                             {item.label === "Container Grid" && <Columns slot="iconBefore" />}
+                            {item.label === "Header" && <CardHeading slot="iconBefore" />}
                             {item.label === "Layout" && <LayoutTextWindowReverse slot="iconBefore" />}
                             {item.label === "Menu Item" && <MenuButton slot="iconBefore" />}
                             {item.label === "Modal" && <WindowStack slot="iconBefore" />}
@@ -111,15 +113,16 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                             {item.label === "Scrollbar" && <ArrowsVertical slot="iconBefore" />}
                             {item.label === "Scrollspy" && <SegmentedNav slot="iconBefore" />}
                             {item.label === "Input group" && <Search slot="iconBefore" />}
+                            {item.label === "Intro" && <Postcard slot="iconBefore" />}
                             {item.label === "Tabs" && <SegmentedNav slot="iconBefore" />}
                             {item.label === "Text and Icons" && <Type slot="iconBefore" />}
                             {item.label === "Tooltip" && <MenuUp slot="iconBefore" />}
                             {item.label === "Utilities" && <Tools slot="iconBefore" />}
                             {item.label === "Visibility" && <EyeSlash slot="iconBefore" />}
 
-                            {/* {["Popover"].includes(item.label) && (
-                                <span slot="buttonContent" class="docs-badge docs-badge-new" />
-                            )} */}
+                            {["Header", "Intro"].includes(item.label) && (
+                                <span slot="buttonContent" class="docs-badge docs-badge-update" />
+                            )}
                         </MenuItem>
                     ))
                 }
