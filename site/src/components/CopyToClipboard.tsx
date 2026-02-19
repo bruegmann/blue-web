@@ -1,4 +1,4 @@
-import Button from "blue-react/dist/components/button"
+import Button from "blue-react/dist/components/button.js"
 import { useEffect, useState, type ComponentProps } from "react"
 import { Clipboard, ClipboardCheck } from "react-bootstrap-icons"
 
