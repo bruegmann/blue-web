@@ -120,7 +120,7 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                             {item.label === "Utilities" && <Tools slot="iconBefore" />}
                             {item.label === "Visibility" && <EyeSlash slot="iconBefore" />}
 
-                            {["Header", "Intro"].includes(item.label) && (
+                            {["Utilities"].includes(item.label) && (
                                 <span slot="buttonContent" class="docs-badge docs-badge-update" />
                             )}
                         </MenuItem>
@@ -151,9 +151,9 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 {item.label === "Actions" && (
                                     <span slot="buttonContent" class="docs-badge docs-badge-experimental" />
                                 )}
-                                {["Progress"].includes(item.label) && (
+                                {/* {["Progress"].includes(item.label) && (
                                     <span slot="buttonContent" class="docs-badge docs-badge-update" />
-                                )}
+                                )} */}
                             </MenuItem>
                         </li>
                     ))
