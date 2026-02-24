@@ -14,8 +14,8 @@ Otherwise they will be visible in the dropdown menu. JavaScript detects if space
 
 ```html use:RenderBlock
 <div style="width: 460px" class="border" id="actionDemoPopover">
-    <div class="BLUE-actions" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="BLUE-actions-menu">
+    <div class="blue-actions" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="blue-actions-menu">
             <button type="button" class="blue-menu-item btn">
                 <span class="blue-menu-item-icon" aria-hidden="true">🌍</span>
                 <span class="blue-menu-item-label">Child</span>
@@ -38,7 +38,7 @@ Otherwise they will be visible in the dropdown menu. JavaScript detects if space
             </button>
         </div>
 
-        <div class="BLUE-actions-collapse" style="--blue-anchor-name: --actionDemoPopoverAnchor">
+        <div class="blue-actions-collapse" style="--blue-anchor-name: --actionDemoPopoverAnchor">
             <button type="button" popovertarget="actionDemoPopoverPopover" class="blue-anchor blue-menu-item btn px-3">
                 <span class="blue-menu-item-icon" aria-hidden="true">&#8942;</span>
                 <span class="visually-hidden">Toggle menu</span>
@@ -47,7 +47,7 @@ Otherwise they will be visible in the dropdown menu. JavaScript detects if space
             <div
                 id="actionDemoPopoverPopover"
                 popover
-                class="BLUE-actions-collapse-menu blue-anchored blue-anchored-end blue-anchored-fallback blue-menu-item-dropdown text-body gap-1 flex-column p-1"
+                class="blue-actions-collapse-menu blue-anchored blue-anchored-end blue-anchored-fallback blue-menu-item-dropdown text-body gap-1 flex-column p-1"
                 style="--blue-menu-item-dropdown-bg: var(--bs-body-bg); --display: flex;"
             >
                 <button type="button" class="blue-menu-item btn">
@@ -83,7 +83,7 @@ Otherwise they will be visible in the dropdown menu. JavaScript detects if space
 <script>
     window.actionDemoPopoverResponse = null
     document.addEventListener("DOMContentLoaded", () => {
-        actionDemoPopoverResponse = blueWeb.actions.init(document.querySelector("#actionDemoPopover .BLUE-actions"))
+        actionDemoPopoverResponse = blueWeb.actions.init(document.querySelector("#actionDemoPopover .blue-actions"))
 
         actionDemoPopoverRange.addEventListener("input", ({ target }) => {
             actionDemoPopover.style.width = `${target.value}px`
@@ -108,8 +108,8 @@ and global event listeners will be removed. Try to click the button. It will des
 
 ```html use:RenderBlock
 <div id="actionsDemoButtonGroups" class="border p-1" style="width: 460px">
-    <div class="BLUE-actions" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="BLUE-actions-menu gap-2">
+    <div class="blue-actions" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="blue-actions-menu gap-2">
             <div class="btn-group" role="group" aria-label="First group">
                 <button type="button" class="btn btn-primary">1</button>
                 <button type="button" class="btn btn-primary">2</button>
@@ -132,7 +132,7 @@ and global event listeners will be removed. Try to click the button. It will des
             </div>
         </div>
 
-        <div class="BLUE-actions-collapse" style="--blue-anchor-name: --actionsDemoButtonGroupsAnchor">
+        <div class="blue-actions-collapse" style="--blue-anchor-name: --actionsDemoButtonGroupsAnchor">
             <button
                 type="button"
                 popovertarget="actionsDemoButtonGroupsPopover"
@@ -145,7 +145,7 @@ and global event listeners will be removed. Try to click the button. It will des
             <div
                 id="actionsDemoButtonGroupsPopover"
                 popover
-                class="BLUE-actions-collapse-menu blue-anchored blue-anchored-end blue-anchored-fallback blue-menu-item-dropdown text-body gap-1 flex-column p-1"
+                class="blue-actions-collapse-menu blue-anchored blue-anchored-end blue-anchored-fallback blue-menu-item-dropdown text-body gap-1 flex-column p-1"
                 style="--blue-menu-item-dropdown-bg: var(--bs-body-bg); --display: flex;"
             >
                 <div class="btn-group" role="group" aria-label="First group">
@@ -180,7 +180,7 @@ and global event listeners will be removed. Try to click the button. It will des
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        blueWeb.actions.init(document.querySelector("#actionsDemoButtonGroups .BLUE-actions"))
+        blueWeb.actions.init(document.querySelector("#actionsDemoButtonGroups .blue-actions"))
 
         actionsDemoButtonGroupsRange.addEventListener("input", ({ target }) => {
             actionsDemoButtonGroups.style.width = `${target.value}px`

@@ -5,8 +5,8 @@ export function init(
 ) {
     const targetElement = actionsElement.parentElement || actionsElement
 
-    if (!menu) menu = actionsElement.querySelector<HTMLElement>(".BLUE-actions-menu")!
-    if (!collapseMenu) collapseMenu = actionsElement.querySelector<HTMLElement>(".BLUE-actions-collapse-menu")!
+    if (!menu) menu = actionsElement.querySelector<HTMLElement>(".blue-actions-menu")!
+    if (!collapseMenu) collapseMenu = actionsElement.querySelector<HTMLElement>(".blue-actions-collapse-menu")!
 
     function updateActions() {
         // reset
@@ -15,18 +15,18 @@ export function init(
         }
         for (const item of collapseMenu!.children) {
             ;(item as HTMLElement).style.display = ""
-            item.classList.add("BLUE-actions-collapse-visible")
+            item.classList.add("blue-actions-collapse-visible")
         }
 
         let i = 0
         for (const item of menu!.children) {
             ;(item as HTMLElement).style.display = ""
             ;(collapseMenu!.children[i] as HTMLElement).style.display = "none"
-            collapseMenu!.children[i].classList.remove("BLUE-actions-collapse-visible")
+            collapseMenu!.children[i].classList.remove("blue-actions-collapse-visible")
             if (targetElement.scrollWidth > targetElement.clientWidth) {
                 ;(item as HTMLElement).style.display = "none"
                 ;(collapseMenu!.children[i] as HTMLElement).style.display = ""
-                collapseMenu!.children[i].classList.add("BLUE-actions-collapse-visible")
+                collapseMenu!.children[i].classList.add("blue-actions-collapse-visible")
                 break
             }
             i++
