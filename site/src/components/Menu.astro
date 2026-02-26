@@ -120,7 +120,7 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                             {item.label === "Utilities" && <Tools slot="iconBefore" />}
                             {item.label === "Visibility" && <EyeSlash slot="iconBefore" />}
 
-                            {["Utilities"].includes(item.label) && (
+                            {["Utilities", "Text and Icons"].includes(item.label) && (
                                 <span slot="buttonContent" class="docs-badge docs-badge-update" />
                             )}
                         </MenuItem>
