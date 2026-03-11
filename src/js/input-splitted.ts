@@ -44,7 +44,6 @@ export class InputSplitted extends HTMLElement {
     get length() {
         return this.#length
     }
-
     set length(_length) {
         this.#length = _length
 
@@ -68,6 +67,19 @@ export class InputSplitted extends HTMLElement {
         }
 
         this.#refArray = [...this.#refArray]
+    }
+
+    #disabled = false
+    get disabled() {
+        return this.#disabled
+    }
+    set disabled(_disabled) {
+        this.#disabled = _disabled
+
+        const inputs = this.lightDom ? this.querySelectorAll("input") : this.shadowRoot!.querySelectorAll("input")
+        for (const input of inputs) {
+            input.disabled = _disabled
+        }
     }
 
     #controlClass = ""
@@ -120,6 +132,7 @@ export class InputSplitted extends HTMLElement {
     connectedCallback() {
         this.didInit = true
         this.lightDom = this.getAttribute("light-dom") !== null
+        this.disabled = this.getAttribute("disabled") !== null
         this.#initDom()
 
         this.value = this.getAttribute("value") || this.value
@@ -141,6 +154,7 @@ export class InputSplitted extends HTMLElement {
         }
         input.maxLength = 1
         input.value = this.#valueArray[i] || ""
+        input.disabled = this.disabled
         input.addEventListener("input", ({ target }) => {
             const inputTarget = target as HTMLInputElement
             if (inputTarget.value !== "" && this.#refArray[i + 1]) {
@@ -225,11 +239,15 @@ export class InputSplitted extends HTMLElement {
                     if (m.attributeName === "light-dom") {
                         this.lightDom = this.getAttribute("light-dom") !== null
                     }
+
+                    if (m.attributeName === "disabled") {
+                        this.disabled = this.getAttribute("disabled") !== null
+                    }
                 })
             })
 
         this.#observer.observe(this, {
-            attributeFilter: ["value", "length", "control-class", "control-1-id", "light-dom"],
+            attributeFilter: ["value", "length", "control-class", "control-1-id", "light-dom", "disabled"],
             attributeOldValue: true,
             childList: true,
             subtree: true
