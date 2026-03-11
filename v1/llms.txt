@@ -1856,6 +1856,24 @@ Group of input fields. Perfect e.g. for entering PIN or TOTP.
 <bl-input-splitted length="4"></bl-input-splitted>
 ```
 
+### Disabled
+
+```html
+<bl-input-splitted id="disabledInputSplitted" length="4" disabled></bl-input-splitted>
+<button type="button" class="btn blue-btn-soft-secondary" onclick="toggleDisabled()">Toggle disabled</button>
+
+<script>
+    function toggleDisabled() {
+        const el = document.getElementById("disabledInputSplitted")
+        if (el.hasAttribute("disabled")) {
+            el.removeAttribute("disabled")
+        } else {
+            el.setAttribute("disabled", "")
+        }
+    }
+</script>
+```
+
 ### Styling With CSS Variables
 
 Even if `light-dom` isn't enabled, you can still use CSS variables to style the input elements.
