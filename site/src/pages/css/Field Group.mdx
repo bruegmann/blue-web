@@ -1,0 +1,62 @@
+---
+layout: $/layouts/DocsLayout.astro
+---
+
+import RenderBlock from "$/components/RenderBlock.astro"
+import Grab from "$/components/Grab.astro"
+
+# Field Group
+
+## Basic usage
+
+```html use:RenderBlock
+<details class="blue-field-group">
+    <summary role="heading" aria-level="4">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1em"
+            height="1em"
+            fill="currentColor"
+            aria-hidden="true"
+            class="blue-field-group-chevron bi bi-chevron-right fs-6 opacity-50"
+            viewBox="0 0 16 16"
+        >
+            <path
+                fill-rule="evenodd"
+                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
+            />
+        </svg>
+
+        My field group heading
+    </summary>
+    Lorem ipsum
+</details>
+```
+
+## Styled heading
+
+```html use:RenderBlock
+<details class="blue-field-group">
+    <summary role="heading" aria-level="4" class="blue-page-header h2">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1em"
+            height="1em"
+            fill="currentColor"
+            aria-hidden="true"
+            class="blue-field-group-chevron bi bi-chevron-right fs-6 opacity-50"
+            viewBox="0 0 16 16"
+        >
+            <path
+                fill-rule="evenodd"
+                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
+            />
+        </svg>
+
+        My field group heading
+    </summary>
+    Lorem ipsum
+</details>
+```
+
+<Grab items={[{ src: "@/dist/styles/_field-group.scss" }]} />
