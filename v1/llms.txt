@@ -175,6 +175,42 @@ Element with class `blue-collapse-chevron` will be rotated to `90deg` by default
 </details>
 ```
 
+### Field group
+
+```html
+<details class="blue-collapse">
+    <summary role="heading" aria-level="4">
+        <header class="blue-collapse-header d-flex align-items-center gap-1 h2 blue-page-header">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                fill="currentColor"
+                aria-hidden="true"
+                class="blue-collapse-chevron bi bi-chevron-right fs-6 opacity-50"
+                viewBox="0 0 16 16"
+            >
+                <path
+                    fill-rule="evenodd"
+                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
+                />
+            </svg>
+
+            Field group header
+        </header>
+    </summary>
+
+    <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+        diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+        takimata sanctus est Lorem ipsum dolor sit amet.
+    </p>
+</details>
+```
+
 ### Combine with styling of Menu Item
 
 ```html
@@ -296,65 +332,6 @@ With container queries, you can apply breaks based on a custom container.
     </div>
     This is a container grid. Resize the box around to see the effect.
 </div>
-```
-
-
-
-
-
-
-## Field Group
-
-### Basic usage
-
-```html
-<details class="blue-field-group">
-    <summary role="heading" aria-level="4">
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1em"
-            height="1em"
-            fill="currentColor"
-            aria-hidden="true"
-            class="blue-field-group-chevron bi bi-chevron-right fs-6 opacity-50"
-            viewBox="0 0 16 16"
-        >
-            <path
-                fill-rule="evenodd"
-                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
-            />
-        </svg>
-
-        My field group heading
-    </summary>
-    Lorem ipsum
-</details>
-```
-
-### Styled heading
-
-```html
-<details class="blue-field-group">
-    <summary role="heading" aria-level="4" class="blue-page-header h2">
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1em"
-            height="1em"
-            fill="currentColor"
-            aria-hidden="true"
-            class="blue-field-group-chevron bi bi-chevron-right fs-6 opacity-50"
-            viewBox="0 0 16 16"
-        >
-            <path
-                fill-rule="evenodd"
-                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
-            />
-        </svg>
-
-        My field group heading
-    </summary>
-    Lorem ipsum
-</details>
 ```
 
 
