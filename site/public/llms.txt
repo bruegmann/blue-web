@@ -175,6 +175,42 @@ Element with class `blue-collapse-chevron` will be rotated to `90deg` by default
 </details>
 ```
 
+### Field group
+
+```html
+<details class="blue-collapse">
+    <summary role="heading" aria-level="4">
+        <header class="blue-collapse-header d-flex align-items-center gap-1 h2 blue-page-header">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                fill="currentColor"
+                aria-hidden="true"
+                class="blue-collapse-chevron bi bi-chevron-right fs-6 opacity-50"
+                viewBox="0 0 16 16"
+            >
+                <path
+                    fill-rule="evenodd"
+                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
+                />
+            </svg>
+
+            Field group header
+        </header>
+    </summary>
+
+    <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+        diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+        takimata sanctus est Lorem ipsum dolor sit amet.
+    </p>
+</details>
+```
+
 ### Combine with styling of Menu Item
 
 ```html
@@ -303,6 +339,25 @@ With container queries, you can apply breaks based on a custom container.
 
 
 
+## Header
+
+Provided helper classes designed to be used inside a header.
+
+```html
+<header class="blue-header-title d-inline-flex gap-2 fw-medium align-items-center">
+    <a href="#">
+        <img src="blue.svg" alt="Logo" class="blue-header-title-image" />
+    </a>
+
+    <a href="#">AppTitle</a>
+</header>
+```
+
+
+
+
+
+
 ## Input group
 
 Special variant of [input group](https://getbootstrap.com/docs/5.3/forms/input-group).
@@ -345,11 +400,11 @@ Styles for a login screen.
 
 ```html
 <div style="background: var(--blue-app-bg)">
-    <div class="sign-in-screen">
-        <div class="sign-in-container mx-1">
+    <div class="blue-intro">
+        <div class="blue-intro-container mx-1">
             <div class="bg-body rounded-3 shadow-lg px-4 py-5">
                 <div class="text-center">
-                    <img style="max-width: 100px;" src="blue.svg" alt="Logo" />
+                    <img class="blue-intro-image" src="blue.svg" alt="Logo" />
                     <h1 class="h2 mt-4 mb-3">Hello World</h1>
                 </div>
                 Here could be a sign in form.
@@ -1379,6 +1434,28 @@ Unfortunately his class was removed in Bootstrap 5, so it's now part of Blue Web
 </div>
 ```
 
+#### Heading levels
+
+Combined with `h1`-`h6` elements or `.h1`-`.h6` classes, the border width changes.
+
+```html
+<div class="border rounded p-3">
+    <div class="h1 blue-page-header">Example headline</div>
+    <div class="h2 blue-page-header">Example headline</div>
+    <div class="h3 blue-page-header">Example headline</div>
+    <div class="h4 blue-page-header">Example headline</div>
+    <div class="h5 blue-page-header">Example headline</div>
+    <div class="h6 blue-page-header">Example headline</div>
+</div>
+```
+
+### `.blue-label`
+
+```html
+<label for="my-form-control" class="blue-label">Name</label>
+<input id="my-form-control" type="text" class="form-control" />
+```
+
 ### `.blue-icon` or `.bi`
 
 Vertically alignment, especially for Bootstrap Icons.
@@ -1426,10 +1503,49 @@ This is how you can customize the tooltip content with HTML.
 
 
 
+
 ## Additional utility classes
 
 Bootstrap already comes with a bunch of [utility classes](https://getbootstrap.com/docs/5.3/utilities/background/).
 Blue Web adds some additional to them.
+
+### `.m-last-0:last-child`
+
+Sets `margin: 0` to last child.
+Useful for creating a gap between items together with `mb-3`.
+Inspired by Tailwind CSS class `last:m-0`.
+
+### `.blue-empty-message`
+
+Shows empty message if the element has no children.
+Can be used for lists and such.
+For localization you should override CSS variable `--message` dynamically.
+
+```html
+<div class="blue-empty-message"></div>
+```
+
+### `.blue-contain-paint`
+
+Fixing border radius clipping.
+
+```html
+<div class="border border-primary rounded-5 mb-3">
+    <div class="text-bg-danger p-3">Child background destroys border radius of parent. ☹️</div>
+</div>
+<div class="border border-primary rounded-5 blue-contain-paint">
+    <div class="text-bg-success p-3">Much better! 🥳</div>
+</div>
+```
+
+We automatically add it to Bootstrap's `.card`.
+
+```html
+<div class="card">
+    <header class="card-header">My card</header>
+    <div class="text-bg-success p-3"></div>
+</div>
+```
 
 
 
@@ -1477,8 +1593,8 @@ Otherwise they will be visible in the dropdown menu. JavaScript detects if space
 
 ```html
 <div style="width: 460px" class="border" id="actionDemoPopover">
-    <div class="BLUE-actions" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="BLUE-actions-menu">
+    <div class="blue-actions" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="blue-actions-menu">
             <button type="button" class="blue-menu-item btn">
                 <span class="blue-menu-item-icon" aria-hidden="true">🌍</span>
                 <span class="blue-menu-item-label">Child</span>
@@ -1501,7 +1617,7 @@ Otherwise they will be visible in the dropdown menu. JavaScript detects if space
             </button>
         </div>
 
-        <div class="BLUE-actions-collapse" style="--blue-anchor-name: --actionDemoPopoverAnchor">
+        <div class="blue-actions-collapse" style="--blue-anchor-name: --actionDemoPopoverAnchor">
             <button type="button" popovertarget="actionDemoPopoverPopover" class="blue-anchor blue-menu-item btn px-3">
                 <span class="blue-menu-item-icon" aria-hidden="true">&#8942;</span>
                 <span class="visually-hidden">Toggle menu</span>
@@ -1510,7 +1626,7 @@ Otherwise they will be visible in the dropdown menu. JavaScript detects if space
             <div
                 id="actionDemoPopoverPopover"
                 popover
-                class="BLUE-actions-collapse-menu blue-anchored blue-anchored-end blue-anchored-fallback blue-menu-item-dropdown text-body gap-1 flex-column p-1"
+                class="blue-actions-collapse-menu blue-anchored blue-anchored-end blue-anchored-fallback blue-menu-item-dropdown text-body gap-1 flex-column p-1"
                 style="--blue-menu-item-dropdown-bg: var(--bs-body-bg); --display: flex;"
             >
                 <button type="button" class="blue-menu-item btn">
@@ -1546,7 +1662,7 @@ Otherwise they will be visible in the dropdown menu. JavaScript detects if space
 <script>
     window.actionDemoPopoverResponse = null
     document.addEventListener("DOMContentLoaded", () => {
-        actionDemoPopoverResponse = blueWeb.actions.init(document.querySelector("#actionDemoPopover .BLUE-actions"))
+        actionDemoPopoverResponse = blueWeb.actions.init(document.querySelector("#actionDemoPopover .blue-actions"))
 
         actionDemoPopoverRange.addEventListener("input", ({ target }) => {
             actionDemoPopover.style.width = `${target.value}px`
@@ -1571,8 +1687,8 @@ and global event listeners will be removed. Try to click the button. It will des
 
 ```html
 <div id="actionsDemoButtonGroups" class="border p-1" style="width: 460px">
-    <div class="BLUE-actions" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="BLUE-actions-menu gap-2">
+    <div class="blue-actions" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="blue-actions-menu gap-2">
             <div class="btn-group" role="group" aria-label="First group">
                 <button type="button" class="btn btn-primary">1</button>
                 <button type="button" class="btn btn-primary">2</button>
@@ -1595,7 +1711,7 @@ and global event listeners will be removed. Try to click the button. It will des
             </div>
         </div>
 
-        <div class="BLUE-actions-collapse" style="--blue-anchor-name: --actionsDemoButtonGroupsAnchor">
+        <div class="blue-actions-collapse" style="--blue-anchor-name: --actionsDemoButtonGroupsAnchor">
             <button
                 type="button"
                 popovertarget="actionsDemoButtonGroupsPopover"
@@ -1608,7 +1724,7 @@ and global event listeners will be removed. Try to click the button. It will des
             <div
                 id="actionsDemoButtonGroupsPopover"
                 popover
-                class="BLUE-actions-collapse-menu blue-anchored blue-anchored-end blue-anchored-fallback blue-menu-item-dropdown text-body gap-1 flex-column p-1"
+                class="blue-actions-collapse-menu blue-anchored blue-anchored-end blue-anchored-fallback blue-menu-item-dropdown text-body gap-1 flex-column p-1"
                 style="--blue-menu-item-dropdown-bg: var(--bs-body-bg); --display: flex;"
             >
                 <div class="btn-group" role="group" aria-label="First group">
@@ -1643,7 +1759,7 @@ and global event listeners will be removed. Try to click the button. It will des
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        blueWeb.actions.init(document.querySelector("#actionsDemoButtonGroups .BLUE-actions"))
+        blueWeb.actions.init(document.querySelector("#actionsDemoButtonGroups .blue-actions"))
 
         actionsDemoButtonGroupsRange.addEventListener("input", ({ target }) => {
             actionsDemoButtonGroups.style.width = `${target.value}px`
@@ -1774,6 +1890,24 @@ Group of input fields. Perfect e.g. for entering PIN or TOTP.
 
 ```html
 <bl-input-splitted length="4"></bl-input-splitted>
+```
+
+### Disabled
+
+```html
+<bl-input-splitted id="disabledInputSplitted" length="4" disabled></bl-input-splitted>
+<button type="button" class="btn blue-btn-soft-secondary" onclick="toggleDisabled()">Toggle disabled</button>
+
+<script>
+    function toggleDisabled() {
+        const el = document.getElementById("disabledInputSplitted")
+        if (el.hasAttribute("disabled")) {
+            el.removeAttribute("disabled")
+        } else {
+            el.setAttribute("disabled", "")
+        }
+    }
+</script>
 ```
 
 ### Styling With CSS Variables

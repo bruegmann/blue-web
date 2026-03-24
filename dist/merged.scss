@@ -1,5 +1,5 @@
 /*!
- * Blue Web v1.25.1 (https://bruegmann.github.io/blue-web)
+ * Blue Web v1.25.1005 (https://bruegmann.github.io/blue-web)
  * Licensed under GNU General Public License v3.0 (https://github.com/bruegmann/blue-web/blob/master/LICENSE).
 */
 
@@ -12288,54 +12288,6 @@ dialog.blue-modal:has(.offcanvas-start) {
 .blue-intro-image {
     max-width: 100%;
     max-height: 100px;
-}
-
-.blue-field-group {
-    interpolate-size: allow-keywords;
-}
-
-.blue-field-group:has(summary:focus) {
-    overflow: hidden;
-}
-
-.blue-field-group summary {
-    list-style: none;
-}
-
-.blue-field-group summary::-webkit-details-marker {
-    display: none;
-}
-
-.blue-field-group .blue-field-group-chevron {
-    transition: transform 0.2s;
-}
-
-@media (prefers-reduced-motion) {
-    .blue-field-group .blue-field-group-chevron {
-        transition: none;
-    }
-}
-
-.blue-field-group[open] > summary > .blue-field-group-chevron {
-    transform: rotate(90deg);
-}
-
-.blue-field-group::details-content {
-    block-size: 0;
-    transition:
-        block-size 0.2s,
-        content-visibility 0.2s;
-    transition-behavior: allow-discrete;
-}
-
-@media (prefers-reduced-motion) {
-    .blue-field-group::details-content {
-        transition: none;
-    }
-}
-
-.blue-field-group[open]::details-content {
-    block-size: auto;
 }
 
 
