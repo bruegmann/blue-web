@@ -47,12 +47,6 @@ async function dialog(dialogType: DialogType, text: string, options: DialogOptio
                             <div class="modal-header">
                                 ${icon ? /* html */ `<div class="me-2">${icon}</div>` : ""}
                                 <h1 class="modal-title fs-5" id="${id}-label">${title}</h1>
-                                <button
-                                    type="button"
-                                    class="btn-close"
-                                    aria-label="${cancelBtnText}"
-                                    onclick="document.getElementById('${id}').close()"
-                                ></button>
                             </div>
                             <div class="modal-body">
                                 ${dialogType === "ask"
