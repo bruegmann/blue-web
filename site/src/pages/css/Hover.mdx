@@ -3,8 +3,9 @@ layout: $/layouts/DocsLayout.astro
 ---
 
 import RenderBlock from "$/components/RenderBlock.astro"
+import Grab from "$/components/Grab.astro"
 
-# Visibility
+# Hover
 
 ## `.blue-opacity-hover`, `.blue-opacity-hover-content-active`, `.blue-opacity-hover-content-default`
 
@@ -33,3 +34,13 @@ Usage:
     Hover to fill the icon
 </button>
 ```
+
+## `.blue-bg-hover`
+
+Let's you change background color on hover:
+
+```html use:RenderBlock
+<div class="blue-bg-hover" style="--blue-hover-bg: var(--bs-primary)">Hover to change background color</div>
+```
+
+<Grab items={[{ src: "@/dist/styles/_hover.scss" }]} />

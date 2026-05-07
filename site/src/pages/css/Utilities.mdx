@@ -48,4 +48,26 @@ We automatically add it to Bootstrap's `.card`.
 </div>
 ```
 
+## `.blue-odd-bg`
+
+Let you easily create striped items, like rows.
+
+```html use:RenderBlock
+<div class="blue-odd-bg">Item 1</div>
+<div class="blue-odd-bg">Item 2</div>
+<div class="blue-odd-bg">Item 3</div>
+<div class="blue-odd-bg">Item 4</div>
+```
+
+You can set the background color using CSS variable `--blue-odd-bg`.
+
+```html use:RenderBlock
+<div style="--blue-odd-bg: cyan">
+    <div class="blue-odd-bg">Item 1</div>
+    <div class="blue-odd-bg">Item 2</div>
+    <div class="blue-odd-bg">Item 3</div>
+    <div class="blue-odd-bg">Item 4</div>
+</div>
+```
+
 <Grab items={[{ src: "@/dist/styles/_utils.scss" }]} expandable={false} />

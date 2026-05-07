@@ -11,7 +11,7 @@ import {
     CircleHalf,
     Columns,
     CursorText,
-    EyeSlash,
+    HandIndex,
     House,
     HouseFill,
     Icon9Square,
@@ -105,6 +105,7 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                             {item.label === "Collapse" && <CardHeading slot="iconBefore" />}
                             {item.label === "Container Grid" && <Columns slot="iconBefore" />}
                             {item.label === "Header" && <CardHeading slot="iconBefore" />}
+                            {item.label === "Hover" && <HandIndex slot="iconBefore" />}
                             {item.label === "Layout" && <LayoutTextWindowReverse slot="iconBefore" />}
                             {item.label === "Menu Item" && <MenuButton slot="iconBefore" />}
                             {item.label === "Modal" && <WindowStack slot="iconBefore" />}
@@ -118,9 +119,8 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                             {item.label === "Text and Icons" && <Type slot="iconBefore" />}
                             {item.label === "Tooltip" && <MenuUp slot="iconBefore" />}
                             {item.label === "Utilities" && <Tools slot="iconBefore" />}
-                            {item.label === "Visibility" && <EyeSlash slot="iconBefore" />}
 
-                            {["Utilities", "Text and Icons", "Collapse"].includes(item.label) && (
+                            {["Utilities", "Hover"].includes(item.label) && (
                                 <span slot="buttonContent" class="docs-badge docs-badge-update" />
                             )}
                         </MenuItem>
