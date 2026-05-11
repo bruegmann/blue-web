@@ -211,7 +211,32 @@ This is the same approach as in [Buttons](Buttons#button-with-icon).
 
 ## Overflow tooltip
 
-When a menu item label is truncated, a Blue tooltip (end position) is added automatically on hover.
+Use the generic `OverflowDetector` to detect when a menu item label is truncated and react accordingly (e.g. show a tooltip).
+The `OverflowDetector` is not specific to menu items and can be used on any element.
+
+```js
+import { OverflowDetector } from "@user/src/js/overflow-detector"
+
+const detector = new OverflowDetector()
+
+document.querySelectorAll(".blue-menu-item .text-truncate").forEach((label) => {
+    detector.observe({
+        element: label,
+        onChange: (isOverflowing, el) => {
+            const menuItem = el.closest(".blue-menu-item")
+            if (!menuItem) return
+
+            if (isOverflowing) {
+                menuItem.setAttribute("data-tooltip", el.textContent?.trim() ?? "")
+                menuItem.classList.add("blue-tooltip-end")
+            } else {
+                menuItem.removeAttribute("data-tooltip")
+                menuItem.classList.remove("blue-tooltip-end")
+            }
+        }
+    })
+})
+```
 
 ```html use:RenderBlock
 <div style="max-width: 14rem">
