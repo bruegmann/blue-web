@@ -20,8 +20,11 @@
 }
 
 // Fixing border radius clipping.
-// We automatically add it to Bootstrap's `.card`.
-.blue-contain-paint,
-.card {
+.blue-contain-paint {
     contain: paint;
+}
+
+// Helps you creating striped items.
+.blue-odd-bg:nth-of-type(odd) {
+    background-color: var(--blue-odd-bg, var(--bs-tertiary-bg));
 }

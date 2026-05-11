@@ -61,8 +61,9 @@ export class ReadView extends HTMLElement {
 
                 button:focus-visible + div {
                     outline: 0;
-                    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 25%);
-                    border-color: rgba(var(--bs-primary-rgb), 50%);
+                    box-shadow:
+                        0 0 0 0.25rem rgba(var(--bs-primary-rgb), 25%),
+                        inset 0 0 0 1px rgba(var(--bs-primary-rgb), 50%);
                 }
 
                 div {
@@ -72,7 +73,6 @@ export class ReadView extends HTMLElement {
                     max-width: 100%;
                     border-color: transparent;
                     border-radius: var(--bs-border-radius-sm, 3px);
-                    border: 1px solid transparent;
                     transition: background 0.2s;
                 }
 
