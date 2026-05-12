@@ -18,36 +18,8 @@ const { title, description } = Astro.props
     import "@/src/js/read-view.ts"
     import "@/src/js/color-mode.ts"
     import "@/src/js/actions.ts"
-    import { OverflowDetector } from "@/src/js/overflow-detector.ts"
+    import "@/src/js/overflow-detector.ts"
     import "@/src/js/select-list.ts"
-
-    const detector = new OverflowDetector()
-
-    function observeMenuItems() {
-        document.querySelectorAll<HTMLElement>(".blue-menu-item .text-truncate").forEach((label) => {
-            detector.observe({
-                element: label,
-                onChange: (isOverflowing, el) => {
-                    const menuItem = el.closest<HTMLElement>(".blue-menu-item")
-                    if (!menuItem) return
-
-                    if (isOverflowing) {
-                        menuItem.setAttribute("data-tooltip", el.textContent?.trim() ?? "")
-                        menuItem.classList.add("blue-tooltip-end")
-                    } else {
-                        menuItem.removeAttribute("data-tooltip")
-                        menuItem.classList.remove("blue-tooltip-end")
-                    }
-                }
-            })
-        })
-    }
-
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", observeMenuItems, { once: true })
-    } else {
-        observeMenuItems()
-    }
     import "@/src/js/input-splitted.ts"
     import "@/src/js/odometer.ts"
 
