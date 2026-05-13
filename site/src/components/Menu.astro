@@ -27,6 +27,7 @@ import {
     Postcard,
     Search,
     SegmentedNav,
+    ThreeDots,
     Tools,
     Type,
     WindowStack
@@ -141,6 +142,7 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                                 {item.label === "Dialog" && <WindowStack slot="iconBefore" />}
                                 {item.label === "Input Splitted" && <InputCursorText slot="iconBefore" />}
                                 {item.label === "Odometer" && <Icon9Square slot="iconBefore" />}
+                                {item.label === "Overflow Detector" && <ThreeDots slot="iconBefore" />}
                                 {item.label === "Progress" && <ArrowRepeat slot="iconBefore" />}
                                 {item.label === "Read View" && <CursorText slot="iconBefore" />}
                                 {item.label === "Select List" && <CardChecklist slot="iconBefore" />}
