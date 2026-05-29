@@ -20,7 +20,10 @@ module.exports = {
         filename: "[name].bundle.js" // [name] wird durch den Schlüssel im entry-Objekt ersetzt
     },
     resolve: {
-        extensions: [".ts", ".js"]
+        extensions: [".ts", ".js"],
+        extensionAlias: {
+            ".js": [".js", ".ts"]
+        }
     },
     module: {
         rules: [

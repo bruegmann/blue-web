@@ -1,5 +1,5 @@
-import { guid } from "./utils"
-import { getPhrase } from "./shared"
+import { guid } from "./utils.js"
+import { getPhrase } from "./shared.js"
 
 export type DialogType = "ask" | "tell" | "verify"
 

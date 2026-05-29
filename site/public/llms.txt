@@ -467,87 +467,6 @@ Styles for a login screen.
 
 
 
-## Layout
-
-Blue Web offers a set of code to create a layout with a header, collapsible sidebar, and a main content area.
-
-### Without sidebar
-
-```html
-<div class="blue-layout" style="height: 400px">
-    <header class="blue-layout-header">Your header here</header>
-    <main class="blue-layout-main">
-        <div class="blue-layout-body">Your main content here</div>
-    </main>
-</div>
-```
-
-### With sidebar
-
-```html
-<div class="blue-layout" style="height: 400px">
-    <input id="my-layout-expand" type="checkbox" class="blue-layout-state blue-layout-state-expand" checked />
-    <label
-        class="blue-layout-toggle blue-layout-toggle-expand"
-        for="my-layout-expand"
-        title="Toggle sidebar"
-        role="button"
-    >
-        <div class="btn blue-menu-item w-100 h-100 d-flex align-items-center justify-content-center p-0">🍔</div>
-    </label>
-
-    <input id="my-layout-drawer" type="checkbox" class="blue-layout-state blue-layout-state-drawer" />
-    <label
-        class="blue-layout-toggle blue-layout-toggle-drawer"
-        for="my-layout-drawer"
-        title="Toggle sidebar"
-        role="button"
-    >
-        <div class="btn blue-menu-item w-100 h-100 d-flex align-items-center justify-content-center p-0">🍔</div>
-    </label>
-
-    <header class="blue-layout-header">Your header here</header>
-
-    <aside
-        class="blue-layout-side overflow-x-hidden overflow-y-auto h-100"
-        style="color: var(--blue-sidebar-color); background: var(--blue-sidebar-bg);"
-    >
-        Your sidebar here
-    </aside>
-    <main class="blue-layout-main"><div class="blue-layout-body">Your main content here</div></main>
-
-    <label
-        aria-label="Close sidebar"
-        for="my-layout-drawer"
-        class="blue-layout-overlay bg-dark w-100 h-100"
-        style="--bs-bg-opacity: 0.5;"
-    >
-    </label>
-</div>
-```
-
-### Adjust header logo size using CSS variable
-
-Implementations for [React](https://bruegmann.github.io/blue-react/v10/component/HeaderTitle) and [Blazor](https://bruegmann.github.io/blue-blazor/components/header-title/props) provide components to set a layout header with a logo and app title.
-By default the logo size is `2rem`. You can override that value with CSS variable `--blue-header-title-image-size`:
-
-```html
-<div style="--blue-header-title-image-size: 1rem">
-    <div class="blue-header-title d-inline-flex gap-2 fw-medium align-items-center px-3 py-2">
-        <a href="."><img src="blue.svg" alt="My logo" class="blue-header-title-image" /></a>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href=".">My App</a></li>
-            </ol>
-        </nav>
-    </div>
-</div>
-```
-
-If your logo has another width than height, you can also use a combination of `--blue-header-title-image-width` and `--blue-header-title-image-height`.
-
-
-
 
 ## Menu Item
 
@@ -753,62 +672,13 @@ This is the same approach as in [Buttons](Buttons#button-with-icon).
 </nav>
 ```
 
-### Overflow tooltip
-
-Use the generic `OverflowDetector` to detect when a menu item label is truncated and react accordingly (e.g. show a tooltip).
-The `OverflowDetector` is not specific to menu items and can be used on any element.
-
-```js
-import { OverflowDetector } from "@user/src/js/overflow-detector"
-
-const detector = new OverflowDetector()
-
-document.querySelectorAll(".blue-menu-item .text-truncate").forEach((label) => {
-    detector.observe({
-        element: label,
-        onChange: (isOverflowing, el) => {
-            const menuItem = el.closest(".blue-menu-item")
-            if (!menuItem) return
-
-            if (isOverflowing) {
-                menuItem.setAttribute("data-tooltip", el.textContent?.trim() ?? "")
-                menuItem.classList.add("blue-tooltip-end")
-            } else {
-                menuItem.removeAttribute("data-tooltip")
-                menuItem.classList.remove("blue-tooltip-end")
-            }
-        }
-    })
-})
-```
-
-```html
-<div style="max-width: 14rem">
-    <button class="btn blue-menu-item icon-link d-flex w-100">
-        <span class="blue-btn-icon-wrapper" aria-hidden>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                <path
-                    d="M6.623 6.094c0 .738.586 1.254 1.383 1.254s1.377-.516 1.377-1.254c0-.733-.58-1.23-1.377-1.23s-1.383.497-1.383 1.23m-.281 3.644c0 .838.72 1.412 1.664 1.412.943 0 1.658-.574 1.658-1.412 0-.843-.715-1.424-1.658-1.424-.944 0-1.664.58-1.664 1.424"
-                />
-                <path
-                    d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm8.97 9.803c0 1.394-1.218 2.355-2.988 2.355-1.763 0-2.953-.955-2.953-2.344 0-1.271.95-1.851 1.647-2.003v-.065c-.621-.193-1.33-.738-1.33-1.781 0-1.225 1.09-2.121 2.66-2.121s2.654.896 2.654 2.12c0 1.061-.738 1.595-1.336 1.782v.065c.703.152 1.647.744 1.647 1.992Z"
-                />
-            </svg>
-        </span>
-
-        <span class="flex-grow-1 text-truncate" style="min-width: 0">
-            This is a very long menu item label that should truncate and show a tooltip
-        </span>
-    </button>
-</div>
-```
-
 ### Combine with Collapse
 
 Together with `.blue-collapse` and [`<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details) you can create a collapsable sub menu.
 Could be used inside the sidebar.
 
 [Click here to go the example on the Collapse page](css/Collapse#combine-with-menu-item).
+
 
 
 
@@ -907,6 +777,8 @@ Because [Bootstrap Offcanvas](https://getbootstrap.com/docs/5.3/components/offca
     </dialog>
 </section>
 ```
+
+
 
 
 
@@ -2515,136 +2387,6 @@ Together with `popover` and CSS Anchoring, it's also useful to create a dropdown
 
 
 
-
-## Side Layout
-
-<div class="alert alert-warning" role="alert">
-    Using the Web Component as a global layout in production might not be ideal because of FOUC (Flash of Unstyled
-    Content). You should check out [the CSS Layout solution instead](css/Layout).
-</div>
-
-### Simple example
-
-Layout with a sidebar as a Web Component.
-
-```html
-<bl-side-layout>
-    <div slot="header">Header</div>
-    <div slot="side">Side</div>
-    Main
-</bl-side-layout>
-```
-
-### Example with Blue Web (Bootstap) classes
-
-```html
-<div class="bg-primary-subtle" style="height: 100dvh;">
-    <bl-side-layout>
-        <div slot="expand-toggler" class="w-100 h-100 p-1">
-            <div class="btn blue-btn-plain-theme w-100 h-100" style="box-shadow: var(--trigger-box-shadow);">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    width="1em"
-                    height="1em"
-                    fill="currentColor"
-                    class="bi bi-layout-sidebar"
-                >
-                    <path
-                        d="M0 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm5-1v12h9a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM4 2H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h2z"
-                    ></path>
-                </svg>
-            </div>
-        </div>
-        <div slot="drawer-toggler" class="w-100 h-100 p-1">
-            <div class="btn blue-btn-plain-theme w-100 h-100" style="box-shadow: var(--trigger-box-shadow);">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    width="1em"
-                    height="1em"
-                    fill="currentColor"
-                    class="bi bi-layout-sidebar-inset"
-                >
-                    <path
-                        d="M14 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2z"
-                    ></path>
-                    <path d="M3 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"></path>
-                </svg>
-            </div>
-        </div>
-        <div slot="overlay" class="bg-dark w-100 h-100" style="--bs-bg-opacity: 0.5;"></div>
-        <div slot="side" class="bg-primary-subtle h-100">Side</div>
-        <div class="w-100 h-100 p-1">
-            <div class="w-100 h-100 overflow-auto rounded border p-4 bg-body">
-                <div class="h1 page-header">Hello World</div>
-            </div>
-        </div>
-    </bl-side-layout>
-</div>
-```
-
-### Example with Tailwind CSS classes
-
-```html
-<div class="text-secondary-500 dark:bg-secondary-900 dark:text-secondary-400 bg-white h-screen">
-    <bl-side-layout>
-        <div slot="expand-toggler" class="size-full p-1">
-            <div class="btn flex size-full items-center justify-center">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    width="1em"
-                    height="1em"
-                    fill="currentColor"
-                    class="bi bi-layout-sidebar"
-                >
-                    <path
-                        d="M0 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm5-1v12h9a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM4 2H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h2z"
-                    ></path>
-                </svg>
-            </div>
-        </div>
-        <div slot="drawer-toggler" class="size-full p-1">
-            <div class="btn flex size-full items-center justify-center">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    width="1em"
-                    height="1em"
-                    fill="currentColor"
-                    class="bi bi-layout-sidebar-inset"
-                >
-                    <path
-                        d="M14 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2z"
-                    ></path>
-                    <path d="M3 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"></path>
-                </svg>
-            </div>
-        </div>
-        <div class="bg-secondary-950/80 size-full" slot="overlay"></div>
-        <div
-            slot="side"
-            class="max-lg:text-secondary-500 max-lg:dark:bg-secondary-800 max-lg:dark:text-secondary-400 h-full max-lg:bg-white"
-        >
-            Side
-        </div>
-        <div class="size-full p-1">
-            <div class="border-secondary-200 dark:border-secondary-800 size-full overflow-auto rounded-md border p-4">
-                <div
-                    role="heading"
-                    aria-level="1"
-                    class="text-secondary-800 dark:text-secondary-100 mt-4 mb-3 font-bold tracking-tight text-3xl border-secondary-200 dark:border-secondary-800 border-b-4 pb-1"
-                >
-                    Hello World
-                </div>
-            </div>
-        </div>
-    </bl-side-layout>
-</div>
-```
-
-
 import UtilsDemo from "$/components/UtilsDemo.tsx"
 
 ## Utils
@@ -2809,6 +2551,173 @@ It allows you to easily animate transitions between different UI states.
     })
 </script>
 ```
+
+
+
+
+## Layout
+
+Blue Web offers a set of code to create a layout with a header, collapsible sidebar, and a main content area.
+
+### Without sidebar
+
+```html
+<div class="blue-layout" style="height: 400px">
+    <header class="blue-layout-header">Your header here</header>
+    <main class="blue-layout-main">
+        <div class="blue-layout-body">Your main content here</div>
+    </main>
+</div>
+```
+
+### With sidebar
+
+```html
+<div id="newLayout" class="blue-layout" style="height: 400px">
+    <header class="blue-layout-header">
+        <button
+            type="button"
+            class="btn blue-menu-item blue-btn-square d-flex d-lg-none"
+            command="show-modal"
+            commandfor="layoutDrawer"
+            aria-label="Open drawer"
+        >
+            <svg class="bi" width="16" height="16" aria-hidden>
+                <use xlink:href="#bi-layout-sidebar-inset"></use>
+            </svg>
+        </button>
+
+        <button
+            id="toggleLayoutSide"
+            type="button"
+            class="btn blue-menu-item blue-btn-square d-none d-lg-flex"
+            data-blue-toggle="layout-side"
+            aria-controls="layoutSide"
+            aria-expanded="true"
+            aria-label="Toggle sidebar"
+        >
+            <svg class="bi" width="16" height="16" aria-hidden>
+                <use xlink:href="#bi-layout-sidebar"></use>
+            </svg>
+        </button>
+
+        Your header here
+    </header>
+
+    <div id="layoutSide" class="blue-layout-side">
+        <dialog class="blue-lg-modal blue-modal modal" id="layoutDrawer" aria-describedby="layoutDrawerLabel">
+            <div class="offcanvas offcanvas-start show">
+                <div class="offcanvas-header">
+                    <h1 class="h5 offcanvas-title" id="layoutDrawerLabel">Offcanvas</h1>
+                    <form method="dialog" style="display: contents;">
+                        <button type="submit" class="btn-close" aria-label="Close"></button>
+                    </form>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="blue-layout-side-body">
+                        <ul class="list-unstyled vstack">
+                            <li><a href="#" class="btn blue-menu-item icon-link d-flex">Item 1</a></li>
+                            <li><a href="#" class="btn blue-menu-item icon-link d-flex">Item 2</a></li>
+                            <li><a href="#" class="btn blue-menu-item icon-link d-flex">Item 3</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <form method="dialog" class="blue-modal-backdrop"><button>Close</button></form>
+        </dialog>
+    </div>
+    <main class="blue-layout-main">
+        <div class="blue-layout-body">
+            <p>Your main content here</p>
+
+            <button type="button" class="btn blue-btn-soft-primary" onclick="blueWeb.layout.dispose(newLayout)">
+                Dispose layout instance
+            </button>
+        </div>
+    </main>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        blueWeb.layout.init(newLayout)
+    })
+</script>
+
+<svg xmlns="http://www.w3.org/2000/svg" hidden>
+    <symbol id="bi-layout-sidebar-inset" viewBox="0 0 16 16">
+        <path
+            d="M14 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2z"
+        />
+        <path d="M3 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" />
+    </symbol>
+    <symbol id="bi-layout-sidebar" viewBox="0 0 16 16">
+        <path
+            d="M0 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm5-1v12h9a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM4 2H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h2z"
+        />
+    </symbol>
+</svg>
+```
+
+### Adjust header logo size using CSS variable
+
+Implementations for [React](https://bruegmann.github.io/blue-react/v10/component/HeaderTitle) and [Blazor](https://bruegmann.github.io/blue-blazor/components/header-title/props) provide components to set a layout header with a logo and app title.
+By default the logo size is `2rem`. You can override that value with CSS variable `--blue-header-title-image-size`:
+
+```html
+<div style="--blue-header-title-image-size: 1rem">
+    <div class="blue-header-title d-inline-flex gap-2 fw-medium align-items-center px-3 py-2">
+        <a href="."><img src="blue.svg" alt="My logo" class="blue-header-title-image" /></a>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href=".">My App</a></li>
+            </ol>
+        </nav>
+    </div>
+</div>
+```
+
+If your logo has another width than height, you can also use a combination of `--blue-header-title-image-width` and `--blue-header-title-image-height`.
+
+
+
+
+
+
+## Responsive Drawer
+
+Responsive Drawers will be introduced in Bootstrap 6. Blue Web implemented ways that allow you to use it already today.
+
+```html
+<button type="button" class="btn blue-btn-soft-primary d-lg-none" command="show-modal" commandfor="myDrawer">
+    Open offcanvas
+</button>
+
+<dialog class="blue-lg-modal blue-modal modal" id="myDrawer" aria-describedby="offcanvasLabel">
+    <div class="offcanvas offcanvas-start show">
+        <div class="offcanvas-header">
+            <h1 class="h5 offcanvas-title" id="offcanvasLabel">Offcanvas</h1>
+            <form method="dialog" style="display: contents;">
+                <button type="submit" class="btn-close" aria-label="Close"></button>
+            </form>
+        </div>
+        <div class="offcanvas-body">
+            <div>
+                On larger screens, you will see this content immediately. On smaller screens, it will be hidden inside a
+                drawer and you can open it using a button.
+            </div>
+        </div>
+    </div>
+    <form method="dialog" class="blue-modal-backdrop"><button>Close</button></form>
+</dialog>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        blueWeb.modalResponsive.init(myDrawer)
+    })
+</script>
+```
+
+
 
 
 

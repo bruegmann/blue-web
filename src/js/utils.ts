@@ -1,4 +1,4 @@
-import { StatusType } from "./shared"
+import { StatusType } from "./shared.js"
 
 export function startLoading() {
     ;(document.querySelector(".blue-loading") as HTMLElement).style.display = "block"

@@ -17,6 +17,7 @@ import {
     Icon9Square,
     InputCursorText,
     LayersHalf,
+    LayoutSidebarInset,
     LayoutTextWindowReverse,
     MenuApp,
     MenuButton,
@@ -35,7 +36,7 @@ import {
 
 const currentPath = Astro.url.pathname
 
-function prepareSectionMenuItem(path: string, section: "css" | "js") {
+function prepareSectionMenuItem(path: string, section: "css" | "js" | "mixed") {
     const cleanPath = path
         .replace(`/src/pages/${section}/`, "")
         .replace(".astro", "")
@@ -60,6 +61,9 @@ const cssMenuItems = allCssMenuItems.filter((item) => !deprecated.includes(item.
 const deprecatedMenuItems = allCssMenuItems.filter((item) => deprecated.includes(item.label))
 
 const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) => prepareSectionMenuItem(path, "js"))
+const mixedMenuItems = Object.keys(import.meta.glob("/src/pages/mixed/*")).map((path) =>
+    prepareSectionMenuItem(path, "mixed")
+)
 ---
 
 <SidebarMenu>
@@ -97,6 +101,26 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
         </li>
 
         <li class="mb-3">
+            <strong class="ps-2">Mixed</strong>
+            <ul class="list-unstyled">
+                {
+                    mixedMenuItems.map((item) => (
+                        <li>
+                            <MenuItem href={item.path} label={item.label} current={item.isActive}>
+                                {item.label === "Layout" && <LayoutTextWindowReverse slot="iconBefore" />}
+                                {item.label === "Responsive Drawer" && <LayoutSidebarInset slot="iconBefore" />}
+
+                                {["Mixed"].includes(item.label) && (
+                                    <span slot="buttonContent" class="docs-badge docs-badge-update" />
+                                )}
+                            </MenuItem>
+                        </li>
+                    ))
+                }
+            </ul>
+        </li>
+
+        <li class="mb-3">
             <strong class="ps-2">CSS</strong>
             <div class="vstack">
                 {
@@ -107,7 +131,6 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                             {item.label === "Container Grid" && <Columns slot="iconBefore" />}
                             {item.label === "Header" && <CardHeading slot="iconBefore" />}
                             {item.label === "Hover" && <HandIndex slot="iconBefore" />}
-                            {item.label === "Layout" && <LayoutTextWindowReverse slot="iconBefore" />}
                             {item.label === "Menu Item" && <MenuButton slot="iconBefore" />}
                             {item.label === "Modal" && <WindowStack slot="iconBefore" />}
                             {item.label === "Neumorphism" && <LayersHalf slot="iconBefore" />}
@@ -121,7 +144,7 @@ const jsMenuItems = Object.keys(import.meta.glob("/src/pages/js/*")).map((path) 
                             {item.label === "Tooltip" && <MenuUp slot="iconBefore" />}
                             {item.label === "Utilities" && <Tools slot="iconBefore" />}
 
-                            {["Utilities", "Hover"].includes(item.label) && (
+                            {["Layout", "Modal"].includes(item.label) && (
                                 <span slot="buttonContent" class="docs-badge docs-badge-update" />
                             )}
                         </MenuItem>
