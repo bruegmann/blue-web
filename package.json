@@ -28,7 +28,8 @@
         "license-report": "npx license-report --prod --output=json > site/src/assets/license-report.json",
         "dev": "astro dev --root site",
         "build-astro": "astro build --root site",
-        "preview-astro": "astro preview --root site"
+        "preview-astro": "astro preview --root site",
+        "version": "npm run build-release"
     },
     "dependencies": {
         "@popperjs/core": "^2.11.5",

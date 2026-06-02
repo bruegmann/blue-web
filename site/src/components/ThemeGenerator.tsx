@@ -64,7 +64,7 @@ export function ThemeGeneratorSwitch() {
     }, [])
 
     return (
-        <MenuItem onClick={action} iconBefore={<Palette2 />} label="Theme Generator" as="popover-group">
+        <MenuItem onClick={action} iconBefore={<Palette2 />} label="Theme Generator" labelHidden as="popover-group">
             <div className="p-2">{show && <ThemeGenerator defaultThemeInfo={defaultTheme?.themeInfo} />}</div>
         </MenuItem>
     )
