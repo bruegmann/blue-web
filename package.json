@@ -29,7 +29,7 @@
         "dev": "astro dev --root site",
         "build-astro": "astro build --root site",
         "preview-astro": "astro preview --root site",
-        "version": "npm run build-release",
+        "version": "npm run build-release && git add -A",
         "postversion": "npm run deploy && git push --follow-tags"
     },
     "dependencies": {
