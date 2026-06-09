@@ -103,6 +103,11 @@ export class ReadView extends HTMLElement {
     private updateDisabledState() {
         const isDisabled = this.hasAttribute("disabled")
         this.button?.setAttribute("aria-disabled", String(isDisabled))
+        if (isDisabled) {
+            this.button?.setAttribute("tabindex", "-1")
+        } else {
+            this.button?.removeAttribute("tabindex")
+        }
         this.container?.setAttribute("aria-disabled", String(isDisabled))
     }
 
