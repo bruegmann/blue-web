@@ -201,3 +201,12 @@ body.modal-open .dxbl-popup-cell[style="z-index: 1050;"] {
 .dxbl-modal {
     --dxbl-popup-border-radius: var(--bs-border-radius-lg);
 }
+
+.dxbl-checkbox:not(.dxbl-checkbox-switch):not(.dxbl-checkbox-radio) .dxbl-checkbox-check-element {
+    border-radius: 0.25em;
+}
+
+.dxbl-checkbox:not(.dxbl-disabled):not(:disabled):not(.dxbl-readonly) input,
+.dxbl-checkbox:not(.dxbl-disabled):not(:disabled):not(.dxbl-readonly) label {
+    cursor: initial;
+}
