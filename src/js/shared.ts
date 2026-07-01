@@ -15,9 +15,9 @@ interface Phrases {
 
 const phrases: Phrases = {
     Cancel: ["Cancel", "Abbrechen"],
-    Yes: ["Yes", "Ja"],
-    No: ["No", "Nein"],
     Message: ["Message", "Nachricht"],
+    Question: ["Question", "Frage"],
+    Confirm: ["Confirm", "Bestätigen"],
     "Toggle menu": ["Toggle menu", "Menü umschalten"],
     "Close all": ["Close all", "Alle schließen"],
     Error: ["Error", "Fehler"],

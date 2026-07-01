@@ -27,11 +27,11 @@ export async function verify(text: string, options: DialogOptions | string = {})
 
 async function dialog(dialogType: DialogType, text: string, options: DialogOptions | string = {}) {
     let {
-        title = getPhrase("Message"),
+        title = getPhrase(dialogType === "verify" ? "Confirm" : dialogType === "ask" ? "Question" : "Message"),
         icon = undefined,
         switchPrimaryBtn = false,
-        acceptBtnText = dialogType === "verify" ? getPhrase("Yes") : "OK",
-        cancelBtnText = dialogType === "verify" ? getPhrase("No") : getPhrase("Cancel"),
+        acceptBtnText = "OK",
+        cancelBtnText = getPhrase("Cancel"),
         inputType = "text",
         defaultValue
     } = typeof options === "string" ? JSON.parse(options) : options
@@ -50,12 +50,12 @@ async function dialog(dialogType: DialogType, text: string, options: DialogOptio
                             </div>
                             <div class="modal-body">
                                 ${dialogType === "ask"
-                                    ? /* HTML */ `<label for="${id}-input">${text}</label>
+                                    ? /* HTML */ `<label for="${id}-input" class="blue-label">${text}</label>
                                           <input
                                               type="${inputType}"
                                               ${defaultValue !== undefined ? ` value="${defaultValue}"` : ""}
                                               id="${id}-input"
-                                              class="form-control mt-3"
+                                              class="form-control"
                                           />`
                                     : text}
                             </div>

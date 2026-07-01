@@ -14,55 +14,55 @@ They are not meant to be used as a replacement for more complex modals.
 ### Verify
 
 ```html use:RenderBlock
-<button id="verify_button" type="button" class="btn blue-btn-soft-secondary">Verify</button>
+<button type="button" class="btn blue-btn-soft-secondary" onclick="verifyUser()">Verify</button>
 
 <script>
-    verify_button.addEventListener("click", async () => {
+    async function verifyUser() {
         const yesOrNo = await blueWeb.dialog.verify("Do you want to continue?")
         await blueWeb.dialog.tell(yesOrNo ? "You clicked yes" : "You clicked no")
-    })
+    }
 </script>
 ```
 
 ### Tell
 
 ```html use:RenderBlock
-<button id="tell_button" type="button" class="btn blue-btn-soft-secondary">Tell</button>
+<button type="button" class="btn blue-btn-soft-secondary" onclick="tellUser()">Tell</button>
 
 <script>
-    tell_button.addEventListener("click", async () => {
+    async function tellUser() {
         await blueWeb.dialog.tell("A message for you")
-    })
+    }
 </script>
 ```
 
 ### Ask
 
 ```html use:RenderBlock
-<button id="ask_button" type="button" class="btn blue-btn-soft-secondary">Ask</button>
+<button type="button" class="btn blue-btn-soft-secondary" onclick="askUser()">Ask</button>
 
 <script>
-    ask_button.addEventListener("click", async () => {
+    async function askUser() {
         const answer = await blueWeb.dialog.ask("What is the question?", {
             title: "Question"
         })
         await blueWeb.dialog.tell("You asked: " + answer)
-    })
+    }
 </script>
 ```
 
 ### Ask with default value
 
 ```html use:RenderBlock
-<button id="ask_button2" type="button" class="btn blue-btn-soft-secondary">Ask</button>
+<button type="button" class="btn blue-btn-soft-secondary" onclick="askUserWithDefaultValue()">Ask</button>
 
 <script>
-    ask_button2.addEventListener("click", async () => {
+    async function askUserWithDefaultValue() {
         const answer = await blueWeb.dialog.ask(
             "What is your name?",
             `{"title":"Save Query","defaultValue":"DEFAULT LGK"}`
         )
         await blueWeb.dialog.tell("You asked: " + answer)
-    })
+    }
 </script>
 ```
